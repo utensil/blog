@@ -34,7 +34,7 @@ languages:
                 - name: Tags
                   url: tags/
                   weight: 10
-    # cn:
+    # zh:
     #     languageName: "中"
     #     languageAltTitle: 中
     #     weight: 2

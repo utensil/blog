@@ -1,0 +1,1 @@
+find content/posts -name "*.d2" -exec sh -c 'd2 "$0" "${0%}.svg"' {} \;
