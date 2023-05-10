@@ -1,31 +1,55 @@
 ---
-title: "Transformer: from attention to performance optimizations"
+title: "Transformers: from self-attention to performance optimizations"
 date: 2023-05-04T22:00+08:00
 draft: true
 ---
 
-The purpose of this post is to focus on understanding what is happening and the performance factors involved when fine-tuning and running local large language models, keeping multi-modality in mind.
+The purpose of this post is to focus on understanding what is under the hood and the performance factors involved when fine-tuning and running local Transformer  models, keeping multi-modality in mind.
 
-To accomplish this, we first present a brief account of the transformer architecture, including its design intuitions and corresponding mathematical treatments, concretized by illustrative diagrams and code snippets. Then we aim to achieve a comprehensive understanding of the widely adopted performance optimizations for the original transformer architecture.
+To accomplish this, we first present a brief account of the transformer architecture, including its design intuitions and the underlying mathematics, concretized by illustrative diagrams and code snippets. Then we aim to achieve a comprehensive understanding of the widely adopted performance optimizations for the original transformer architecture.
 
-This post draws inspiration from [An Introduction to Transformers (Turner, 2023)](https://arxiv.org/abs/2304.10557) [^1], which provides a mathematically precise, intuitive, and clean description of the transformer architecture, gradually (Phuong et al., 2022)[^2] and other sources will be incorporated and improved upon for clarity and self-containedness.
+This post was initially inspired by [An Introduction to Transformers (Turner, 2023)](https://arxiv.org/abs/2304.10557) [^1], which provides a mathematically precise, intuitive, and clean description of the transformer architecture, many other sources are incorporated and improved upon for clarity and self-containedness.
 
 ## Notations
 
-Notations used in this post try to be consistent with "The Transformer Family Version 2.0" (Lilian, 2023)[^3] and latest papers on performance optimizations, which would deviate from (Turner, 2023)[^1] in many places.
+Notations used in this post try to be consistent with "The Transformer Family Version 2.0" (Lilian, 2023)[^3] and latest papers on performance optimizations such as FlashAttention, GPTQ, etc. , which deviate from (Turner, 2023)[^1] and (Phuong et al., 2022)[^2] in many places, notably the shape of input/output matrices.
 
-Notably, [^1] and [^2] use $D \times N$ matrices to represent the input and output of a transformer, while [^3] uses $L \times D$ matrices. The shape in the latter is more consistent with the conventions in literature such as FlashAttention, GPTQ, etc. but the choice of $N$ for token length is more common thus $N \times D$ is adopted in this post.
+For further simplicity, this post will use the concise and powerful "Named Tensor Notation" from (Chiang et al., 2021)[^7] which has many advantages similar to Einops (Rogozhnikov, 2022)[^8]. It's seldom used in the literatures but very intuitive and easy to relate to widely adopted notations visually.
 
-| Symbol | Shape | Meaning |
+$$
+\newcommand{\namedtensorstrut}{\vphantom{fg}} % milder than \mathstrut
+\newcommand{\name}[1]{\mathsf{\namedtensorstrut #1}}
+\newcommand{\nbin}[2]{\mathbin{\underset{\substack{#1}}{\namedtensorstrut #2}}}
+\newcommand{\ndot}[1]{\nbin{#1}{\odot}}
+\newcommand{\ncat}[1]{\nbin{#1}{\oplus}}
+\newcommand{\nsum}[1]{\sum\limits_{\substack{#1}}}
+\newcommand{\nfun}[2]{\mathop{\underset{\substack{#1}}{\namedtensorstrut\mathrm{#2}}}}
+\newcommand{\ndef}[2]{\newcommand{#1}{\name{#2}}}
+\ndef{\ax}{ax}
+\ndef{\dd}{d}
+\ndef{\layer}{layer}
+\ndef{\seq}{seq}
+\ndef{\subseq}{subseq}
+\ndef{\key}{key} \ndef{\val}{val}
+\ndef{\heads}{heads}
+\ndef{\batch}{batch}
+\ndef{\inp}{input} \ndef{\hidden}{hidden} \ndef{\out}{out}
+\ndef{\height}{height} \ndef{\width}{width} \ndef{\chans}{chans}
+\ndef{\kernel}{kernel} \ndef{\kh}{kh} \ndef{\kw}{kw}
+\ndef{\vocab}{vocab}
+\ndef{\classes}{classes}
+\ndef{\state}{state}
+\ndef{\emb}{emb}
+\ndef{\feat}{feat}
+$$
+
+| Symbol | $\in$ | Meaning |
 | :---: | :---: | :--- |
-| $N$ |  | The (token) length of input sequence, indexed by $n$ |
-| $D$ |  | The size of features of a token / representation, indexed by $d$ |
-| $M$ |  | The total number of attention layers in the model, indexed by $m$ |
-| $X^{(0)}$ | $N \times D$ | The input sequence |
-| $X^{(m)}$ | $N \times D$ | the output of the $m^{th}$ transformer layer |
-| $x^{(m)}_n $ | $1 \times D$ | the (row) vector of features for the $n^{th}$ token of $X^{(m)}$ |
+| $X^{(0)}$ | $\mathbb{R}^{\seq \times \feat}$ | The input sequence of tokens, length $N$, each token has $D$ features |
+| $X^{(m)}$ | $\mathbb{R}^{\seq \times \feat}$ | The output of the $m^{th}$ transformer layer |
+| $x^{(m)}_n $ | $\mathbb{R}^{1 \times \feat}$ | The (row) vector of features for the $n^{th}$ token of $X^{(m)}$ |
+| $A^{(m)}$ | $\mathbb{R}^{\seq \times \seq}$ | The $N \times N$ attention matrix |
 
-TODO: add a brief table of notations
 
 $$
 % NxD matrices in diargams are assumed to be 4x3, i.e. 4 rows and 3 columns
@@ -76,7 +100,7 @@ For texts, the tokenization process first needs to choose a vocabulary that coul
 
 A transformer is composed of multiple transformer layers. The representation of the input sequence will be produced by iteratively applying a transformer layer
 
-$$ X^{(m)} = \text{transformer-layer}(X^{(m-1)}) $$
+$$ X^{(m)} = \text{TransLayer}(X^{(m-1)}) $$
 
 where $X^{(m)}$ denotes the output of the $m^{th}$ transformer layer, and recall that $X^{(0)}$ naturally denotes the input of the transformer.
 
@@ -88,7 +112,7 @@ Every transformer layer comprises two stages (or sub-layers):
 By repeatedly applying the transformer layer the representation at
 token $n$ and feature $d$ can be shaped by information at token $n'$ and feature $d'$ . This gives the transformer the ability to model long-range dependencies between tokens and features. Such a completeness is a key advantage of the transformer over other architectures but also poses challenges for efficient implementation.
 
-### Stage 1: self-attention over time
+### Stage 1: self-attention across the sequence
 
 Stage 1 produces another $N \times D$ matrix, denoted $Y^{(m)}$. For simplicity, we'll omit the superscripts $(m)$ where it's clear from the context.
 
@@ -98,14 +122,11 @@ The key idea of the attention mechanism is to infer by focusing on a given set o
 
 For visual tasks, the attention mechanism is often used to focus on a small region or some closely related regions of an image. For text tasks, it's used to focus on the relationship between words in one sentence or close context. For multi-modal tasks, it could relate within a modality or between modalities.
 
-The amount of attention is quantified by learned weights and thus the output is usually formed as a weighted average:
+The amount of attention is quantified by learned weights and thus the output is usually formed as a weighted average, compactly written as a matrix product:
+
 
 $$
-Y_{n, :}=\sum_{n^{\prime}=1}^{N} A_{n, n^{\prime}} X_{n^{\prime}, :} 
-$$
-
-$$
-Y^{(m)} = A^{(m)} X^{(m-1)}
+Y^{(m)} = A^{(m)} X^{(m-1)} = A^{(m)} \underset{\seq}{\odot} X^{(m-1)} = \sum_{\seq} A^{(m)} \odot X^{(m-1)}
 $$
 
 which is essentially doing the following for each feature $d$:
@@ -129,9 +150,10 @@ $$
 \Ynd_{N \times D} = \Ano_{N \times N} \times \Xod_{N \times D}
 $$
 
-Here the weighting is given by a so-called attention matrix $A_{n, n^{\prime}}$ which is of size $ N \times N$ and normalizes over each column $\sum\limits_{n^{\prime}=1}^{N} A_{n, n^{\prime}}=1$, where $n^{\prime}$ denotes a location in the slice $X_{:, d}$, i.e. it points to $X_{n^{\prime}, d}$ and corresponds to the attention quantified by $A_{n, n^{\prime}}$.
+Here the weighting is given by a so-called attention matrix $A \in \mathbb{R}^{\seq \times \seq}$ which normalizes over each column $\sum\limits_{\seq} A =1$.
 
-$A_{n, n^{\prime}}$ will take a high value for locations in the sequence $n^{\prime}$ which are of high relevance for location $n$.
+
+Specifically, $A_{n, n^{\prime}}$ will take a high value for locations in the sequence $n^{\prime}$ which are of high relevance for location $n$, where $n^{\prime}$ denotes a location in the slice $X_{:, d}$.
 
 There're many types of attentions, see ["A Family of Attention Mechanisms"](https://lilianweng.github.io/posts/2018-06-24-attention/#a-family-of-attention-mechanisms) for a summary.
 
@@ -150,3 +172,7 @@ There're many types of attentions, see ["A Family of Attention Mechanisms"](http
 [^5]: Dzmitry Bahdanau, et al. ["Neural machine translation by jointly learning to align and translate"](https://arxiv.org/abs/1409.0473), ICLR 2015.
 
 [^6]: Press et al. ["Train Short, Test Long: Attention With Linear Biases Enables Input Length Extrapolation."](https://arxiv.org/abs/2108.12409) ICLR 2022.
+
+[^7]: Chiang et al. ["Named Tensor Notation"](https://arxiv.org/abs/2102.13196), arXiv:2102.13196 (2021)
+
+[^8]: Alex Rogozhnikov, ["Einops: Clear and Reliable Tensor Manipulations with Einstein-like Notation"](https://openreview.net/forum?id=oapKSVM2bcj), ICLR 2022. 
