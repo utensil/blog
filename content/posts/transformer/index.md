@@ -14,13 +14,13 @@ This post draws inspiration from [An Introduction to Transformers (Turner, 2023)
 
 Notations used in this post try to be consistent with "The Transformer Family Version 2.0" (Lilian, 2023)[^3] and latest papers on performance optimizations, which would deviate from (Turner, 2023)[^1] in many places.
 
-Notably, [^1] and [^2] use $D \times N$ matrices to represent the input and output of a transformer, while [^3] uses $L \times D$ matrices. The shape in the latter is more consistent with the conventions in FlashAttention, GPTQ, etc. while the choice of $N$ for token length is more common thus $N \times D$ is adopted in this post.
+Notably, [^1] and [^2] use $D \times N$ matrices to represent the input and output of a transformer, while [^3] uses $L \times D$ matrices. The shape in the latter is more consistent with the conventions in literature such as FlashAttention, GPTQ, etc. but the choice of $N$ for token length is more common thus $N \times D$ is adopted in this post.
 
 | Symbol | Shape | Meaning |
 | :---: | :---: | :--- |
-| $N$ |  | The (token) length of input sequence, $n$ as the index |
-| $D$ |  | The size of features of a token / representation, $d$ as the index |
-| $M$ |  | The total number of attention layers in the model, $m$ as the index |
+| $N$ |  | The (token) length of input sequence, indexed by $n$ |
+| $D$ |  | The size of features of a token / representation, indexed by $d$ |
+| $M$ |  | The total number of attention layers in the model, indexed by $m$ |
 | $X^{(0)}$ | $N \times D$ | The input sequence |
 | $X^{(m)}$ | $N \times D$ | the output of the $m^{th}$ transformer layer |
 | $x^{(m)}_n $ | $1 \times D$ | the (row) vector of features for the $n^{th}$ token of $X^{(m)}$ |
@@ -82,8 +82,8 @@ where $X^{(m)}$ denotes the output of the $m^{th}$ transformer layer, and recall
 
 Every transformer layer comprises two stages (or sub-layers):
 
-* Stage 1 refines each feature across the whole sequence, i.e. acts on each column of $X^{(m-1)}$
-* Stage 2 refines each token, i.e. acts on each row of $X^{(m-1)}$
+* Stage 1 refines each feature across the whole sequence
+* Stage 2 refines each token
 
 By repeatedly applying the transformer layer the representation at
 token $n$ and feature $d$ can be shaped by information at token $n'$ and feature $d'$ . This gives the transformer the ability to model long-range dependencies between tokens and features. Such a completeness is a key advantage of the transformer over other architectures but also poses challenges for efficient implementation.
@@ -98,35 +98,40 @@ The key idea of the attention mechanism is to infer by focusing on a given set o
 
 For visual tasks, the attention mechanism is often used to focus on a small region or some closely related regions of an image. For text tasks, it's used to focus on the relationship between words in one sentence or close context. For multi-modal tasks, it could relate within a modality or between modalities.
 
-The amount of attention is quantified by learned weights and thus the output is usually formed as a weighted average, compactly written as a matrix multiplication:
+The amount of attention is quantified by learned weights and thus the output is usually formed as a weighted average:
+
+$$
+Y_{n, :}=\sum_{n^{\prime}=1}^{N} A_{n, n^{\prime}} X_{n^{\prime}, :} 
+$$
 
 $$
 Y^{(m)} = A^{(m)} X^{(m-1)}
 $$
 
+which is essentially doing the following for each feature $d$:
+
 $$
-\def\Ydn{\begin{bmatrix}
+\def\Ynd{\begin{bmatrix}
  & \vdots &  \cr
  & \vdots &  \cr
 \cdots & Y_{n, d} & \cdots \cr
  & \vdots & 
 \end{bmatrix}}
-\def\Xd{\begin{bmatrix}
+\def\Xod{\begin{bmatrix}
 \cdots & \cvec{X_{:, d}} & \cdots 
 \end{bmatrix}}
-\def\An{\begin{bmatrix}
+\def\Ano{\begin{bmatrix}
 \vdots \cr
 \vdots \cr
 \wrvec{A_{n, :}} \cr
 \vdots
 \end{bmatrix}}
-%------
-\Ydn_{N \times D} = \An_{N \times N} \times \Xd_{N \times D}  
+\Ynd_{N \times D} = \Ano_{N \times N} \times \Xod_{N \times D}
 $$
 
-Here the weighting is given by a so-called attention matrix $A_{n^{\prime}, n}$ which is of size $ N \times N$ and normalizes over each column $\sum\limits_{n^{\prime}=1}^{N} A_{n^{\prime}, n}=1$, where $n^{\prime}$ denotes a location in the slice $X_{d, :}$, i.e. it points to $X_{d, n^{\prime}}$ and corresponds to the attention quantified by $A_{n^{\prime}, n}$.
+Here the weighting is given by a so-called attention matrix $A_{n, n^{\prime}}$ which is of size $ N \times N$ and normalizes over each column $\sum\limits_{n^{\prime}=1}^{N} A_{n, n^{\prime}}=1$, where $n^{\prime}$ denotes a location in the slice $X_{:, d}$, i.e. it points to $X_{n^{\prime}, d}$ and corresponds to the attention quantified by $A_{n, n^{\prime}}$.
 
-$A_{n^{\prime}, n}$ will take a high value for locations in the sequence $n^{\prime}$ which are of high relevance for location $n$.
+$A_{n, n^{\prime}}$ will take a high value for locations in the sequence $n^{\prime}$ which are of high relevance for location $n$.
 
 There're many types of attentions, see ["A Family of Attention Mechanisms"](https://lilianweng.github.io/posts/2018-06-24-attention/#a-family-of-attention-mechanisms) for a summary.
 
