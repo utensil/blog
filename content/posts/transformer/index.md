@@ -122,11 +122,15 @@ The key idea of the attention mechanism is to infer by focusing on a given set o
 
 For visual tasks, the attention mechanism is often used to focus on a small region or some closely related regions of an image. For text tasks, it's used to focus on the relationship between words in one sentence or close context. For multi-modal tasks, it could relate within a modality or between modalities.
 
-The amount of attention is quantified by learned weights and thus the output is usually formed as a weighted average, compactly written as a matrix product:
+The amount of attention is quantified by learned weights given by a so-called attention matrix $A \in \mathbb{R}^{\seq \times \seq}$. 
+
+The output is usually formed as a weighted average, compactly written as a matrix product:
 
 
 $$
-Y^{(m)} = A^{(m)} X^{(m-1)} = A^{(m)} \underset{\seq}{\odot} X^{(m-1)} = \sum_{\seq} A^{(m)} \odot X^{(m-1)}
+Y^{(m)} = A^{(m)} X^{(m-1)}
+= A^{(m)} \underset{\seq}{\odot} X^{(m-1)}
+= \sum_{\seq} A^{(m)} \odot X^{(m-1)}
 $$
 
 which is essentially doing the following for each feature $d$:
@@ -150,10 +154,38 @@ $$
 \Ynd_{N \times D} = \Ano_{N \times N} \times \Xod_{N \times D}
 $$
 
-Here the weighting is given by a so-called attention matrix $A \in \mathbb{R}^{\seq \times \seq}$ which normalizes over each column $\sum\limits_{\seq} A =1$.
-
+Here $A$  normalizes over each column $\sum\limits_{\seq} A =1$.
 
 Specifically, $A_{n, n^{\prime}}$ will take a high value for locations in the sequence $n^{\prime}$ which are of high relevance for location $n$, where $n^{\prime}$ denotes a location in the slice $X_{:, d}$.
+
+The following example of attention matrix demonstrates translating from the English sentence "eating a green apple" to the French sentence "manger une pomme verte" assuming only 1 feature for simplicity.
+
+Note that the 3rd token ("pomme", i.e. "apple") in the French sentence pays the greatest attention (marked by a black box) to the 4th token "apple" in the English sentence, and also attend to the 1st token "eating" and the 3rd token "green" in the English sentence (marked by grey boxes)  because they're related context to "apple" but almost none to the 2nd token "a" (marked by a white box).
+
+
+$$
+\def\attnbox#1{\colorbox{#1}{\color{#1} O}}
+\def\Ynd{\begin{bmatrix}
+\text{manger}  \cr
+\text{une}  \cr
+\fbox{pomme} \cr
+\text{verte}
+\end{bmatrix}}
+\def\Xod{\begin{bmatrix}
+& \cvec{
+    \begin{array}{c}
+    \text{eating} \newline \text{a} \newline \text{green} \newline \text{apple}
+    \end{array}
+} &
+\end{bmatrix}}
+\def\Ano{\begin{bmatrix}
+\vdots \cr
+\vdots \cr
+\fbox{ \attnbox{gray} \attnbox{white} \attnbox{gray} \attnbox{black} } \cr
+\vdots
+\end{bmatrix}}
+\Ynd_{4 \times 1} = \Ano_{4 \times 4} \times \Xod_{4 \times 1}
+$$
 
 There're many types of attentions, see ["A Family of Attention Mechanisms"](https://lilianweng.github.io/posts/2018-06-24-attention/#a-family-of-attention-mechanisms) for a summary.
 
@@ -176,3 +208,5 @@ There're many types of attentions, see ["A Family of Attention Mechanisms"](http
 [^7]: Chiang et al. ["Named Tensor Notation"](https://arxiv.org/abs/2102.13196), arXiv:2102.13196 (2021)
 
 [^8]: Alex Rogozhnikov, ["Einops: Clear and Reliable Tensor Manipulations with Einstein-like Notation"](https://openreview.net/forum?id=oapKSVM2bcj), ICLR 2022. 
+
+[^9]: XXX
