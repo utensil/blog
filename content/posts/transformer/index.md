@@ -47,7 +47,7 @@ $$
 \def\smtxt#1{\text{\small{#1}}}
 $$
 
-| Symbol | $\in$ | Meaning |
+| Symbol | Type/Shape | Meaning |
 | :---: | :---: | :--- |
 | $X^{(0)}$ | $\mathbb{R}^{\seq \times \feat}$ | The input sequence of tokens, length $N$, each token has $D$ features |
 | $X^{(m)}$ | $\mathbb{R}^{\seq \times \feat}$ | The output of the $m^{th}$ transformer layer |
@@ -56,17 +56,17 @@ $$
 
 To convey the types/shapes and the definition of operations simontaneously, sometimes this post will follow [Lean](https://leanprover.github.io/) syntax to specify type where necessary, it looks like this:
 
-$ f : A → B → C := do(a, b) $
+$ f : A → B → C := op(a, b) $
 
 where
 
 - $f$ is an operation accepting two operands of type $A$ and $B$ respectively, and returns a value of type $C$
-- $f$ is defined as applying some operation $do$ to $a$ and $b$ where $do$ can be arbitrary operation like $a + b$ 
-- $:$ is read as "has type", $:=$ is read as "is defined as", and $→$ is read as "maps to".
+- $f$ is defined as applying some operation $do$ to $a$ and $b$ where $op$ can be arbitrary operation like $a + b$ 
+- $:$ reads "has type", $:=$ reads "is defined as", and $→$ reads "maps to".
 
 When the types of operands are clear, we could also write the above as:
 
-$ f = do(a, b) \quad : C$
+$ f = op(a, b) \quad : C$
 
 $$
 % NxD matrices in diargams are assumed to be 4x3, i.e. 4 rows and 3 columns
@@ -206,7 +206,7 @@ $$
 
 **Self-attention**, also known as intra-attention, first introduced by (Cheng et al., 2016)[^9], has been shown to be very useful in machine reading, abstractive summarization, or image description generation.
 
-It's a special case of the attention mechanism where the attention matrix relate between different locations of the same input sequence, that is, to make prediction for one part of the data using other parts of the observation about the same data.
+It's a special case of the attention mechanism where the attention matrix corelates different tokens of the same input sequence, that is, to infer for one part of the data using other parts of the observation about the same data.
 
 The attention matrix in the example above becomes:
 
@@ -224,13 +224,15 @@ $$
 
 Note that this matrix is asymmetric:
 
-- Semantics related:
+- semantics related:
   - "apple" pays more attentions to "green" (which is describing it) than the other way around because "green" is a general color regardless what it's describing
-- Grammar related:
+- grammar related:
   - "apple" pays unilateral attention to "a" for its quantity
   - "a" pays unilateral attention to "green" for whether it should be "an" instead
 
-A simple way of generating the attention matrix from the input would be to measure the similarity between two locations by the dot product between the features at those two locations and then use a softmax function to handle the normalisation i.e.
+A simple way of generating the attention matrix from the input would be to measure the similarity between two tokens by their features.
+
+Mathematically, it can be given by the dot product between the features of those two tokens and then use a softmax function to handle the normalization i.e.
 
 $$
 A = \nfun{\seq}{softmax}(X \ndot{\feat } X)
@@ -242,9 +244,9 @@ $$
 \nfun{\seq}{softmax} X =\frac{\exp X}{\nsum{\seq} \exp X}
 $$
 
-However, this naïve approach is only about the similarity between the content of the sequence at different locations, not the relation between the locations. 
+However, this naïve approach handles solely the content similarity between tokens, treats all features of the tokens equally, which hasn't taken into account how the tokens are organized and related in the sequence, and their in-context semantics.
 
-An improvement is to perform the same operation on a linear transformation of the sequence, $U : \mathbb{R}^{\seq \times \feat} \to \mathbb{R}^{\seq \times \feat} := U \ndot{\seq} X $, so that 
+An improvement is to perform the same operation on a linear transformation of the sequence, $U \ndot{\seq} X$, so that 
 
 $$
 \newcommand{\namedtensorstrut}{\vphantom{fg}} % milder than \mathstrut
@@ -256,9 +258,9 @@ $$
 A = \nfun{\seq}{softmax} \left( (U \ndot{\seq} X) \ndot{\feat} ( U \ndot{\seq} X ) \right)
 $$
 
-In this way only some of the features in the input sequence need be used to compute the similarity, the others being projected out, thereby decoupling the attention computation from the content.
+The linear transformation will selectively project out some of features in the input sequence and focus on other features, thereby the attention matrix will have a better chance capturing the relations between tokens in the given sequence.
 
-However, this attention matrix is symmetric unlike the asymmetric version we need to express asymmetric relations. The solution is to use two different linear transformations to compute the similarity, i.e.
+However, this attention matrix is symmetric unlike the asymmetric version seen above, which is essential for expressing asymmetric relations. The solution is to use two different linear transformations to compute the similarity, i.e.
 
 $$
 \newcommand{\namedtensorstrut}{\vphantom{fg}} % milder than \mathstrut
@@ -270,7 +272,11 @@ $$
 A = \nfun{\seq}{softmax} ( Q \ndot{\feat} K ) = \nfun{\seq}{softmax} \left( (W_q \ndot{\seq} X) \ndot{\feat} ( W_k \ndot{\seq} X ) \right)
 $$
 
-Here we switch to using $W$ instead of $U$ to denote the linear transformations because they're the learnable **w**eights, and using the subscripts $q$ and $k$ because these weights are known as the queries and keys in [^4], and $Q$ and $K$ are called query matrix and key matrix, respectively.
+Here we start using notations closer to [^4]. $Q$ and $K$ are called query matrix and key matrix, generated by the linear transformations $W_q$ and $W_k$, which are the learnable **w**eights for them, respectively. We will also see a third linear transformation $W_v$ applied to the $X$ in $Y= A X$ to generate the value matrix $V$ in a bit, for now let's leave it untouched.
+
+The concepts query/key/value originate from retrieval systems. Using these concepts, the self-attention mechanism treats the input sequence as a database. Thus the query focuses on the question or the instruction embeded in the input sequence, the key is an index of the context embeded in the input sequence, and the value is what the self-attention mechanism retrieve by correlating the query and the key.
+
+
 
 ### Stage 2: multi-layer perceptron across features
 
