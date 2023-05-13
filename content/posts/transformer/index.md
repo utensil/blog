@@ -4,7 +4,7 @@ date: 2023-05-04T22:00+08:00
 draft: true
 ---
 
-The purpose of this post is to focus on understanding what is under the hood and the performance factors involved when fine-tuning and running local Transformer models, keeping multi-modality in mind.
+The purpose of this post is to understand what is under the hood and the performance factors involved when fine-tuning and running local Transformer models, keeping multi-modality in mind, with an emphasis on the decoder-only transformers (e.g. GPT series).
 
 To accomplish this, we first present a brief account of the transformer architecture, including its design intuitions and the underlying mathematics, concretized by illustrative diagrams and code snippets. Then we aim to achieve a comprehensive understanding of the widely adopted performance optimizations for the original transformer architecture.
 
@@ -115,7 +115,7 @@ where $X^{(0)}$ denotes the input of the transformer, and $x_n^{(0)}$ is the (ro
 
 The output, "a representation of the sequence", takes the same form as "a sequence of tokens", and the $n^{th}$ "token" is a $D$-dimensional vector representing the sequence at the location of token $n$.
 
-Various tasks can be achieved by designing an appropriate representation, e.g. auto-regressive prediction of the next $(n+1)^{th}$ token, global classification of the entire sequence (by pooling across the whole representation), sequence-to-sequence or image-to-image prediction problems, etc.
+Various tasks can be achieved by designing an appropriate training objectives to make use of the representation, e.g. auto-regressive prediction of the next $(n+1)^{th}$ token, global classification of the entire sequence (by pooling across the whole representation), sequence-to-sequence or image-to-image prediction problems, etc.
 
 The input/output of a transformer is a powerful and versatile abstraction so that it can be used for mixing data of different modalities (images, texts etc.) and mixed tasks of different types.
 
@@ -135,7 +135,7 @@ For texts, the tokenization process first needs to choose a vocabulary that coul
 
 A transformer is composed of multiple transformer layers. The representation of the input sequence will be produced by iteratively applying a transformer layer
 
-$$ X^{(m)} = \text{TransLayer}(X^{(m-1)}) $$
+$$ X^{(m)} = \text{TransformerLayer}(X^{(m-1)}) $$
 
 where $X^{(m)}$ denotes the output of the $m^{th}$ transformer layer, and recall that $X^{(0)}$ naturally denotes the input of the transformer.
 
@@ -145,7 +145,13 @@ Every transformer layer comprises two stages (or sub-layers):
 * Stage 2 refines each token across features
 
 By repeatedly applying the transformer layer the representation at
-token $n$ and feature $d$ can be shaped by information at token $n'$ and feature $d'$ . This gives the transformer the ability to model long-range dependencies between tokens and features. Such a completeness is a key advantage of the transformer over other architectures but also poses challenges for efficient implementation, especially for long sequences.
+token $n$ and feature $d$ can be shaped by information at token $n'$ and feature $d'$ . This gives the transformer the ability to model long-range dependencies between tokens and features. Such a completeness is a key advantage of the transformer over other architectures but also poses challenges for efficient implementation, especially for long sequences. The performance pros and cons can be succinctly summarized by a quote from (Liu et al., 2018)[^10]:
+
+> The lack of recurrence enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length.
+
+In order to apply transformers to longer sequences, [^10] proposed a decoder-only transformer that
+
+> drops the encoder module (almost reducing model parameters by half for a given hyper-parameter set), combines the input and output sequences into a single "sentence".
 
 ## Stage 1: self-attention across the sequence
 
@@ -159,10 +165,15 @@ The key idea of the attention mechanism is to infer by focusing on a given set o
 
 For visual tasks, the attention mechanism is often used to focus on a small region or some closely related regions of an image. For text tasks, it could be used to focus on the relationship between words in one sentence or close context. For multi-modal tasks, it could relate within a modality or between modalities.
 
-The amount of attention is quantified by learned weights given by a so-called attention matrix $A \in \mathbb{R}^{\seq \times \seq}$. 
+The amount of attention is quantified by learned weights given by a so-called attention matrix $A \in \mathbb{R}^{\seq \times \seq}$.
 
-The output is usually formed as a weighted average, compactly written as a matrix product:
+We can think of the attention weights as probabilities and the input sequence as a set of random variables. The attention weights represent the probability of each token attending to other tokens in the sequence. In this view, the output is the expected value of the input sequence with respect to the attention distribution:
 
+$$
+Y = \mathbb{E}[Y|X] = \nsum{\seq}{p(Y|X) X}
+$$
+
+This is equivalent to taking the weighted average of the input sequence using the attention weights, compactly written as a matrix product:
 
 $$
 Y^{(m)} = A^{(m)} X^{(m-1)}
@@ -242,11 +253,11 @@ $$
 
 Note that this matrix is asymmetric:
 
-- semantics related:
-  - "apple" pays more attentions to "green" (which is describing it) than the other way around because "green" is a general color regardless what it's describing
-- grammar related:
+- syntactically related:
   - "apple" pays unilateral attention to "a" for its quantity
   - "a" pays unilateral attention to "green" for whether it should be "an" instead
+- semantically related:
+  - "apple" pays more attentions to "green" (which is describing it) than the other way around because "green" is a general color regardless what it's describing
 
 To quantify the amount of attention, we can use the softmax function to give a (naturally normalized) probability distribution that the probability of each token is proportional to proportional to the exponent of a score (which will be calculated later):
 
@@ -283,12 +294,6 @@ The linear transformation will selectively project out some of the features in t
 However, this attention matrix is symmetric unlike the asymmetric version seen above, which is essential for expressing asymmetric relations. The solution is to use two different linear transformations to compute the similarity, i.e.
 
 $$
-\newcommand{\namedtensorstrut}{\vphantom{fg}} % milder than \mathstrut
-\newcommand{\nbin}[2]{\mathbin{\underset{\substack{#1}}{\namedtensorstrut #2}}}
-\newcommand{\ndot}[1]{\nbin{#1}{\odot}}
-\newcommand{\nsum}[1]{\sum\limits_{\substack{#1}}}
-\newcommand{\nfun}[2]{\mathop{\underset{\substack{#1}}{\namedtensorstrut\mathrm{#2}}}}
-\newcommand{\ndef}[2]{\newcommand{#1}{\name{#2}}}
 \nfun{}{score}(X) = Q \ndot{\feat} K = (W_q \ndot{\seq} X) \ndot{\feat} ( W_k \ndot{\seq} X )
 $$
 
@@ -341,8 +346,9 @@ Based on these ideas, Multi-head self-attention (MHSA) applies $H$ sets of self-
 
 This is summarized in (Vaswani et al., 2017)[^4] as:
 
-> Multi-head attention allows the model to jointly attend to information from different representation
-subspaces at different positions. With a single attention head, averaging inhibits this.
+> Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.
+> 
+> Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.
 
 Or put it in other words, MHSA saves the orginal self-attnetion mechanism from being "one-track minded" i.e. overly focused on one way and unable to consider other perspectives or ideas. Particularly, this one way is doomed to be mediocre, and with the diversity from MHSA, the output is more likely to excel.
 
@@ -351,6 +357,9 @@ If we lift $Q$/$K$/$V \in \mathbb{R}^{\seq \times \feat_{Q/K/V}}$ to $\mathbb{R}
 $$ \nfun{}{MHSA}(X) = W_o \ndot{\heads \cr \feat_V} \nfun{}{Attention}(Q, K, V) $$
 
 where $W_o \in \mathbb{R}^{\heads \times \feat_V \times \feat}$ is for linearly projecting the results of the heads to the output $Y$.
+
+The computational cost of MHSA is usually dominated by the matrix multiplication involving the attention matrix and is
+therefore $\mathcal{O}(H D N^2)$.
 
 ## Stage 2: position-wise FFN across features
 
@@ -372,6 +381,54 @@ $$
 
 Note that the parameters of the FFN are the same for each token, i.e. it is applied to each position separately and identically (hence termed "Position-wise Feed-Forward Networks" in (Vaswani et al., 2017)[^4]).
 
+The FFN used typically have hidden-layers with dimension equal to the number of features D (or larger). The computational cost of this stage is therefore $\mathcal{O}(N D^2)$.
+
+## Wire stages up
+
+To produce a more stable model that trains more easily, we need to employ
+
+- a **residual connection** around each of the two stages: mathematically, it's simply adding the input to the output of each stage: $$Y = X + Stage(X)$$
+- a **layer normalization**(LN for short), LN could be applied post-residual[^4], pre-stage or both), i.e. if applied both, the output of each stage is
+
+$$
+Y = \nfun{}{LN_post}(X + \nfun{}{Stage}(\nfun{}{LN_pre}(X)))
+$$
+
+where $\nfun{}{Stage}$ is $\nfun{}{MHSA}$ and $\nfun{}{FNN}$ for the 1st and 2nd stages, respectively.
+
+### Residual connection
+
+The use of residual connections make initialization simple, have a sensible inductive bias towards simple functions, and stabilize learning (Szegedy et al., 2017)[^11].
+
+The key idea is, instead of directly model a large transformation, the learned weights, denoted $\theta$ below,  models the difference between the representation and the identity function. This way each stage applies a mild non-linear transformation to the representation:
+
+$$
+X^{(m)}=X^{(m-1)}+\operatorname{res}_{\theta}\left(X^{(m-1)}\right) .
+$$
+
+Over many layers, these mild non-linear transformations compose to form large transformations.
+
+### Layer normalization
+
+LayerNorm (Ba et al., 2016)[^12] acts on each feature dimension independently, removing the mean and dividing by the standard deviation.
+
+Pre-LN addresses the gradient vanishing/exploding problem(as nonlinearities are repeatedly applied through stages and layers), and is dorminant in practice. But pre-LN could result in representation collapse that can be addressed by post-LN, see [a discussion](https://twitter.com/rasbt/status/1655575611979489282) for details.
+
+$$
+\nfun{}{LayerNorm}(X; \gamma, \beta) = \gamma \odot \frac{X - \nfun{\feat}{mean}(X)}{\sqrt{\nfun{\feat}{var}(X) + \epsilon}} + \beta
+$$
+
+where
+
+$$
+\nfun{\feat}{mean} X = \frac{1}{|\feat|} \nsum{\feat}{X}
+$$
+
+$$
+\nfun{\feat}{var} X  = \frac{1}{|\feat|} \nsum{\feat}{(X - \nfun{\feat}{mean} X)^2}
+$$
+
+$ \epsilon $ is a small constant added to the variance to avoid division by zero, and $\gamma$ and $\beta$ are learned parameters that scale and shift the normalized value.
 # References
 
 [^1]: Richard E. Turner, ["An Introduction to Transformers"](https://arxiv.org/abs/2304.10557), arXiv:2304.10557 (2023)
@@ -390,4 +447,10 @@ Note that the parameters of the FFN are the same for each token, i.e. it is appl
 
 [^8]: Alex Rogozhnikov, ["Einops: Clear and Reliable Tensor Manipulations with Einstein-like Notation"](https://openreview.net/forum?id=oapKSVM2bcj), ICLR 2022. 
 
-[^9]: Jianpeng Cheng et al. ["Long short-term memory-networks for machine reading"](https://arxiv.org/abs/1601.06733) arXiv preprint arXiv:1601.06733 EMNLP 2016.
+[^9]: Jianpeng Cheng et al. ["Long short-term memory-networks for machine reading"](https://arxiv.org/abs/1601.06733), arXiv:1601.06733 EMNLP 2016.
+
+[^10]: Peter Liu et al. ["Generating wikipedia by summarizing long sequences"](https://arxiv.org/abs/1801.10198), arXiv:1801.10198, 2018.
+
+[^11]: Christian Szegedy et al., ["Inception-v4, inception-resnet and the impact of residual connections on learning"](https://arxiv.org/abs/1602.07261), AAAI 2017. 
+
+[^12]: Ba et al., [Layer normalization](https://arxiv.org/abs/1607.06450), arXiv:1607.06450, 2016.
