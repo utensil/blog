@@ -170,15 +170,20 @@ The amount of attention is quantified by learned weights given by a so-called at
 We can think of the attention weights as probabilities and the input sequence as a set of random variables. The attention weights represent the probability of each token attending to other tokens in the sequence. In this view, the output is the expected value of the input sequence with respect to the attention distribution:
 
 $$
-Y = \mathbb{E}[Y|X] = \nsum{\seq}{p(Y|X) X}
+\begin{split}
+Y &= \mathbb{E}[Y|X] \cr\cr
+  &= \nsum{\seq}{p(Y|X) X}
+\end{split}
 $$
 
 This is equivalent to taking the weighted average of the input sequence using the attention weights, compactly written as a matrix product:
 
 $$
-Y^{(m)} = A^{(m)} X^{(m-1)}
-= A^{(m)} \underset{\seq}{\odot} X^{(m-1)}
-= \sum_{\seq} A^{(m)} \odot X^{(m-1)}
+\begin{split}
+Y &= \sum_{\seq} A \odot X \cr\cr
+  &= A \underset{\seq}{\odot} X \cr\cr
+  &= A X
+\end{split}
 $$
 
 which is essentially doing the following for each feature $d$:
@@ -187,16 +192,16 @@ $$
 \def\Ynd{\begin{bmatrix}
  & \vdots &  \cr
  & \vdots &  \cr
-\cdots & Y_{n, d} & \cdots \cr
+\cdots & Y_{\seq, \feat} & \cdots \cr
  & \vdots & 
 \end{bmatrix}}
 \def\Xod{\begin{bmatrix}
-\cdots & \cvec{X_{:, d}} & \cdots 
+\cdots & \cvec{X_{:, \feat}} & \cdots 
 \end{bmatrix}}
 \def\Ano{\begin{bmatrix}
 \vdots \cr
 \vdots \cr
-\wrvec{A_{n, :}} \cr
+\wrvec{A_{\seq, :}} \cr
 \vdots
 \end{bmatrix}}
 \Ynd_{N \times D} = \Ano_{N \times N} \times \Xod_{N \times D}
@@ -204,7 +209,7 @@ $$
 
 Here $A$  normalizes over each column $\sum\limits_{\seq} A =1$.
 
-Specifically, $A_{n, n^{\prime}}$ will take a high value for locations in the sequence $n^{\prime}$ which are of high relevance for location $n$, where $n^{\prime}$ denotes a location in the slice $X_{:, d}$.
+Specifically, $A_{\seq, \seq_X}$ will take a high value for locations in the output sequence "$\seq$" which are of high relevance for location "$\seq_X$" in the input slice $X_{:, \feat}$.
 
 The following example of attention matrix demonstrates translating from the English sentence "eating a green apple" to the French sentence "manger une pomme verte" assuming only 1 feature for simplicity.
 
@@ -385,16 +390,24 @@ The FFN used typically have hidden-layers with dimension equal to the number of 
 
 ## Wire stages up
 
-To produce a more stable model that trains more easily, we need to employ
+To produce a more stable model that trains more easily, we need to employ two techniques:
 
-- a **residual connection** around each of the two stages: mathematically, it's simply adding the input to the output of each stage: $$Y = X + Stage(X)$$
-- a **layer normalization**(LN for short), LN could be applied post-residual[^4], pre-stage or both), i.e. if applied both, the output of each stage is
+- **Residual connection**: mathematically, it's simply adding the input to the output of each stage: $$Y = X + \operatorname{Stage}(X)$$
+- **Layer normalization** ($\operatorname{LN}$): LN could be applied post-residual[^4], pre-stage or both), i.e. if applied both along with the residual connection, the output of each stage is
 
 $$
-Y = \nfun{}{LN_post}(X + \nfun{}{Stage}(\nfun{}{LN_pre}(X)))
+Y = \operatorname{LN_post}(X + \operatorname{Stage}(\operatorname{LN_pre}(X)))
 $$
 
-where $\nfun{}{Stage}$ is $\nfun{}{MHSA}$ and $\nfun{}{FNN}$ for the 1st and 2nd stages, respectively.
+where $\operatorname{Stage}$ is $\operatorname{MHSA}$ and $\operatorname{FNN}$ for the 1st and 2nd stages, respectively.
+
+The formulas become a bit too verbose with the parentheses, we can rewrite the last formula using a pipe operator $\triangleright$:
+
+$$ Y = X \triangleright \operatorname{LN_pre} \triangleright \operatorname{Stage} \triangleright (X + \cdot) \triangleright \operatorname{LN_post} $$
+
+Now we are ready to recover the architecture diagram of the transformer layer seen in literature (using only Pre-LayerNorm):
+
+![Transformer layer](./transformer_layer.d2.svg)
 
 ### Residual connection
 
@@ -403,7 +416,7 @@ The use of residual connections make initialization simple, have a sensible indu
 The key idea is, instead of directly model a large transformation, the learned weights, denoted $\theta$ below,  models the difference between the representation and the identity function. This way each stage applies a mild non-linear transformation to the representation:
 
 $$
-X^{(m)}=X^{(m-1)}+\operatorname{res}_{\theta}\left(X^{(m-1)}\right) .
+X^{(m)}=X^{(m-1)}+\operatorname{Res}_{\theta}\left(X^{(m-1)}\right) .
 $$
 
 Over many layers, these mild non-linear transformations compose to form large transformations.

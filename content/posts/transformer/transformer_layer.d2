@@ -1,0 +1,113 @@
+direction: up
+
+# formula: "" {
+#     equation: |latex
+#         Y = X \\triangleright \\mathrm{LN_pre} \\triangleright \\mathrm{Stage} \\triangleright (X + \\cdot) \\triangleright \\mathrm{LN_post}
+#     |
+# }
+
+classes: {
+    op: {
+        style: {
+            border-radius: 8
+            stroke: black
+        }
+    }
+    edges: {
+        style: {
+            stroke: black
+        }
+    }
+}
+
+input: "Input" {
+    class: op
+}
+
+output: "Output" {
+    class: op
+}
+
+TB: "" {
+    class: op
+    style: {
+        fill: "#f3f3f4"
+        multiple: true
+    }
+
+    Res_MHSA: "  ⊕  " {
+        shape: text
+        style: {
+            font-size: 24
+        }
+        height: 30
+        class: op
+    }
+
+    Res_FFN: "  ⊕  " {
+        shape: text
+        style: {
+            font-size: 24
+        }
+        height: 30
+        class: op
+    }
+
+    LN_pre: "LayerNorm" {
+        class: op
+        style.fill: "#f2f4c1"
+    }
+
+    LN_post: "LayerNorm" {
+        class: op
+        style.fill: "#f2f4c1"
+    }
+
+    MHSA {
+        class: op
+        style.fill: "#ffe2bb"
+        style.multiple: true
+    }
+
+    FFN {
+        class: op
+        style.fill: "#c2e8f7"
+    }
+
+    # input -> Res {
+    #     style: {
+    #         opacity: 0
+    #     }
+    # }
+    # 
+    # 
+    input: "" {
+        shape: text
+        style: {
+            font-size: 8
+        }
+        height: 1
+        width: 1
+        class: op
+    }
+
+    input -> LN_pre: { class: edges }
+
+    LN_pre -> MHSA : Q { class: edges }
+    LN_pre -> MHSA : K { class: edges }
+    LN_pre -> MHSA : V { class: edges }
+
+    MHSA -> Res_MHSA -> LN_post -> FFN -> Res_FFN : { class: edges }
+
+    input -> Res_MHSA: { class: edges }
+
+    (MHSA -> Res_MHSA)[0] : O { class: edges }
+
+    Res_MHSA -> Res_FFN : { class: edges }
+}
+
+input -> TB.input: { class: edges }
+
+TB.Res_FFN -> output: { class: edges }
+
+    
