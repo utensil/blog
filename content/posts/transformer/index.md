@@ -99,7 +99,7 @@ Here, a token refers to a $D$-dimensional vector that represents a small unit of
 
 Representing a token as a vector is commonly called an embedding, and usually is learned to better express the token's features and the relationships among tokens. Each dimension of a embedding vector is called a feature but it's not nessarily a feature in the traditional sense such as an attribute of an object.
 
-Turning data into "a sequence of tokens" is a process called tokenization. After tokenization, the input becomes a sequence of $L$ tokens of dimension $D$, thus can be collected into a $N \times D$  matrix:
+Turning data into "a sequence of tokens" is a process called tokenization (we'll discuss it in the next section). After tokenization, the input becomes a sequence of $L$ tokens of dimension $D$, thus can be collected into a $N \times D$  matrix:
 
 $$
 \def\Xinput{\begin{bmatrix}
@@ -121,7 +121,16 @@ The input/output of a transformer is a powerful and versatile abstraction so tha
 
 # Tokenization
 
-For texts, the tokenization process first needs to choose a vocabulary that could cover almost all the words in the language, plus some meta-tokens like `bos_token` representing the beginning of sequence, `eos_token` representing the end of sequence, and `mask_token` for masked language modelling. Then it needs to learn the embedding of each vocabulary element, and it would be clear in a bit that it also needs to learn the embedding of the position of each token in the sequence, called positional embedding, which I presume to be a geometric embedding in general. Latest researches, such as ALiBi (Press et al., 2022 )[^6], suggest that positional information can be encoded in forms other than positional embedding.
+## Texts
+
+For texts, the tokenization process first needs to choose a vocabulary that could cover almost all the words in the language, plus some meta-tokens like
+
+-  `bos_token` representing the beginning of sequence
+-  `eos_token` representing the end of sequence
+-  `mask_token` for masked language modelling
+-  etc.
+
+Then it needs to learn the embedding of each vocabulary element, and it would be clear in a bit that it also needs to learn the embedding of the position of each token in the sequence, called positional embedding, which I presume to be a geometric embedding in general. Latest researches, such as ALiBi (Press et al., 2022 )[^6], suggest that positional information can be encoded in forms other than positional embedding.
 
 (TODO: expand on the tokenization process, provide formulas for vocabularies, embeddings, and positional embeddings)
 
@@ -130,6 +139,8 @@ For texts, the tokenization process first needs to choose a vocabulary that coul
 (TODO: explain commonly used tokenizers in popular models, particularly the treatment for non-English languages, but better as an appendix)
 
 (TODO: expand on the tokenization process for images such as in ViT, and for other modalities, better as an appendix or a separate post)
+
+(TODO: latest research suggests that tokenization is not necessary for transformers, this is called "end-to-end" training.)
 
 # The transformer layer
 
@@ -392,7 +403,7 @@ The FFN used typically have hidden-layers with dimension equal to the number of 
 
 To produce a more stable model that trains more easily, we need to employ two techniques:
 
-- **Residual connection**(denoted $\oplus$): it's simply adding the input to the output of each stage: $$Y = X + \operatorname{Stage}(X)$$
+- **Residual connection** (denoted $\oplus$): it's simply adding the input to the output of each stage: $$Y = X + \operatorname{Stage}(X)$$
 - **Layer normalization** (denoted $\operatorname{LayerNorm}$ or $\operatorname{LN}$): it could be applied
   - post-residual[^4]: $$Y = \operatorname{LN_post}(X + \operatorname{Stage}(X))$$
   - pre-stage (dorminant in practice): $$Y = X + \operatorname{Stage}(\operatorname{LN_pre}(X))$$
@@ -406,7 +417,7 @@ The formulas become a bit too verbose with the parentheses, we can rewrite the l
 
 $$ Y = X \triangleright \operatorname{LN_pre} \triangleright \operatorname{Stage} \triangleright (X + \cdot) \triangleright \operatorname{LN_post} $$
 
-Now we are ready to recover the architecture diagram of the transformer layer seen in literature (using only Pre-$\operatorname{LayerNorm}$):
+Now we are ready to recover a architecture diagram of the transformer layer like the ones in literatures (but using only $\operatorname{LN_pre}$):
 
 {{< figure src="./transformer_layer.drawio.svg" class="center">}}
 
