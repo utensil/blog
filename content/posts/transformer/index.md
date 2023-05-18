@@ -24,7 +24,7 @@ The original "Named Tensor Notation" paper has a dedicated appendix for the tran
   - `input`/`out` for inputs/outputs
   - `key`/`val` for key/value matrices
   - `layer` in attention layers that covers all heads
-  - `hidden` in FNN hidden layers
+  - `hidden` in FFN hidden layers
 - "tokens" (the dimension is named `seq` in the view of the whole sequence)
   - sometimes rename to `seq'` to distinguish the input/output
 
@@ -164,9 +164,14 @@ In order to apply transformers to longer sequences, [^10] proposed a decoder-onl
 
 > drops the encoder module (almost reducing model parameters by half for a given hyper-parameter set), combines the input and output sequences into a single "sentence".
 
-## Stage 1: self-attention across the sequence
+For simplity, we'll
 
-Stage 1 produces another $N \times D$ matrix, denoted $Y^{(m)}$. For simplicity, we'll omit the superscripts $(m)$ where it's clear from the context.
+- eschew the superscripts $(m)$ denoting the layer index
+- use $X, Y$ for the input/output of each stage
+  - they all have the same type $\mathbb{R}^{\seq \times \feat}$ i.e. shape $N \times D$
+- use dummy symbols $\mathtt{X}, \mathtt{Y}, \dots$ for operands and results when defining operations/functions
+
+## Stage 1: self-attention across the sequence
 
 Stage 1 is based on the self-attention mechanism, which is a special case of the attention mechanism. There're many types of attentions, see ["A Family of Attention Mechanisms"](https://lilianweng.github.io/posts/2018-06-24-attention/#a-family-of-attention-mechanisms) for a summary.
 
@@ -284,7 +289,7 @@ $$
 where
 
 $$
-\nfun{\seq}{softmax} X =\frac{\exp X}{\nsum{\seq} \exp X}
+\nfun{\seq}{softmax} \mathtt{X} =\frac{\exp \mathtt{X}}{\nsum{\seq} \exp \mathtt{X}}
 $$
 
 A simple way of calculating the score from the input would be to measure the similarity between two tokens by their features.
@@ -379,20 +384,20 @@ therefore $\mathcal{O}(H D N^2)$.
 
 ## Stage 2: position-wise FFN across features
 
-The first stage of the transformer layer transformed tokens to representations using the self-attention mechanism, but we'll keep calling the representations "tokens" which is also interchangeable with "locations" in this post.
+Stage 1 of the transformer layer transformed tokens to representations using the self-attention mechanism, but we'll keep calling the representations "tokens" which is also interchangeable with "locations" in this post.
 
-The second stage of the transformer layer operates across features, refining each token using a non-linear transform.
+Stage 2 of the transformer layer operates across features, refining each token using a non-linear transform.
 
 To do this, we simply apply a fully connected feed-forward network(FFN) to the vector of features for each token in the sequence, which consists of two linear transformations with an activation in between:
 
 $$
-\nfun{}{FNN}(Y) = W_2 \ndot{\feat} (\sigma(W_2 \ndot{\feat} Y))
+Y = \nfun{}{FFN}(X) = (\sigma(X \ndot{\feat} W_1 + b_1)) \ndot{\feat} W_2 + b_2
 $$
 
 where the activation function $\sigma$ is typically the rectified linear unit (ReLU) but can be any non-linear function:
 
 $$
-\sigma(X) = ReLU(X) = max(0, X)
+\sigma(\mathtt{X}) = \operatorname{ReLU}(\mathtt{X}) = \max(0, \mathtt{X})
 $$
 
 Note that the parameters of the FFN are the same for each token, i.e. it is applied to each position separately and identically (hence termed "Position-wise Feed-Forward Networks" in (Vaswani et al., 2017)[^4]).
@@ -401,7 +406,7 @@ The FFN used typically have hidden-layers with dimension equal to the number of 
 
 ## Wire stages up
 
-To produce a more stable model that trains more easily, we need to employ two techniques:
+To have a more stable model that trains more easily, we need to employ two techniques before producing the final output:
 
 - **Residual connection** (denoted $\oplus$): it's simply adding the input to the output of each stage: $$Y = X + \operatorname{Stage}(X)$$
 - **Layer normalization** (denoted $\operatorname{LayerNorm}$ or $\operatorname{LN}$): it could be applied
@@ -411,7 +416,7 @@ To produce a more stable model that trains more easily, we need to employ two te
   Y = \operatorname{LN_post}(X + \operatorname{Stage}(\operatorname{LN_pre}(X)))
   $$
 
-where $\operatorname{Stage}$ is $\operatorname{MHSA}$ and $\operatorname{FNN}$ for the 1st and 2nd stages, respectively.
+where $\operatorname{Stage}$ is $\operatorname{MHSA}$ and $\operatorname{FFN}$ for the 1st and 2nd stages, respectively.
 
 The formulas become a bit too verbose with the parentheses, we can rewrite the last formula using a pipe operator $\triangleright$:
 
@@ -425,32 +430,39 @@ Now we are ready to recover a architecture diagram of the transformer layer like
 
 The use of residual connections make initialization simple, have a sensible inductive bias towards simple functions, and stabilize learning (Szegedy et al., 2017)[^11].
 
-The key idea is, instead of directly model a large transformation, the learned weights, denoted $\theta$ below,  models the difference between the representation and the identity function. This way each stage applies a mild non-linear transformation to the representation:
+With residual connections, each stage doesn't directly learn the weights $\theta$ of a large transformation $\operatorname{Trans}_\theta$ like below:
 
 $$
-X^{(m)}=X^{(m-1)}+\operatorname{Res}_{\theta}\left(X^{(m-1)}\right) .
+Y = \operatorname{Trans}_{\theta}\left(X\right)
+$$
+
+Instead it learns the difference between the transformed result and the identity function, called the residual $\operatorname{Res}_{\theta}$. This way each stage applies a mild non-linear transformation to the input:
+
+$$
+Y = X + \operatorname{Res}_{\theta}\left(X\right)
 $$
 
 Over many layers, these mild non-linear transformations compose to form large transformations.
 
 ### Layer normalization
 
-LayerNorm (Ba et al., 2016)[^12] acts on each feature dimension independently, removing the mean and dividing by the standard deviation.
+**LayerNorm** (Ba et al., 2016)[^12] acts on each feature dimension independently, removing the mean and dividing by the standard deviation.
 
 Pre-LN addresses the gradient vanishing/exploding problem(as nonlinearities are repeatedly applied through stages and layers), and is dorminant in practice. But pre-LN could result in representation collapse that can be addressed by post-LN, see [a discussion](https://twitter.com/rasbt/status/1655575611979489282) for details.
 
 $$
-\nfun{}{LayerNorm}(X; \gamma, \beta) = \gamma \odot \frac{X - \nfun{\feat}{mean}(X)}{\sqrt{\nfun{\feat}{var}(X) + \epsilon}} + \beta
+\def\mttX{\mathtt{X}}
+\nfun{}{LayerNorm}(\mttX; \gamma, \beta) = \gamma \odot \frac{\mttX - \nfun{\feat}{mean}(\mttX)}{\sqrt{\nfun{\feat}{var}(\mttX) + \epsilon}} + \beta
 $$
 
 where
 
 $$
-\nfun{\feat}{mean} X = \frac{1}{|\feat|} \nsum{\feat}{X}
+\nfun{\feat}{mean} \mttX = \frac{1}{|\feat|} \nsum{\feat}{\mttX}
 $$
 
 $$
-\nfun{\feat}{var} X  = \frac{1}{|\feat|} \nsum{\feat}{(X - \nfun{\feat}{mean} X)^2}
+\nfun{\feat}{var} \mttX  = \frac{1}{|\feat|} \nsum{\feat}{(\mttX - \nfun{\feat}{mean} \mttX)^2}
 $$
 
 $ \epsilon $ is a small constant added to the variance to avoid division by zero, and $\gamma$ and $\beta$ are learned parameters that scale and shift the normalized value.
