@@ -22,4 +22,4 @@ go.work
 .hugo_build.lock
 
 **.d2.svg
-content/posts/.DS_Store
+**/.DS_Store
