@@ -64,6 +64,9 @@ jobs:
       - name: Build D2 diagrams
         run: |
           bash scripts/make_d2.sh
+      - name: Build Pikchr diagrams
+        run: |
+          bash scripts/make_pikchr.sh
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
