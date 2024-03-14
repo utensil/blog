@@ -24,3 +24,4 @@ go.work
 **.d2.svg
 **/.DS_Store
 public/
+resources/_gen/

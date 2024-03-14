@@ -1,88 +1,354 @@
 [
-	{
-		"id": "turner2023tf",
-		"type": "article",
-		"abstract": "The transformer is a neural network component that can be used to learn useful representations of sequences or sets of data-points. The transformer has driven recent advances in natural language processing, computer vision, and spatio-temporal modelling. There are many introductions to transformers, but most do not contain precise mathematical descriptions of the architecture and the intuitions behind the design choices are often also missing. Moreover, as research takes a winding path, the explanations for the components of the transformer can be idiosyncratic. In this note we aim for a mathematically precise, intuitive, and clean description of the transformer architecture. We will not discuss training as this is rather standard. We assume that the reader is familiar with fundamental topics in machine learning including multi-layer perceptrons, linear transformations, softmax functions and basic probability.",
-		"note": "arXiv:2304.10557 [cs]",
-		"number": "arXiv:2304.10557",
-		"publisher": "arXiv",
-		"source": "arXiv.org",
-		"title": "An Introduction to Transformers",
-		"URL": "http://arxiv.org/abs/2304.10557",
-		"author": [
-			{
-				"family": "Turner",
-				"given": "Richard E."
-			}
-		],
-		"accessed": {
-			"date-parts": [
-				[
-					"2024",
-					3,
-					14
-				]
-			]
-		},
-		"issued": {
-			"date-parts": [
-				[
-					"2024",
-					2,
-					8
-				]
-			]
-		}
-	},
-	{
-		"id": "phuong2022formal",
-		"type": "article",
-		"abstract": "This document aims to be a self-contained, mathematically precise overview of transformer architectures and algorithms (*not* results). It covers what transformers are, how they are trained, what they are used for, their key architectural components, and a preview of the most prominent models. The reader is assumed to be familiar with basic ML terminology and simpler neural network architectures such as MLPs.",
-		"note": "arXiv:2207.09238 [cs]",
-		"number": "arXiv:2207.09238",
-		"publisher": "arXiv",
-		"source": "arXiv.org",
-		"title": "Formal Algorithms for Transformers",
-		"URL": "http://arxiv.org/abs/2207.09238",
-		"author": [
-			{
-				"family": "Phuong",
-				"given": "Mary"
-			},
-			{
-				"family": "Hutter",
-				"given": "Marcus"
-			}
-		],
-		"accessed": {
-			"date-parts": [
-				[
-					"2024",
-					3,
-					14
-				]
-			]
-		},
-		"issued": {
-			"date-parts": [
-				[
-					"2022",
-					7,
-					19
-				]
-			]
-		}
-	},
-	{
-		"id": "weng2023tfv2",
-		"type": "article",
-		"title": "The Transformer Family Version 2.0",
-		"URL": "https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/",
-		"author": [
-			{
-				"family": "Weng",
-				"given": "Lilian"
-			}
-		]
-	}
+  {
+    "URL": "http://arxiv.org/abs/2207.09238",
+    "author": [
+      {
+        "family": "Phuong",
+        "given": "Mary"
+      },
+      {
+        "family": "Hutter",
+        "given": "Marcus"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2207.09238",
+    "id": "phuong2022formal",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "title": "Formal algorithms for transformers",
+    "type": "article-journal"
+  },
+  {
+    "URL": "http://arxiv.org/abs/2304.10557",
+    "author": [
+      {
+        "family": "Turner",
+        "given": "Richard E"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2304.10557",
+    "id": "turner2023introduction",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "An introduction to transformers",
+    "type": "article-journal"
+  },
+  {
+    "URL": "http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf",
+    "author": [
+      {
+        "family": "Vaswani",
+        "given": "Ashish"
+      },
+      {
+        "family": "Shazeer",
+        "given": "Noam"
+      },
+      {
+        "family": "Parmar",
+        "given": "Niki"
+      },
+      {
+        "family": "Uszkoreit",
+        "given": "Jakob"
+      },
+      {
+        "family": "Jones",
+        "given": "Llion"
+      },
+      {
+        "family": "Gomez",
+        "given": "Aidan N"
+      },
+      {
+        "family": "Kaiser",
+        "given": "Łukasz"
+      },
+      {
+        "family": "Polosukhin",
+        "given": "Illia"
+      }
+    ],
+    "container-title": "Advances in neural information processing systems",
+    "id": "vaswani2017attention",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "title": "Attention is all you need",
+    "type": "article-journal",
+    "volume": "30"
+  },
+  {
+    "URL": "https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/",
+    "author": [
+      {
+        "family": "Weng",
+        "given": "Lilian"
+      }
+    ],
+    "id": "weng2023transformer",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "The transformer family version 2.0",
+    "type": "webpage"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1409.0473",
+    "author": [
+      {
+        "family": "Bahdanau",
+        "given": "Dzmitry"
+      },
+      {
+        "family": "Cho",
+        "given": "Kyunghyun"
+      },
+      {
+        "family": "Bengio",
+        "given": "Yoshua"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1409.0473",
+    "id": "bahdanau2014neural",
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "title": "Neural machine translation by jointly learning to align and translate",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/2108.12409",
+    "author": [
+      {
+        "family": "Press",
+        "given": "Ofir"
+      },
+      {
+        "family": "Smith",
+        "given": "Noah A"
+      },
+      {
+        "family": "Lewis",
+        "given": "Mike"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2108.12409",
+    "id": "press2021train",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Train short, test long: Attention with linear biases enables input length extrapolation",
+    "title-short": "Train short, test long",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/2102.13196",
+    "author": [
+      {
+        "family": "Chiang",
+        "given": "David"
+      },
+      {
+        "family": "Rush",
+        "given": "Alexander M"
+      },
+      {
+        "family": "Barak",
+        "given": "Boaz"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2102.13196",
+    "id": "chiang2021named",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Named tensor notation",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://openreview.net/forum?id=oapKSVM2bcj",
+    "author": [
+      {
+        "family": "Rogozhnikov",
+        "given": "Alex"
+      }
+    ],
+    "container-title": "International conference on learning representations",
+    "id": "rogozhnikov2021einops",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Einops: Clear and reliable tensor manipulations with einstein-like notation",
+    "title-short": "Einops",
+    "type": "paper-conference"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1601.06733",
+    "author": [
+      {
+        "family": "Cheng",
+        "given": "Jianpeng"
+      },
+      {
+        "family": "Dong",
+        "given": "Li"
+      },
+      {
+        "family": "Lapata",
+        "given": "Mirella"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1601.06733",
+    "id": "cheng2016long",
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "title": "Long short-term memory-networks for machine reading",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1801.10198",
+    "author": [
+      {
+        "family": "Liu",
+        "given": "Peter J"
+      },
+      {
+        "family": "Saleh",
+        "given": "Mohammad"
+      },
+      {
+        "family": "Pot",
+        "given": "Etienne"
+      },
+      {
+        "family": "Goodrich",
+        "given": "Ben"
+      },
+      {
+        "family": "Sepassi",
+        "given": "Ryan"
+      },
+      {
+        "family": "Kaiser",
+        "given": "Lukasz"
+      },
+      {
+        "family": "Shazeer",
+        "given": "Noam"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1801.10198",
+    "id": "liu2018generating",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "title": "Generating wikipedia by summarizing long sequences",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1602.07261",
+    "author": [
+      {
+        "family": "Szegedy",
+        "given": "Christian"
+      },
+      {
+        "family": "Ioffe",
+        "given": "Sergey"
+      },
+      {
+        "family": "Vanhoucke",
+        "given": "Vincent"
+      },
+      {
+        "family": "Alemi",
+        "given": "Alexander"
+      }
+    ],
+    "collection-number": "1",
+    "container-title": "Proceedings of the AAAI conference on artificial intelligence",
+    "id": "szegedy2017inception",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "title": "Inception-v4, inception-resnet and the impact of residual connections on learning",
+    "type": "paper-conference",
+    "volume": "31"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1607.06450",
+    "author": [
+      {
+        "family": "Ba",
+        "given": "Jimmy Lei"
+      },
+      {
+        "family": "Kiros",
+        "given": "Jamie Ryan"
+      },
+      {
+        "family": "Hinton",
+        "given": "Geoffrey E"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1607.06450",
+    "id": "ba2016layer",
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "title": "Layer normalization",
+    "type": "article-journal"
+  }
 ]

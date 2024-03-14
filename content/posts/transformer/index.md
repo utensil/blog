@@ -470,7 +470,9 @@ $$
 \nfun{\feat}{var} \mttX  = \frac{1}{|\feat|} \nsum{\feat}{(\mttX - \nfun{\feat}{mean} \mttX)^2}
 $$
 
-$ \epsilon $ is a small constant added to the variance to avoid division by zero, and $\gamma$ and $\beta$ are learned parameters that scale and shift the normalized value.{{< cite "turner2023tf" >}}
+$ \epsilon $ is a small constant added to the variance to avoid division by zero, and $\gamma$ and $\beta$ are learned parameters that scale and shift the normalized value.
+
+<!-- {{< cite "turner2023introduction" >}}{{< cite "phuong2022formal" >}}{{< cite "weng2023transformer" >}}{{< cite "vaswani2017attention" >}} -->
 
 # References
 
@@ -498,8 +500,8 @@ $ \epsilon $ is a small constant added to the variance to avoid division by zero
 
 [^12]: Ba et al., [Layer normalization](https://arxiv.org/abs/1607.06450), arXiv:1607.06450, 2016.
 
-# References
+<!-- # References -->
 
 <!-- {{< bibliography >}} -->
 
-{{< references >}}
+<!-- {{< references >}} -->
