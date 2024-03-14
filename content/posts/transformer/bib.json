@@ -1,0 +1,88 @@
+[
+	{
+		"id": "turner2023tf",
+		"type": "article",
+		"abstract": "The transformer is a neural network component that can be used to learn useful representations of sequences or sets of data-points. The transformer has driven recent advances in natural language processing, computer vision, and spatio-temporal modelling. There are many introductions to transformers, but most do not contain precise mathematical descriptions of the architecture and the intuitions behind the design choices are often also missing. Moreover, as research takes a winding path, the explanations for the components of the transformer can be idiosyncratic. In this note we aim for a mathematically precise, intuitive, and clean description of the transformer architecture. We will not discuss training as this is rather standard. We assume that the reader is familiar with fundamental topics in machine learning including multi-layer perceptrons, linear transformations, softmax functions and basic probability.",
+		"note": "arXiv:2304.10557 [cs]",
+		"number": "arXiv:2304.10557",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "An Introduction to Transformers",
+		"URL": "http://arxiv.org/abs/2304.10557",
+		"author": [
+			{
+				"family": "Turner",
+				"given": "Richard E."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					3,
+					14
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					2,
+					8
+				]
+			]
+		}
+	},
+	{
+		"id": "phuong2022formal",
+		"type": "article",
+		"abstract": "This document aims to be a self-contained, mathematically precise overview of transformer architectures and algorithms (*not* results). It covers what transformers are, how they are trained, what they are used for, their key architectural components, and a preview of the most prominent models. The reader is assumed to be familiar with basic ML terminology and simpler neural network architectures such as MLPs.",
+		"note": "arXiv:2207.09238 [cs]",
+		"number": "arXiv:2207.09238",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Formal Algorithms for Transformers",
+		"URL": "http://arxiv.org/abs/2207.09238",
+		"author": [
+			{
+				"family": "Phuong",
+				"given": "Mary"
+			},
+			{
+				"family": "Hutter",
+				"given": "Marcus"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					3,
+					14
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					7,
+					19
+				]
+			]
+		}
+	},
+	{
+		"id": "weng2023tfv2",
+		"type": "article",
+		"title": "The Transformer Family Version 2.0",
+		"URL": "https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/",
+		"author": [
+			{
+				"family": "Weng",
+				"given": "Lilian"
+			}
+		]
+	}
+]

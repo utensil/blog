@@ -1,6 +1,6 @@
 baseURL: https://utensil.github.io/blog/
 title: Utensil's Blog
-theme: PaperMod
+theme: ["PaperMod", "hugo-simplecite"]
 
 enableInlineShortcodes: true
 enableRobotsTXT: true
