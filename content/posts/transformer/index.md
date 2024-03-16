@@ -500,8 +500,8 @@ $ \epsilon $ is a small constant added to the variance to avoid division by zero
 
 [^12]: Ba et al., [Layer normalization](https://arxiv.org/abs/1607.06450), arXiv:1607.06450, 2016.
 
-<!-- # References -->
+<!-- # References
 
-<!-- {{< bibliography >}} -->
+{{< bibliography >}}
 
-<!-- {{< references >}} -->
+{{< references >}} -->
