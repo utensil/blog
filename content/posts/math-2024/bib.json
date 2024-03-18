@@ -208,5 +208,131 @@
     "title": "A topological picturebook",
     "type": "book",
     "volume": "2"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2401.13000",
+    "author": [
+      {
+        "family": "Wilson",
+        "given": "Robert A"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2401.13000",
+    "id": "wilson2024discrete",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "A discrete model for gell-mann matrices",
+    "type": "article-journal"
+  },
+  {
+    "URL": "http://arxiv.org/abs/1205.5935",
+    "author": [
+      {
+        "family": "Chisolm",
+        "given": "Eric"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1205.5935",
+    "id": "chisolm2012geometric",
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "title": "Geometric algebra",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Ruhe",
+        "given": "David"
+      },
+      {
+        "family": "Brandstetter",
+        "given": "Johannes"
+      },
+      {
+        "family": "Forré",
+        "given": "Patrick"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2305.11141",
+    "id": "ruhe2023clifford",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "Clifford group equivariant neural networks",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Brehmer",
+        "given": "Johann"
+      },
+      {
+        "family": "De Haan",
+        "given": "Pim"
+      },
+      {
+        "family": "Behrends",
+        "given": "Sönke"
+      },
+      {
+        "family": "Cohen",
+        "given": "Taco"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2305.18415",
+    "id": "brehmer2023geometric",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "Geometric algebra transformers",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Roelfs",
+        "given": "Martin"
+      },
+      {
+        "family": "De Keninck",
+        "given": "Steven"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "roelfs2023graded",
+    "issue": "3",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "page": "30",
+    "publisher": "Springer",
+    "title": "Graded symmetry groups: Plane and simple",
+    "title-short": "Graded symmetry groups",
+    "type": "article-journal",
+    "volume": "33"
   }
 ]

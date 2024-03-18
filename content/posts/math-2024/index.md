@@ -16,13 +16,27 @@ Each interest should have one or few central questions, and one or few reference
 
 This part of interests is about small-scale formalization of mathematical concepts and theorems, for learning and potential PRs to Lean's Mathlib. Each should focus on one reference which is well organized and convenient to be converted into a blueprint.
 
+### Spin groups
+
+The PR to Mathlib [#9111](https://github.com/leanprover-community/mathlib4/pull/9111) about Spin groups is ready to merge, but there are 2 open questions:
+
+- what more lemmas about Spin groups are interesting to mathematians?
+- what more should be formalized to formalize Versors and what’s in Section “The contents of a geometric algebra" in {{< cite "chisolm2012geometric" >}} , e.g. r-blades, r-vectors?
+
+For the latter, see the [Z-filteration in lean-ga](https://github.com/pygae/lean-ga/blob/master/src/geometric_algebra/from_mathlib/versors.lean) and [the prototype](https://github.com/eric-wieser/lftcm2023-clifford_algebra/).
+
+We also wish to include some latest results presented in {{< cite "ruhe2023clifford" >}}, with supplements from {{< cite "brehmer2023geometric" >}}, in which some of the results are proven in {{< cite "roelfs2023graded" >}}.
+
+
+See also discussions in the [lean-ga blueprint](https://utensil.github.io/lean-ga/blueprint/sect0007.html).
+
 ### The Matrix Cookbook (November 15, 2012)
 
 This book {{< cite "petersen2008matrix" >}} covers many useful results about matrices, and Eric Wieser's project [lean-matrix-cookbook](https://github.com/eric-wieser/lean-matrix-cookbook) aims to give one-liner proofs (with reference to the counter part in Mathlib) to all of them.
 
 The project is far from complete and it would be great to claim a small portion of interested results and contribute to it. I also wish to figure out the GA counterpart of the same portion.
 
-Previous interests about matrices rise from Steven De Keninck's work on GALM {{< cite "de2019geometric" >}}, since the paper I have been interested in GA approaches that has practical advantages over traditional matrix-based methods. Notably the paper also discussed the link between degenerate Clifford algebras and dual numbers / automatic differentiation.
+Previous interests about matrices rise from Steven De Keninck's work on GALM {{< cite "de2019geometric" >}}, since the paper I have been interested in GA approaches that has practical advantages over traditional matrix-based methods. Notably the paper also discussed the link between degenerate Clifford algebras and dual numbers / automatic differentiation. A more recent inspiration might be his new work [LookMaNoMatrices](https://github.com/enkimute/LookMaNoMatrices).
 
 TODO: decide which results are interesting and feasible to be formalized for me.
 
@@ -33,6 +47,8 @@ TODO: decide which results are interesting and feasible to be formalized for me.
 The primary reference is {{< cite "james2001representations" >}} for understanding FG-module, Group algebra, the presentation of groups, Schur indices etc. We also need to check {{< cite "lux2010representations" >}} for its introduction to [GAP](https://www.gap-system.org/), and we should pay close attention to the progress of [GAP-LEAN](https://github.com/opencompl/lean-gap).
 
 The related Zulip thread is [here](https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Group.20algebra.20over.20finite.20groups), and I have explorations and experiments in Lean [here](https://github.com/utensil/lean-playground/blob/master/lean4/examples/FiniteGroup.lean).
+
+This interest originates from reading Robert A. Wilson's work {{<cite "wilson2024discrete">}}.
 
 ## Generalized Clifford Algebra and related mathematical branches
 
@@ -58,7 +74,7 @@ See {{< cite "hull2020origametry" >}} and [the tracking issue](https://github.co
 
 ### Dynamical Systems: Bifurcation Theory
 
-The preferred reference for me is {{< cite "izhikevich2007dynamical" >}} for its applications in neuroscience and various excellent diagrams. But this is not a mathematically rigorous treatment of bifurcation theory.
+The preferred reference for me is {{< cite "izhikevich2007dynamical" >}} for its applications in neuroscience and various excellent diagrams. But it's not a mathematically rigorous treatment of bifurcation theory.
 
 ## TODOs
 
