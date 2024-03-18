@@ -1,0 +1,212 @@
+[
+  {
+    "URL": "https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf",
+    "author": [
+      {
+        "family": "Petersen",
+        "given": "Kaare Brandt"
+      },
+      {
+        "family": "Pedersen",
+        "given": "Michael Syskind"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "container-title": "Technical University of Denmark",
+    "id": "petersen2008matrix",
+    "issue": "15",
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "page": "510",
+    "title": "The matrix cookbook",
+    "type": "article-journal",
+    "volume": "7"
+  },
+  {
+    "author": [
+      {
+        "family": "De Keninck",
+        "given": "Steven"
+      },
+      {
+        "family": "Dorst",
+        "given": "Leo"
+      }
+    ],
+    "container-title": "Advances in computer graphics: 36th computer graphics international conference, CGI 2019, calgary, AB, canada, june 17–20, 2019, proceedings 36",
+    "id": "de2019geometric",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "page": "511-522",
+    "publisher": "Springer",
+    "title": "Geometric algebra levenberg-marquardt",
+    "type": "paper-conference"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2112.08483",
+    "author": [
+      {
+        "family": "Fernandes",
+        "given": "Marco Cezar Barbosa"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "fernandes2022clifford",
+    "issue": "2",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "page": "23",
+    "publisher": "Springer",
+    "title": "Clifford algebraic approach to the de donder–weyl hamiltonian theory",
+    "type": "article-journal",
+    "volume": "32"
+  },
+  {
+    "author": [
+      {
+        "family": "Manturov",
+        "given": "Vassily Olegovich"
+      }
+    ],
+    "id": "manturov2018knot",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "publisher": "CRC press",
+    "title": "Knot theory",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Hull",
+        "given": "Thomas C"
+      }
+    ],
+    "id": "hull2020origametry",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "title": "Origametry: Mathematical methods in paper folding",
+    "title-short": "Origametry",
+    "type": "book"
+  },
+  {
+    "URL": "https://www.izhikevich.org/publications/dsn/",
+    "author": [
+      {
+        "family": "Izhikevich",
+        "given": "Eugene M"
+      }
+    ],
+    "id": "izhikevich2007dynamical",
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "publisher": "MIT press",
+    "title": "Dynamical systems in neuroscience",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "James",
+        "given": "Gordon Douglas"
+      },
+      {
+        "family": "Liebeck",
+        "given": "Martin W"
+      }
+    ],
+    "id": "james2001representations",
+    "issued": {
+      "date-parts": [
+        [
+          2001
+        ]
+      ]
+    },
+    "publisher": "Cambridge university press",
+    "title": "Representations and characters of groups",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Lux",
+        "given": "Klaus"
+      },
+      {
+        "family": "Pahlings",
+        "given": "Herbert"
+      }
+    ],
+    "id": "lux2010representations",
+    "issued": {
+      "date-parts": [
+        [
+          2010
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "title": "Representations of groups: A computational approach",
+    "title-short": "Representations of groups",
+    "type": "book",
+    "volume": "124"
+  },
+  {
+    "author": [
+      {
+        "family": "Francis",
+        "given": "George K"
+      },
+      {
+        "family": "Francis",
+        "given": "GK"
+      }
+    ],
+    "id": "francis1987topological",
+    "issued": {
+      "date-parts": [
+        [
+          1987
+        ]
+      ]
+    },
+    "publisher": "Springer",
+    "title": "A topological picturebook",
+    "type": "book",
+    "volume": "2"
+  }
+]

@@ -1,0 +1,86 @@
+# A few hints:
+#
+# To normalize:
+# # bibtool --preserve.key.case=on --preserve.keys=on --pass.comments=on --print.use.tab=off -s -i content/posts/math-2024/bib.bib -o content/posts/math-2024/bib.bib -- 'new.entry.type {thesis}' -- 'new.entry.type {online}'
+# To convert to JSON:
+# pandoc content/posts/math-2024/bib.bib -t csljson -o content/posts/math-2024/bib.json
+# To preview during authoring:
+# hugo serve -w
+
+@article{petersen2008matrix,
+  title={The matrix cookbook},
+  author={Petersen, Kaare Brandt and Pedersen, Michael Syskind and others},
+  journal={Technical University of Denmark},
+  volume={7},
+  number={15},
+  pages={510},
+  year={2008},
+  url           = {https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}
+}
+
+@inproceedings{de2019geometric,
+  title={Geometric algebra levenberg-marquardt},
+  author={De Keninck, Steven and Dorst, Leo},
+  booktitle={Advances in Computer Graphics: 36th Computer Graphics International Conference, CGI 2019, Calgary, AB, Canada, June 17--20, 2019, Proceedings 36},
+  pages={511--522},
+  year={2019},
+  organization={Springer}
+}
+
+@article{fernandes2022clifford,
+  title={Clifford Algebraic Approach to the De Donder--Weyl Hamiltonian Theory},
+  author={Fernandes, Marco Cezar Barbosa},
+  journal={Advances in Applied Clifford Algebras},
+  volume={32},
+  number={2},
+  pages={23},
+  year={2022},
+  publisher={Springer},
+  url           = {https://arxiv.org/pdf/2112.08483}
+
+}
+
+@book{manturov2018knot,
+  title={Knot theory},
+  author={Manturov, Vassily Olegovich},
+  year={2018},
+  publisher={CRC press}
+}
+
+@book{hull2020origametry,
+  title={Origametry: mathematical methods in paper folding},
+  author={Hull, Thomas C},
+  year={2020},
+  publisher={Cambridge University Press}
+}
+
+@book{izhikevich2007dynamical,
+  title={Dynamical systems in neuroscience},
+  author={Izhikevich, Eugene M},
+  year={2007},
+  publisher={MIT press},
+  url           = {https://www.izhikevich.org/publications/dsn/}
+}
+
+@book{james2001representations,
+  title={Representations and characters of groups},
+  author={James, Gordon Douglas and Liebeck, Martin W},
+  year={2001},
+  publisher={Cambridge university press}
+}
+
+@book{lux2010representations,
+  title={Representations of groups: a computational approach},
+  author={Lux, Klaus and Pahlings, Herbert},
+  volume={124},
+  year={2010},
+  publisher={Cambridge University Press}
+}
+
+@book{francis1987topological,
+  title={A topological picturebook},
+  author={Francis, George K and Francis, GK},
+  volume={2},
+  year={1987},
+  publisher={Springer}
+}
