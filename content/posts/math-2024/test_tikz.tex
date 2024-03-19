@@ -1,0 +1,11 @@
+% mkdir -p content/posts/math-2024/tmp
+% xelatex -output-directory=content/posts/math-2024/tmp/ content/posts/math-2024/test_tikz.tex 
+% pdf2svg content/posts/math-2024/tmp/test_tikz.pdf content/posts/math-2024/test_tikz.svg
+\documentclass[tikz, border=1mm]{standalone}
+\begin{document}
+
+\begin{tikzpicture}
+    \draw (0,0) circle (1in);
+  \end{tikzpicture}
+
+\end{document}
