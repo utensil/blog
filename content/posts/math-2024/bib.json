@@ -360,5 +360,305 @@
     "title": "Quantum theory, groups and representations",
     "type": "book",
     "volume": "5"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2201.05895.pdf",
+    "author": [
+      {
+        "family": "Ewing",
+        "given": "Samuel"
+      },
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "ewing2022zeon",
+    "issue": "5",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "page": "61",
+    "publisher": "Springer",
+    "title": "Zeon and idem-clifford formulations of hypergraph problems",
+    "type": "article-journal",
+    "volume": "32"
+  },
+  {
+    "URL": "http://mat.uab.cat/~rubio/csa2017/SpinNotes.pdf",
+    "author": [
+      {
+        "family": "Figueroa-O’Farrill",
+        "given": "José"
+      }
+    ],
+    "container-title": "Lecture Notes. University of Edinburgh",
+    "id": "figueroa2010spin",
+    "issued": {
+      "date-parts": [
+        [
+          2010
+        ]
+      ]
+    },
+    "title": "Spin geometry",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/math/0105155.pdf",
+    "author": [
+      {
+        "family": "Baez",
+        "given": "John"
+      }
+    ],
+    "container-title": "Bulletin of the american mathematical society",
+    "id": "baez2002octonions",
+    "issue": "2",
+    "issued": {
+      "date-parts": [
+        [
+          2002
+        ]
+      ]
+    },
+    "page": "145-205",
+    "title": "The octonions",
+    "type": "article-journal",
+    "volume": "39"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2310.09972",
+    "author": [
+      {
+        "family": "Depies",
+        "given": "Connor M"
+      },
+      {
+        "family": "Smith",
+        "given": "Jonathan DH"
+      },
+      {
+        "family": "Ashburn",
+        "given": "Mitchell D"
+      }
+    ],
+    "container-title": "Journal of Algebra",
+    "id": "depies2024octonions",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "page": "761-795",
+    "publisher": "Elsevier",
+    "title": "Octonions as clifford-like algebras",
+    "type": "article-journal",
+    "volume": "644"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2202.06733",
+    "author": [
+      {
+        "family": "Lasenby",
+        "given": "Anthony"
+      }
+    ],
+    "container-title": "Mathematical Methods in the Applied Sciences",
+    "id": "lasenby2024some",
+    "issue": "3",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "page": "1471-1491",
+    "publisher": "Wiley Online Library",
+    "title": "Some recent results for su (3) and octonions within the geometric algebra approach to the fundamental forces of nature",
+    "type": "article-journal",
+    "volume": "47"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/1906.11460",
+    "author": [
+      {
+        "family": "Suarez",
+        "given": "Ricardo"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1906.11460",
+    "id": "suarez2019expository",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "title": "Expository paper on clifford algebras, representations, and the octonion algebra",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2312.10071",
+    "author": [
+      {
+        "family": "Reynoso",
+        "given": "Armando"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2312.10071",
+    "id": "reynoso2023probing",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "Probing clifford algebras through spin groups: A standard model perspective",
+    "title-short": "Probing clifford algebras through spin groups",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Cheng",
+        "given": "Tao"
+      },
+      {
+        "family": "Li",
+        "given": "Huilan"
+      },
+      {
+        "family": "Yang",
+        "given": "Yuping"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "cheng2019new",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "page": "1-11",
+    "publisher": "Springer",
+    "title": "A new view of generalized clifford algebras",
+    "type": "article-journal",
+    "volume": "29"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/math/0011040",
+    "author": [
+      {
+        "family": "Albuquerque",
+        "given": "Helena"
+      },
+      {
+        "family": "Majid",
+        "given": "Shahn"
+      }
+    ],
+    "container-title": "Journal of Pure and Applied Algebra",
+    "id": "albuquerque2002clifford",
+    "issue": "2-3",
+    "issued": {
+      "date-parts": [
+        [
+          2002
+        ]
+      ]
+    },
+    "page": "133-148",
+    "publisher": "Elsevier",
+    "title": "Clifford algebras obtained by twisting of group algebras",
+    "type": "article-journal",
+    "volume": "171"
+  },
+  {
+    "author": [
+      {
+        "family": "Conlon",
+        "given": "Samuel B"
+      }
+    ],
+    "container-title": "Journal of the Australian Mathematical Society",
+    "id": "conlon1964twisted",
+    "issue": "2",
+    "issued": {
+      "date-parts": [
+        [
+          1964
+        ]
+      ]
+    },
+    "page": "152-173",
+    "publisher": "Cambridge University Press",
+    "title": "Twisted group algebras and their representations",
+    "type": "article-journal",
+    "volume": "4"
+  },
+  {
+    "author": [
+      {
+        "family": "Edwards",
+        "given": "Christopher M"
+      },
+      {
+        "family": "Lewis",
+        "given": "John T"
+      }
+    ],
+    "container-title": "Communications in Mathematical Physics",
+    "id": "edwards1969twisted",
+    "issued": {
+      "date-parts": [
+        [
+          1969
+        ]
+      ]
+    },
+    "page": "119-130",
+    "publisher": "Springer",
+    "title": "Twisted group algebras i",
+    "type": "article-journal",
+    "volume": "13"
+  },
+  {
+    "author": [
+      {
+        "family": "Edwards",
+        "given": "CM"
+      },
+      {
+        "family": "Lewis",
+        "given": "JT"
+      }
+    ],
+    "container-title": "Communications in Mathematical Physics",
+    "id": "edwards1969twisted2",
+    "issued": {
+      "date-parts": [
+        [
+          1969
+        ]
+      ]
+    },
+    "page": "131-141",
+    "publisher": "Springer",
+    "title": "Twisted group algebras II",
+    "type": "article-journal",
+    "volume": "13"
   }
 ]
