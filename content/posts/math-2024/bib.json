@@ -660,5 +660,25 @@
     "title": "Twisted group algebras II",
     "type": "article-journal",
     "volume": "13"
+  },
+  {
+    "author": [
+      {
+        "family": "Sims",
+        "given": "Charles C"
+      }
+    ],
+    "collection-number": "48",
+    "id": "sims1994computation",
+    "issued": {
+      "date-parts": [
+        [
+          1994
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "title": "Computation with finitely presented groups",
+    "type": "book"
   }
 ]
