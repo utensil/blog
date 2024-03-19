@@ -334,5 +334,31 @@
     "title-short": "Graded symmetry groups",
     "type": "article-journal",
     "volume": "33"
+  },
+  {
+    "author": [
+      {
+        "family": "Woit",
+        "given": "Peter"
+      },
+      {
+        "family": "Woit"
+      },
+      {
+        "family": "Bartolini"
+      }
+    ],
+    "id": "woit2017quantum",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "publisher": "Springer",
+    "title": "Quantum theory, groups and representations",
+    "type": "book",
+    "volume": "5"
   }
 ]
