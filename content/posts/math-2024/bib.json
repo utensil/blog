@@ -680,5 +680,70 @@
     "publisher": "Cambridge University Press",
     "title": "Computation with finitely presented groups",
     "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Yizengaw",
+        "given": "Belayneh Yibeltal"
+      }
+    ],
+    "id": "yizengaw2015clifford",
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "publisher": "University of Pretoria (South Africa)",
+    "title": "On clifford a-algebras and a framework for localization of a-modules",
+    "type": "book"
+  },
+  {
+    "DOI": "10.1007/3-540-27950-4",
+    "ISBN": "978-3-540-27949-5",
+    "author": [
+      {
+        "family": "Kashiwara",
+        "given": "Masaki"
+      },
+      {
+        "family": "Schapira",
+        "given": "Pierre"
+      }
+    ],
+    "id": "kashiwara2006categories",
+    "issued": {
+      "date-parts": [
+        [
+          2006,
+          1
+        ]
+      ]
+    },
+    "page": "",
+    "title": "Categories and sheaves",
+    "type": "book",
+    "volume": "332"
+  },
+  {
+    "URL": "https://webusers.imj-prg.fr/~pierre.schapira/LectNotes/CatShv.pdf",
+    "author": [
+      {
+        "family": "Schapira",
+        "given": "Pierre"
+      }
+    ],
+    "id": "schapira2023introduction",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "An introduction to categories and sheaves",
+    "type": ""
   }
 ]

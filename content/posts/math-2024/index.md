@@ -80,11 +80,21 @@ There exists isomorphisms between certain Clifford algebras and NDAs (Normed Div
 
 Variants of Clifford algebras whose generators are idempotent or nilpotent can be considered. Zeon algebras ("nil-Clifford algebras") have proven to be useful in enumeration problems on graphs where certain configurations are forbidden, such as in the enumeration of matchings and self-avoiding walks. The idempotent property of the generators of idem-Clifford algebras can be used to avoid redundant information when enumerating certain graph and hypergraph structures. See {{< cite "ewing2022zeon" >}}.
 
-A Clifford Algebra can be [categorified](https://golem.ph.utexas.edu/category/2007/10/categorified_clifford_algebra.html): "An Clifford algebra over a vector space is defined to be the Koszul dual to an abelian fully weak Lie-algebra" where "Fully weak Lie-algebras are Koszul dual to differential graded Clifford algebras." See also [Higher Clifford Algebras](https://golem.ph.utexas.edu/category/2007/10/higher_clifford_algebras.html). It's also closely related to universal enveloping algebra (see {{< cite "figueroa2010spin" >}} and "The universal enveloping algebra of a Lie algebra is the analogue of the usual group algebra of a group." from [group algebra on nlab](https://ncatlab.org/nlab/show/group+algebra#RelationToUniversalEnvelopingAlgebra)).
+It's also closely related to universal enveloping algebra (see {{< cite "figueroa2010spin" >}} and "The universal enveloping algebra of a Lie algebra is the analogue of the usual group algebra of a group." from [group algebra on nlab](https://ncatlab.org/nlab/show/group+algebra#RelationToUniversalEnvelopingAlgebra)).
 
 Great discussions about the limitations and generalizations of Clifford algebras can be found in John C. Baez's {{< cite "baez2002octonions" >}}. Particularly, note [Cayley-Dickson construction](https://en.wikipedia.org/wiki/Cayley-Dickson_construction), Bott periodicity, matrix algebra, triality, and $\mathbb{R}$ as a real commutative associative nicely normed ∗-algebra. Also see Anthony Lasenby's work on the embedding of octonions in the Clifford geometric algebra for space-time STA ($\mathop{\mathcal{C}\ell}(1, 3)$) {{< cite "lasenby2024some">}}.
 
 Note also Kingdon algebras: alternative Clifford-like algebras over vector spaces equipped with a symmetric bilinear form {{< cite "depies2024octonions" >}}.
+
+### Categorified Clifford Algebra
+
+A categorical view of Clifford Algebra is discussed in {{< cite "figueroa2010spin" >}}.
+
+A Clifford Algebra can be [categorified](https://golem.ph.utexas.edu/category/2007/10/categorified_clifford_algebra.html): "An Clifford algebra over a vector space is defined to be the Koszul dual to an abelian fully weak Lie-algebra" where "Fully weak Lie-algebras are Koszul dual to differential graded Clifford algebras." See also [Higher Clifford Algebras](https://golem.ph.utexas.edu/category/2007/10/higher_clifford_algebras.html).
+
+### Sheaves of Clifford Algebras
+
+Sheaves of Clifford Algebras are studied in {{< cite "yizengaw2015clifford" >}} and its references. See also {{< cite "schapira2023introduction" >}}, an elementary introduction to {{< cite "kashiwara2006categories" >}}, which presents categories, homological algebra and sheaves in a systematic and exhaustive manner.
 
 ### DKP Algebra
 
