@@ -502,6 +502,6 @@ $ \epsilon $ is a small constant added to the variance to avoid division by zero
 
 <!-- # References
 
-{{< bibliography >}}
+{{< bibliography cited >}}
 
-{{< references >}} -->
+{{< bibliography >}} -->

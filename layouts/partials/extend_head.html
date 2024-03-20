@@ -2,8 +2,7 @@
 {{ if or .Params.math .Site.Params.math }}
 {{ partial "math.html" . }}
 {{ end }}
-{{ $simpleciteStyle := resources.Get "scss/hugo-simplecite.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" type="text/css" href="{{ $simpleciteStyle.Permalink }}">
+<link rel="stylesheet" type="text/css" href="{{ "/blog/hugo-cite-mod.css" | relURL }}" />
 <style>
     figure.center {
         display: block;

@@ -129,5 +129,5 @@ Incorporating the following interests into this post:
 
 # References
 
-{{< references >}}
+{{< bibliography cited >}}
 
