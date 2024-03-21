@@ -1,6 +1,6 @@
 ---
 title: "My math interests in 2024"
-date: 2024-03-16T22:00+08:00
+publishDate: 2024-03-16T22:00:00+08:00
 draft: true
 ---
 
