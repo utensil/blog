@@ -4,13 +4,13 @@ publishDate: 2024-03-21T10:00:00+08:00
 draft: true
 ---
 
-This post studies group algebras with [GAP](https://github.com/gap-system/gap), focusing on a few interested groups. See [*My math interests in 2024: Group Algebra*](../math-2024/) for context.
+This post studies group algebras with [GAP](https://github.com/gap-system/gap), focusing on a few interested groups. See [*My math interests in 2024: Group Algebra*](../math-2024/#group-algebra) for context.
 
 It's helpful to read [GAP Manual](https://docs.gap-system.org/doc/ref/chap0_mj.html) and [SO questions](https://math.stackexchange.com/search?q=%5Bgroup-theory%5D+GAP+group+algebra) before using GAP.
 
 ## Installation
 
-I'm using Mac, so I ran the following commands to install GAP:
+I'm using Mac, so I ran the following commands to install and start GAP:
 
 ```bash
 brew install wget autoconf gmp readline
@@ -44,6 +44,8 @@ gap>
 
 which is the GAP console.
 
+Great, let's run some GAP code! Note that the code can be copy-pasted into a GAP console, and `gap>` will be omitted by GAP, which is very convenient.
+
 ## Cyclic groups
 
 $C_n$, the cyclic group of order $n$, has the following presentation:
@@ -52,6 +54,8 @@ $$
 C_n=\left\langle a \mid a^n=e\right\rangle
 $$
 
+Cyclic group can be constructed and examined in GAP by the corresponding functions:
+
 ```gap
 gap> C2 := CyclicGroup(2);
 <pc group of size 2 with 1 generator>
@@ -59,6 +63,8 @@ gap> StructureDescription(C2);
 "C2"
 gap> IsCyclic(C2);
 true
+gap> MinimalGeneratingSet(C2);
+[ f1 ]
 gap> C2_ := AllGroups(2)[1];
 <pc group of size 2 with 1 generator>
 gap> IsIsomorphicGroup(C2, C2_);
@@ -67,6 +73,33 @@ gap> C2_ := SimplifiedFpGroup(Image(IsomorphismFpGroup(C2)));
 gap> RelatorsOfFpGroup(C2_);
 [ F1^2 ]
 ```
+
+Let's use the `sonata` package to check if the two groups are isomorphic:
+
+```gap
+gap> LoadPackage("sonata");
+
+  ___________________________________________________________________________
+ /        ___
+||       /   \                 /\    Version 2.9.6
+||      ||   ||  |\    |      /  \               /\       Erhard Aichinger
+ \___   ||   ||  |\\   |     /____\_____________/__\      Franz Binder
+     \  ||   ||  | \\  |    /      \     ||    /    \     Juergen Ecker
+     ||  \___/   |  \\ |   /        \    ||   /      \    Peter Mayr
+     ||          |   \\|  /          \   ||               Christof Noebauer
+ \___/           |    \|                 ||
+
+ System    Of   Nearrings     And      Their Applications
+ Info: https://gap-packages.github.io/sonata/
+
+true
+gap> C2_ := AllGroups(2)[1];
+<pc group of size 2 with 1 generator>
+gap> IsIsomorphicGroup(C2, C2_);
+true
+```
+
+This section is inspired by SO question [1](https://math.stackexchange.com/questions/3185071/identifying-the-group-in-gap), .
 
 ## The quaternion group
 
@@ -81,8 +114,6 @@ Another (less intuitive) presentation of $Q_8$ is:
 $$
 \mathrm{Q}_8=\left\langle a, b \mid a^4=e, a^2=b^2, b a=a^{-1} b\right\rangle
 $$
-
-Great, let's run some GAP code! Note that the code can be copy-pasted into a GAP console, and `gap>` will be omitted by GAP, which is very convenient.
 
 First, construct the group $Q_8$ by its presentation in GAP:
 
@@ -121,12 +152,44 @@ gap> StructureDescription(g/Intersection(DerivedSubgroup(g),Center(g)));
 What's the simplified presentation of $Q_8$?
 
 ```gap
+gap> MinimalGeneratingSet(Q8);
+[ j*k, j ]
 gap> Q8_ := SimplifiedFpGroup(Image(IsomorphismFpGroup(Q8)));
 <fp group of size 8 on the generators [ i, j ]>
 gap> RelatorsOfFpGroup(Q8_);
 [ j*i*j^-1*i, j^2*i^-2 ]
 ```
 
-This section is inspired by SO answers [1](https://math.stackexchange.com/a/3213387/276408), [2](https://math.stackexchange.com/a/774952/276408).
+$Q_8$ can also be constructed by the `QuaternionGroup` function, we can check the isomorphism:
+
+```gap
+gap> GeneratorsOfGroup(Q8);
+[ n, i, j, k ]
+gap> RelatorsOfFpGroup(Image(IsomorphismFpGroup(Q8)));
+[ i^2*n^-1, j^2*n^-1, k^2*n^-1, i*j*k*n^-1 ]
+gap> Q8_ := QuaternionGroup(8);                                       
+<pc group of size 8 with 3 generators>
+gap> GeneratorsOfGroup(Q8_);
+[ x, y, y2 ]
+gap> RelatorsOfFpGroup(Image(IsomorphismFpGroup(Q8_)));
+[ F1^2*F3^-1, F2^-1*F1^-1*F2*F1*F3^-1, F3^-1*F1^-1*F3*F1, F2^2*F3^-1, F3^-1*F2^-1*F3*F2, F3^2 ]
+gap> IsIsomorphicGroup(Q8, Q8_);
+true
+```
+
+The better way (after GAP 4.5) is
+
+```gap
+gap> Q8_ := QuaternionGroup(IsFpGroup, 8);
+<fp group of size 8 on the generators [ r, s ]>
+gap> GeneratorsOfGroup(Q8_);
+[ r, s ]
+gap> RelatorsOfFpGroup(Image(IsomorphismFpGroup(Q8_)));
+[ r^2*s^-2, s^4, r^-1*s*r*s ]
+gap> IsIsomorphicGroup(Q8, Q8_);
+true
+```
+
+This section is inspired by SO answers [1](https://math.stackexchange.com/a/3213387/276408), [2](https://math.stackexchange.com/a/774952/276408), [3](https://math.stackexchange.com/questions/1618446/how-can-i-display-generators-or-a-minimal-generating-set-with-gap).
 
 
