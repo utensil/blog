@@ -27,7 +27,7 @@ For the former, I should take a closer look at {{< cite "figueroa2010spin" >}} a
 
 For the latter, see the [Z-filteration in lean-ga](https://github.com/pygae/lean-ga/blob/master/src/geometric_algebra/from_mathlib/versors.lean) and [the prototype](https://github.com/eric-wieser/lftcm2023-clifford_algebra/).
 
-We also wish to include some latest results presented in {{< cite "ruhe2023clifford" >}}, with supplements from {{< cite "brehmer2023geometric" >}}, in which some of the results are proven in {{< cite "roelfs2023graded" >}}.
+I also wish to include some latest results presented in {{< cite "ruhe2023clifford" >}}, with supplements from {{< cite "brehmer2023geometric" >}}, in which some of the results are proven in {{< cite "roelfs2023graded" >}}.
 
 See also discussions in the [lean-ga blueprint](https://utensil.github.io/lean-ga/blueprint/sect0007.html).
 
@@ -74,7 +74,7 @@ A [Generalized Clifford algebra (GCA)](https://en.wikipedia.org/wiki/Generalized
 
 In {{< cite "cheng2019new" >}}, note also that "Clifford algebras are weak [Hopf algebras](https://en.wikipedia.org/wiki/Hopf_algebra) in some symmetric tensor categories." while "generalized Clifford algebras are weak Hopf algebras in some suitable braided linear categories of graded vector spaces." as well as that "the Clifford process is a powerful technique to construct larger dimensional Clifford algebras from known ones."
 
-Clifford algebras can be obtained by Twisting of Group Algebras {{< cite "albuquerque2002clifford" >}}, where twisted group algebras are studied in {{< cite "conlon1964twisted" >}}, {{< cite "edwards1969twisted" >}}, {{< cite "edwards1969twisted2" >}}.
+Clifford algebras can be obtained by twisting of group algebras {{< cite "albuquerque2002clifford" >}}, where twisted group algebras are studied in {{< cite "conlon1964twisted" >}}, {{< cite "edwards1969twisted" >}}, {{< cite "edwards1969twisted2" >}}.
 
 There exists isomorphisms between certain Clifford algebras and NDAs (Normed Division Algebras) over $\mathbb{R}$.
 
