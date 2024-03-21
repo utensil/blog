@@ -192,4 +192,17 @@ true
 
 This section is inspired by SO answers [1](https://math.stackexchange.com/a/3213387/276408), [2](https://math.stackexchange.com/a/774952/276408), [3](https://math.stackexchange.com/questions/1618446/how-can-i-display-generators-or-a-minimal-generating-set-with-gap).
 
+## The group algebra of $Q_8$
 
+```gap
+gap> FG:=GroupRing(Rationals,Q8_);
+<algebra-with-one over Rationals, with 2 generators>
+gap> IsGroupAlgebra(FG);
+true
+gap> RadicalOfAlgebra(FG);
+<algebra of dimension 0 over GF(5)>
+gap> WedderburnDecomposition(FG);
+[ Rationals, Rationals, Rationals, Rationals, <crossed product with center Rationals over GaussianRationals of a group of size 2> ]
+```
+
+This section is inspired by [an SO question](https://math.stackexchange.com/a/432638/276408) and the [Abstract Algebra in GAP](https://www.math.colostate.edu/~hulpke/CGT/howtogap.pdf).
