@@ -28,7 +28,7 @@ gap -l .
 
 Then I can see something like:
 
-```
+```bash
  ┌───────┐   GAP 4.13.0 of 2024-03-15
  │  GAP  │   https://www.gap-system.org
  └───────┘   Architecture: aarch64-apple-darwin23-default64-kv9
@@ -56,7 +56,7 @@ $$
 
 Cyclic group can be constructed and examined in GAP by the corresponding functions:
 
-```gap
+```bash
 gap> C2 := CyclicGroup(2);
 <pc group of size 2 with 1 generator>
 gap> StructureDescription(C2);
@@ -76,7 +76,7 @@ gap> RelatorsOfFpGroup(C2_);
 
 Let's use the `sonata` package to check if the two groups are isomorphic:
 
-```gap
+```bash
 gap> LoadPackage("sonata");
 
   ___________________________________________________________________________
@@ -117,7 +117,7 @@ $$
 
 First, construct the group $Q_8$ by its presentation in GAP:
 
-```gap
+```bash
 gap> Q8_pre := FreeGroup( "n", "i", "j", "k" );
 <free group on the generators [ n, i, j, k ]>
 gap> AssignGeneratorVariables(Q8_pre);
@@ -129,14 +129,14 @@ gap> Q8 := Q8_pre / Q8_rel;
 ```
 Let's try to see if GAP recognizes $Q_8$:
 
-```gap
+```bash
 gap> StructureDescription(Q8);
 "Q8"
 ```
 
 Cool, now let's learn more about $Q_8$:
 
-```gap
+```bash
 gap> StructureDescription(Center(Q8));
 "C2"
 gap> StructureDescription(DerivedSubgroup(Q8));
@@ -151,7 +151,7 @@ gap> StructureDescription(g/Intersection(DerivedSubgroup(g),Center(g)));
 
 What's the simplified presentation of $Q_8$?
 
-```gap
+```bash
 gap> MinimalGeneratingSet(Q8);
 [ j*k, j ]
 gap> Q8_ := SimplifiedFpGroup(Image(IsomorphismFpGroup(Q8)));
@@ -162,7 +162,7 @@ gap> RelatorsOfFpGroup(Q8_);
 
 $Q_8$ can also be constructed by the `QuaternionGroup` function, we can check the isomorphism:
 
-```gap
+```bash
 gap> GeneratorsOfGroup(Q8);
 [ n, i, j, k ]
 gap> RelatorsOfFpGroup(Image(IsomorphismFpGroup(Q8)));
@@ -179,7 +179,7 @@ true
 
 The better way (after GAP 4.5) is
 
-```gap
+```bash
 gap> Q8_ := QuaternionGroup(IsFpGroup, 8);
 <fp group of size 8 on the generators [ r, s ]>
 gap> GeneratorsOfGroup(Q8_);
@@ -194,8 +194,8 @@ This section is inspired by SO answers [1](https://math.stackexchange.com/a/3213
 
 ## The group algebra of $Q_8$
 
-```gap
-gap> FG:=GroupRing(Rationals,Q8_);
+```bash
+gap> FG := GroupRing(Rationals,Q8_);
 <algebra-with-one over Rationals, with 2 generators>
 gap> IsGroupAlgebra(FG);
 true
