@@ -316,4 +316,21 @@ fail
 ```
 But they are still not so same.
 
-This section is inspired by [an SO question](https://math.stackexchange.com/a/432638/276408), the [Abstract Algebra in GAP](https://www.math.colostate.edu/~hulpke/CGT/howtogap.pdf), and [Wedderburn Decomposition of Group Algebras](https://docs.gap-system.org/pkg/wedderga/doc/chap0.html#contents)
+Some more explorations:
+
+```bash
+gap> IsomorphismSCAlgebra(HQ);
+IdentityMapping( <algebra of dimension 4 over Rationals> )
+gap> IsomorphismSCAlgebra(HQ_);
+IdentityMapping( <algebra-with-one of dimension 4 over Rationals> )
+gap> IsomorphismSCAlgebra(HQ__);
+IdentityMapping( <algebra-with-one of dimension 4 over Rationals> )
+gap> IsomorphismMatrixAlgebra(HQ);
+<op. hom. Algebra( Rationals, [ v.1, v.2, v.3, v.4 ] ) -> matrices of dim. 4>
+gap> IsomorphismMatrixAlgebra(HQ_);
+<op. hom. AlgebraWithOne( Rationals, [ e, i, j, k ] ) -> matrices of dim. 4>
+gap> IsomorphismMatrixAlgebra(HQ__);
+<op. hom. AlgebraWithOne( Rationals, [ v.1, v.2, v.3, v.4 ] ) -> matrices of dim. 4>
+```
+
+This section is inspired by [this SO question](https://math.stackexchange.com/a/432638/276408), the [Abstract Algebra in GAP](https://www.math.colostate.edu/~hulpke/CGT/howtogap.pdf), and [Wedderburn Decomposition of Group Algebras](https://docs.gap-system.org/pkg/wedderga/doc/chap0.html#contents)
