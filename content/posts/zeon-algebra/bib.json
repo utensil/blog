@@ -1,0 +1,341 @@
+[
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "George Stacey"
+      }
+    ],
+    "id": "staples2020clifford",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "publisher": "World Scientific",
+    "title": "Clifford algebras and zeons: Geometry to combinatorics and beyond",
+    "title-short": "Clifford algebras and zeons",
+    "type": "book"
+  },
+  {
+    "URL": "https://arxiv.org/pdf/2201.05895.pdf",
+    "author": [
+      {
+        "family": "Ewing",
+        "given": "Samuel"
+      },
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "ewing2022zeon",
+    "issue": "5",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "page": "61",
+    "publisher": "Springer",
+    "title": "Zeon and idem-clifford formulations of hypergraph problems",
+    "type": "article-journal",
+    "volume": "32"
+  },
+  {
+    "author": [
+      {
+        "family": "Sengupta",
+        "given": "Ambar N"
+      }
+    ],
+    "id": "sengupta2011representing",
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "publisher": "Springer Science & Business Media",
+    "title": "Representing finite groups: A semisimple introduction",
+    "title-short": "Representing finite groups",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Serre",
+        "given": "Jean-Pierre"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "id": "serre1977linear",
+    "issued": {
+      "date-parts": [
+        [
+          1977
+        ]
+      ]
+    },
+    "publisher": "Springer",
+    "title": "Linear representations of finite groups",
+    "type": "book",
+    "volume": "42"
+  },
+  {
+    "author": [
+      {
+        "family": "Clifford",
+        "given": "Alfred H"
+      },
+      {
+        "family": "Preston",
+        "given": "Gordon B"
+      }
+    ],
+    "container-title": "Mathematical surveys",
+    "id": "clifford1961algebraic",
+    "issued": {
+      "date-parts": [
+        [
+          1961
+        ]
+      ]
+    },
+    "publisher": "Amer. Math. Soc Providence, RI",
+    "title": "The algebraic theory of semigroups, vol. 1",
+    "type": "article-journal",
+    "volume": "7"
+  },
+  {
+    "author": [
+      {
+        "family": "Rhodes",
+        "given": "John"
+      },
+      {
+        "family": "Zalcstein",
+        "given": "Yechezkel"
+      }
+    ],
+    "container-title": "Monoids and semigroups with applications (Berkeley, CA, 1989)",
+    "id": "rhodes1991elementary",
+    "issued": {
+      "date-parts": [
+        [
+          1991
+        ]
+      ]
+    },
+    "page": "334-367",
+    "title": "Elementary representation and character theory of finite semigroups and its application",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Cohen",
+        "given": "Daniel IA"
+      }
+    ],
+    "id": "cohen1978basic",
+    "issued": {
+      "date-parts": [
+        [
+          1978
+        ]
+      ]
+    },
+    "title": "Basic techniques of combinatorial theory",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Tucker",
+        "given": "Alan"
+      }
+    ],
+    "id": "tucker1994applied",
+    "issued": {
+      "date-parts": [
+        [
+          1994
+        ]
+      ]
+    },
+    "publisher": "John Wiley & Sons, Inc.",
+    "title": "Applied combinatorics",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "West",
+        "given": "Douglas Brent"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "id": "west2001introduction",
+    "issued": {
+      "date-parts": [
+        [
+          2001
+        ]
+      ]
+    },
+    "publisher": "Prentice hall Upper Saddle River",
+    "title": "Introduction to graph theory",
+    "type": "book",
+    "volume": "2"
+  },
+  {
+    "author": [
+      {
+        "family": "Wilson",
+        "given": "Robin J"
+      }
+    ],
+    "id": "wilson1979introduction",
+    "issued": {
+      "date-parts": [
+        [
+          1979
+        ]
+      ]
+    },
+    "publisher": "Pearson Education India",
+    "title": "Introduction to graph theory",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Ablamowicz",
+        "given": "Rafal"
+      },
+      {
+        "family": "Sobczyk",
+        "given": "Garret"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "id": "ablamowicz2004lectures",
+    "issued": {
+      "date-parts": [
+        [
+          2004
+        ]
+      ]
+    },
+    "publisher": "Springer",
+    "title": "Lectures on clifford (geometric) algebras and applications",
+    "type": "book"
+  },
+  {
+    "URL": "http://web4.uwindsor.ca/users/b/baylis/main.nsf",
+    "author": [
+      {
+        "family": "Bayliss",
+        "given": "William"
+      }
+    ],
+    "id": "bayliss2019geometric",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "title": "Geometric algebra workbook",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Lounesto",
+        "given": "Pertti"
+      }
+    ],
+    "id": "lounesto2001clifford",
+    "issued": {
+      "date-parts": [
+        [
+          2001
+        ]
+      ]
+    },
+    "other-ids": "lounestoCliffordAlgebrasSpinors2001a",
+    "publisher": "Cambridge university press",
+    "title": "Clifford algebras and spinors",
+    "type": "book",
+    "volume": "286"
+  },
+  {
+    "author": [
+      {
+        "family": "Porteous",
+        "given": "Ian R"
+      }
+    ],
+    "collection-number": "50",
+    "id": "porteous1995clifford",
+    "issued": {
+      "date-parts": [
+        [
+          1995
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "title": "Clifford algebras and the classical groups",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Aragón-González",
+        "given": "G"
+      },
+      {
+        "family": "Aragón",
+        "given": "JL"
+      },
+      {
+        "family": "Rodriguez-Andrade",
+        "given": "Marco Antonio"
+      },
+      {
+        "family": "Verde-Star",
+        "given": "L"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "aragon2009reflections",
+    "issued": {
+      "date-parts": [
+        [
+          2009
+        ]
+      ]
+    },
+    "page": "1-14",
+    "publisher": "Springer",
+    "title": "Reflections, rotations, and pythagorean numbers",
+    "type": "article-journal",
+    "volume": "19"
+  }
+]

@@ -1,3 +1,9 @@
+# A few hints:
+#
+# To normalize:
+# # bibtool --preserve.key.case=on --preserve.keys=on --pass.comments=on --print.use.tab=off -s -i content/posts/transformer/bib.bib -o content/posts/transformer/bib.bib -- 'new.entry.type {thesis}' -- 'new.entry.type {online}'
+# To convert to JSON:
+# pandoc content/posts/transformer/bib.bib -t csljson -o content/posts/transformer/bib.json
 
 @Article{         ba2016layer,
   title         = {Layer normalization},
@@ -82,12 +88,6 @@
   url           = {https://arxiv.org/abs/1602.07261}
 }
 
-# A few hints:
-#
-# To normalize:
-# # bibtool --preserve.key.case=on --preserve.keys=on --pass.comments=on --print.use.tab=off -s -i content/posts/transformer/bib.bib -o content/posts/transformer/bib.bib -- 'new.entry.type {thesis}' -- 'new.entry.type {online}'
-# To convert to JSON:
-# pandoc content/posts/transformer/bib.bib -t csljson -o content/posts/transformer/bib.json
 @Article{         turner2023introduction,
   title         = {An introduction to transformers},
   author        = {Turner, Richard E},
