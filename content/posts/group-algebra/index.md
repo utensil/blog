@@ -137,6 +137,8 @@ gap> StructureDescription(Q8);
 Cool, now let's learn more about $Q_8$:
 
 ```bash
+gap> Order(Q8);
+8
 gap> StructureDescription(Center(Q8));
 "C2"
 gap> StructureDescription(DerivedSubgroup(Q8));
@@ -190,19 +192,128 @@ gap> IsIsomorphicGroup(Q8, Q8_);
 true
 ```
 
+We can also obtain $Q_8$ using [The Small Groups Library](https://docs.gap-system.org/pkg/smallgrp/doc/chap1.html) by:
+
+```bash
+gap> Q8__ := SmallGroup(8,4);
+<pc group of size 8 with 3 generators>
+gap> IsIsomorphicGroup(Q8, Q8__);
+true
+```
+
 This section is inspired by SO answers [1](https://math.stackexchange.com/a/3213387/276408), [2](https://math.stackexchange.com/a/774952/276408), [3](https://math.stackexchange.com/questions/1618446/how-can-i-display-generators-or-a-minimal-generating-set-with-gap).
 
 ## The group algebra of $Q_8$
 
+We need to construct the group algebra of $Q_8$ over the reals, i.e. $\mathbb{R}Q_8$, but GAP doesn't support reals, so we use rationals instead, i.e. we construct $\mathbb{Q}Q_8$:
+
 ```bash
-gap> FG := GroupRing(Rationals,Q8_);
+gap> QQ8 := GroupRing(Rationals,Q8_);
 <algebra-with-one over Rationals, with 2 generators>
-gap> IsGroupAlgebra(FG);
+gap> IsGroupAlgebra(QQ8);
 true
-gap> RadicalOfAlgebra(FG);
+gap> RadicalOfAlgebra(QQ8);
 <algebra of dimension 0 over GF(5)>
-gap> WedderburnDecomposition(FG);
+gap> WedderburnDecomposition(QQ8);
 [ Rationals, Rationals, Rationals, Rationals, <crossed product with center Rationals over GaussianRationals of a group of size 2> ]
+gap> WedderburnDecompositionInfo(QQ8);
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 4, [ 2, 3, 2 ] ] ]
+gap> WedderburnDecompositionWithDivAlgParts(QQ8);
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 1, rec( Center := Rationals, DivAlg := true, LocalIndices := [ [ 2, 2 ], [ infinity, 2 ] ], SchurIndex := 2 ) ] ]
+gap> WedderburnDecompositionAsSCAlgebras(QQ8);
+[ Rationals, Rationals, Rationals, Rationals, <algebra of dimension 4 over Rationals> ]
+gap> WedderburnDecompositionByCharacterDescent(Rationals, Q8);
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 4, [ 2, 3, 2 ] ] ]
 ```
 
-This section is inspired by [an SO question](https://math.stackexchange.com/a/432638/276408) and the [Abstract Algebra in GAP](https://www.math.colostate.edu/~hulpke/CGT/howtogap.pdf).
+$\mathbb{R} Q_8$ has a canonical (Wedderburn) decomposition as
+
+$$
+\mathbb{R} Q_8 \cong 4 \mathbb{R}+\mathbb{H}
+$$
+
+But we can't identify the 5th part of the decomposition as $\mathbb{H}$, i.e. the quaternion algebra (over rationals instead of reals), so we need to inspect the cross product.
+
+We should have the quaternion algebra by both
+
+```bash
+gap> HQ := WedderburnDecomposition(QQ8)[5];
+<crossed product with center Rationals over GaussianRationals of a group of size 2>
+gap> HQ_ := QuaternionAlgebra(Rationals);
+<algebra-with-one of dimension 4 over Rationals>
+```
+
+But they don't look the same.
+
+```bash
+gap> H := UnderlyingMagma( HQ );
+<group of size 2 with 2 generators>
+gap> fam := ElementsFamily( FamilyObj( HQ ) );
+<Family: "CrossedProductObjFamily">
+gap> g := ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );
+(ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
+
+gap> SchurIndex(QQ8);
+"fail: Quaternion Algebra Over NonRational Field, use another method."
+gap> SchurIndex(HQ);
+"fail: Quaternion Algebra Over NonRational Field, use another method."
+gap> i:=First([1..Length(Irr(Q8))],i->Size(KernelOfCharacter(Irr(Q8)[i]))=1);;
+gap> SchurIndexByCharacter(GaussianRationals,Q8,Irr(Q8)[i]);
+1
+```
+
+But it doesn't seem that any insight is gained in the process. On the other hand, what's obtained by `WedderburnDecompositionAsSCAlgebras` has better luck:
+
+```bash
+gap> WD := WedderburnDecompositionAsSCAlgebras(QQ8);
+[ Rationals, Rationals, Rationals, Rationals, <algebra of dimension 4 over Rationals> ]
+gap> HQ := WD[5];
+<algebra of dimension 4 over Rationals>
+gap> HQ = HQ_;
+false
+gap> IsSimpleAlgebra(HQ);
+true
+gap> IsSimpleAlgebra(HQ_);
+true
+gap> GeneratorsOfAlgebra(HQ);
+[ v.1, v.2, v.3, v.4 ]
+gap> GeneratorsOfAlgebra(HQ_);
+[ e, i, j, k ]
+gap> BasisVectors( Basis( HQ ) );
+[ v.1, v.2, v.3, v.4 ]
+gap> BasisVectors( Basis( HQ_ ) );
+[ e, i, j, k ]
+gap> DirectSumDecomposition(HQ);
+[ <two-sided ideal in <algebra of dimension 4 over Rationals>, (1 generator)> ]
+gap> DirectSumDecomposition(HQ_);
+[ <two-sided ideal in <algebra-with-one of dimension 4 over Rationals>, (1 generator)> ]
+gap> AdjointBasis( Basis( HQ ) );
+Basis( <vector space over Rationals, with 4 generators>, [ [ [ 0, 0, 1, 0 ], [ 0, 0, 0, -1 ], [ -1, 0, 0, 0 ], [ 0, 1, 0, 0 ] ], 
+  [ [ 0, 0, 0, 1 ], [ 0, 0, 1, 0 ], [ 0, -1, 0, 0 ], [ -1, 0, 0, 0 ] ], [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ],
+  [ [ 0, -1, 0, 0 ], [ 1, 0, 0, 0 ], [ 0, 0, 0, -1 ], [ 0, 0, 1, 0 ] ] ] )
+gap> AdjointBasis( Basis( HQ_ ) );
+Basis( <vector space over Rationals, with 4 generators>, [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
+  [ [ 0, -1, 0, 0 ], [ 1, 0, 0, 0 ], [ 0, 0, 0, -1 ], [ 0, 0, 1, 0 ] ], [ [ 0, 0, -1, 0 ], [ 0, 0, 0, 1 ], [ 1, 0, 0, 0 ], [ 0, -1, 0, 0 ] 
+     ], [ [ 0, 0, 0, -1 ], [ 0, 0, -1, 0 ], [ 0, 1, 0, 0 ], [ 1, 0, 0, 0 ] ] ] )
+
+gap> HQ__ := AsAlgebraWithOne(Rationals, HQ);
+<algebra-with-one over Rationals, with 4 generators>
+gap> HQ_ = HQ__;
+false
+gap> IsomorphismFpAlgebra(HQ__);
+[ v.1, v.2, v.3, v.4, v.3 ] -> [ [(1)*x.1], [(1)*x.2], [(1)*x.3], [(1)*x.4], [(1)*<identity ...>] ]
+gap> IsomorphismFpAlgebra(HQ_);
+[ e, i, j, k, e ] -> [ [(1)*x.1], [(1)*x.2], [(1)*x.3], [(1)*x.4], [(1)*<identity ...>] ]
+
+gap> bA:= BasisVectors( Basis( HQ ) );; bB:= BasisVectors( Basis( HQ_ ) );;
+gap> f:= AlgebraHomomorphismByImages( HQ, HQ_, bA, bB );
+fail
+
+gap> bA:= BasisVectors( Basis( HQ__ ) );; bB:= BasisVectors( Basis( HQ_ ) );;
+gap> f:= AlgebraHomomorphismByImages( HQ__, HQ_, bA, bB );
+fail
+```
+But they are still not so same.
+
+This section is inspired by [an SO question](https://math.stackexchange.com/a/432638/276408), the [Abstract Algebra in GAP](https://www.math.colostate.edu/~hulpke/CGT/howtogap.pdf), and [Wedderburn Decomposition of Group Algebras](https://docs.gap-system.org/pkg/wedderga/doc/chap0.html#contents)
