@@ -432,5 +432,46 @@
     "title": "A new adjacency matrix for finite graphs",
     "type": "article-journal",
     "volume": "18"
+  },
+  {
+    "author": [
+      {
+        "family": "Cassiday",
+        "given": "Cody"
+      },
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "id": "cassiday2015representations",
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "title": "On representations of semigroups having hypercube-like cayley graphs",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Feinsilver",
+        "given": "Philip"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:0711.1680",
+    "id": "feinsilver2007zeon",
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "title": "Zeon algebra, fock space, and markov chains",
+    "type": "article-journal"
   }
 ]
