@@ -473,5 +473,79 @@
     },
     "title": "Zeon algebra, fock space, and markov chains",
     "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Davis",
+        "given": "Amanda"
+      },
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "davis2019zeon",
+    "issue": "4",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "page": "60",
+    "publisher": "Springer",
+    "title": "Zeon and idem-clifford formulations of boolean satisfiability",
+    "type": "article-journal",
+    "volume": "29"
+  },
+  {
+    "author": [
+      {
+        "family": "Schott",
+        "given": "René"
+      },
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "id": "schott2012operator",
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "publisher": "World Scientific",
+    "title": "Operator calculus on graphs: Theory and applications in computer science",
+    "title-short": "Operator calculus on graphs",
+    "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "staples2019differential",
+    "issue": "2",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "page": "25",
+    "publisher": "Springer",
+    "title": "Differential calculus of zeon functions",
+    "type": "article-journal",
+    "volume": "29"
   }
 ]
