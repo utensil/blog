@@ -337,5 +337,100 @@
     "title": "Reflections, rotations, and pythagorean numbers",
     "type": "article-journal",
     "volume": "19"
+  },
+  {
+    "author": [
+      {
+        "family": "Schott",
+        "given": "René"
+      },
+      {
+        "family": "Staples",
+        "given": "Stacey"
+      }
+    ],
+    "container-title": "Markov Processes and Related Fields",
+    "id": "schott2008random",
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "page": "515-542",
+    "title": "Random walks on clifford algebras as directed hypercubes",
+    "type": "article-journal",
+    "volume": "14"
+  },
+  {
+    "author": [
+      {
+        "family": "Schott",
+        "given": "René"
+      },
+      {
+        "family": "Staples",
+        "given": "George Stacey"
+      }
+    ],
+    "container-title": "Ars Combinatoria",
+    "id": "schott2011nilpotent",
+    "issue": "98",
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "page": "225-239",
+    "title": "Nilpotent adjacency matrices and random graphs",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "staples2005clifford",
+    "issued": {
+      "date-parts": [
+        [
+          2005
+        ]
+      ]
+    },
+    "page": "213-232",
+    "publisher": "Springer",
+    "title": "Clifford-algebraic random walks on the hypercube",
+    "type": "article-journal",
+    "volume": "15"
+  },
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "George Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "staples2008new",
+    "issue": "3-4",
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "page": "979-991",
+    "publisher": "Springer",
+    "title": "A new adjacency matrix for finite graphs",
+    "type": "article-journal",
+    "volume": "18"
   }
 ]
