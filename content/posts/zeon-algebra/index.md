@@ -6,6 +6,8 @@ draft: true
 
 I have just borrowed [*Clifford Algebras and Zeons: Geometry to Combinatorics and Beyond*](https://www.amazon.com/Clifford-Algebras-Zeons-Geometry-Combinatorics/dp/9811202575) {{< cite "staples2020clifford" >}} from the library. This post should briefly walk through the contents of the book, highlight some key concepts, and provide further readings for each chapter of the book. For the complete and updated research work by George Stacey Staples, see [his home page](https://www.siue.edu/~sstaple/index_files/research.html).
 
+This note, however, is not intended to be a comprehensive review of the book. Instead, it is a personal note emphasizing the foundational part of the book, by viewing Zeon algebra as an extension and an application of Clifford algebra, to gain insights into the combinatorial properties hidden in Clifford algebra.
+
 ## Part I: The Essentials
 
 - Algebra
