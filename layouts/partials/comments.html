@@ -38,7 +38,6 @@
         const giscusScript = document.createElement("script");
         Object.entries(giscusAttributes).forEach(
             ([key, value]) => giscusScript.setAttribute(key, value));
-        console.log(giscusScript)
         document.querySelector(".comments").appendChild(giscusScript);
 
         // Update giscus theme when the theme switcher is clicked.
