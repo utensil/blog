@@ -19,8 +19,10 @@ I have just borrowed [*Clifford Algebras and Zeons: Geometry to Combinatorics an
       - Let $G_1, \ldots, G_m$ be a choice of exactly one maximal subgroup from each regular $\mathfrak{J}$-class of $S$. Then, letting $k_i$ denote the number of conjugacy classes of $G_i$, the number of irreducible representations of $S$ is $\sum\limits_{i=1}^m k_i$
 - Combinatorics
   - Combinatorics associated with polynomials {{< cite "cohen1978basic;tucker1994applied" >}}
-  - Graph theory
-    - hypercubes {{< cite "west2001introduction;wilson1979introduction" >}}
+  - Graph theory {{< cite "west2001introduction;wilson1979introduction" >}}
+    - A $k$-walk $\left\\{v\_0, \ldots, v\_k\right\\}$ in a graph $G$ is a sequence of vertices in $G$ with initial vertex $v_0$ and terminal vertex $v_k$ such that there exists an edge $\left(v\_j, v\_{j+1}\right) \in E$ for each $0 \leq j \leq k-1$.
+    - Powers of the adjacency matrix of a graph provide a simple and convenient tool for counting walks ni finite graphs: Let $G$ be a graph on $n$ vertices with associated adjacency matrix $A$. Then for any positive integer $k$, the $(i, j)$ th entry of $A^k$ (i.e. the $k$-th power of $A$) is the number of $k$-walks $i \rightarrow j$. In particular, the entries along the main diagonal of $A^k$ are the numbers of closed $k$-walks in $G$.
+    - hypercubes
       - The $n$-dimensional cube, or hypercube $\mathcal{Q}_n$, is the graph whose vertices are in one-to-one correspondence with the $n$-tuples of zeros and ones and whose edges are the pairs of $n$-tuples that differ in exactly one position.
       - The structure of the hypercube allows one to construct a random walk on the hypercube by "flipping" a randomly selected digit from 0 to 1 or vice versa.
       - Random walks on Clifford algebras have also been studied as random walks on directed hypercubes {{< cite "schott2008random" >}}. By considering certain generalizations of hypercubes, combinatorial properties can be obtained for tackling a variety of problems in graph theory and combinatorics {{< cite "schott2011nilpotent;staples2005clifford;staples2008new" >}}.
@@ -155,8 +157,20 @@ $$
   - See Section *Derivitives and antiderivatives of Zeon functions* of Chapter 3 *Zeon algebras* in the guide
   - See also the dedicated paper {{< cite "staples2019differential" >}}
 - Graph Enumeration Problems
+  - Examples of graph enumeration problems include counting structures like paths, trails, cycles, circuits, spanning trees, matchings, cliques, and independent sets in a given graph. The null-square property of zeon generators makes them especially convenient for symbolic computations associated with enumeration problems on finite graphs.
+  - Given a graph $G=(V, E)$ on $n=|V|$ vertices, let $\mathcal{C} \ell_V{ }^{\text {nil }}$ be the zeon algebra of dimension $2^n$ whose generators are in one-to-one correspondence with the vertices of $G$. The nilpotent adjacency matrix associated with $G$ is defined by $$
+\Phi\_{i j}=\left\\{\begin{array}{l}
+\zeta\_{v\_j}, \text { if }\left\\{v\_i, v\_j\right\\} \in E(G) \cr
+0, \text { otherwise. }
+\end{array}\right.
+$$
+    - Most of contents in this chapter can be found in {{< cite "staples2008new;schott2011nilpotent" >}} except *15.2 Matchings, Cliques, and Independent Sets* (which can be found in {{< cite "ewing2022zeon" >}} ) and *15.3 Minimal Path Algorithms* (which can be found in {{< cite "schott2017generalized" >}}).
 - Graph Colorings and Chromatic Structures
+    - The extension of nilpotent matrix methods to graph colorings allows one to count heterochromatic and monochromatic self-avoiding walks in colored graphs. Further, the zeon-algebraic formalism allows one to quickly verify whether a given graph coloring is proper, and it provides a convenient framework for implementing greedy coloring algorithms.
+    - See the dedicated paper {{< cite "staples2017zeons" >}}
 - Boolean Satisfiability
+  - The Boolean satisfiability problem, or SAT, is the problem of determining whether the variables of a given Boolean formula can be consistently replaced by true or false in such a way that the formula evaluates to be true.
+  - See the dedicated paper {{< cite "davis2019zeon" >}}
 
 ## PART IV: Induced Operators
 

@@ -547,5 +547,58 @@
     "title": "Differential calculus of zeon functions",
     "type": "article-journal",
     "volume": "29"
+  },
+  {
+    "author": [
+      {
+        "family": "Schott",
+        "given": "René"
+      },
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "schott2017generalized",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "page": "45-57",
+    "publisher": "Springer",
+    "title": "Generalized zeon algebras: Theory and application to multi-constrained path problems",
+    "title-short": "Generalized zeon algebras",
+    "type": "article-journal",
+    "volume": "27"
+  },
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      },
+      {
+        "family": "Stellhorn",
+        "given": "Tiffany"
+      }
+    ],
+    "container-title": "Advances in Applied Clifford Algebras",
+    "id": "staples2017zeons",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "page": "1825-1845",
+    "publisher": "Springer",
+    "title": "Zeons, orthozeons, and graph colorings",
+    "type": "article-journal",
+    "volume": "27"
   }
 ]
