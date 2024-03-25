@@ -175,7 +175,34 @@ $$
 ## PART IV: Induced Operators
 
 - Induced Operators and Kravchuk Polynomials
+  - The term induced operator will generally refer to an operator on a Clifford algebra $\mathcal{C} \ell_Q(V)$ obtained from an operator on the underlying vector space $V$ spanned by the algebra's generators.
+  - The term reduced operator will generally refer to an operator on the paravector space $V_*:=\mathbb{R} \oplus V$ obtained from an operator on the Clifford algebra.
+  - A deduced operator will be an operator on $V$ obtained by restricting an operator on the full algebra, provided the operator on $V$ also induces the operator on the full algebra.
+  - Kravchuk polynomials appear as traces of conjugation operators in Clifford algebras and in Clifford Berezin integrals of Clifford polynomials.
+  - The three-term recurrence relation for the Kravchuk polynomials of order $n$ is as follows. Define $K_0(x ; n):=1$ and $K_1(x ; n):=x$. For $\ell \geq 2$, the $\ell$ th Kravchuk polynomial is given by $$
+K_{\ell}(x ; n):=x K_{\ell-1}(x ; n)+(\ell-1)(n-\ell+2) K_{\ell-2}(x ; n) .
+$$
+  - An explicit formula for the $n$th Kravchuk polynomial is given by$$
+K_{\ell}(x, n):=\sum_{i=0}^n(-1)^i\left(\begin{array}{c}
+x \cr
+i
+\end{array}\right)\left(\begin{array}{c}
+n-x \cr
+\ell-i
+\end{array}\right)
+$$
+  - The $n$th Kravchuk matrix, $\mathfrak{K}\_n$, is the $(n+1) \times(n+1)$ matrix defined via the Kravchuk polynomial generating function according to $$
+(1+x)^{n-\jmath}(1-x)^j=\sum\_{i=0}^n x^i\left\langle e\_i\left|\mathfrak{K}\_n\right| e\_j\right\rangle,
+$$ with $\left\langle e\_i\left|\mathfrak{K}\_n\right| e\_j\right\rangle=K\_i(j ; n)$, the $i$ th Kravchuk polynomial evaluated at $j$.
+  - Kravchuk Classification of Clifford Algebras
+    - Fixing canonical unit vector basis $\left\\{\mathbf{e}_j: 0 \leq j \leq n\right\\}$ for $\mathbb{R}^{n+1}$, define the vector $\mathfrak{h}\_n \in \mathbb{R}^{n+1}$ by $$
+  \mathfrak{h}\_n=\sum\_{j=0}^n(-1)^{j(j-1) / 2} \mathbf{e}\_j .
+  $$
+    - Clifford algebras $\mathcal{C} \ell_{p, q}$ and $\mathcal{C} \ell_{p^{\prime}, q^{\prime}}$ are isomorphic if and only if $\left\langle\mathfrak{h}\_n\left|\mathfrak{K}\_n\right| \mathbf{e}\_q-\mathbf{e}\_{q^{\prime}}\right\rangle=0$, where $n=p+q=p^{\prime}+q^{\prime}$.
+  - See the dedicated paper {{< cite "staples2015kravchuk" >}}
 - Graph-Induced Operators
+  - Operators are induced on fermion and zeon algebras by the action of adjacency matrices and combinatorial Laplacians on the vector spaces spanned by the graph's vertices. Properties of the algebras automatically give information about the graph's spanning trees and vertex coverings by cycles \& matchings. Combining the properties of operators induced on fermions and zeons gives a fermion-zeon convolution that recovers the number of Hamiltonian cycles in an arbitrary graph.
+  - See the dedicated paper {{< cite "staples2017hamiltonian" >}}
 - Solutions and Hints to Selected Exercises
 
 # References

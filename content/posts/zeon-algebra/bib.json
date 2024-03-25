@@ -600,5 +600,50 @@
     "title": "Zeons, orthozeons, and graph colorings",
     "type": "article-journal",
     "volume": "27"
+  },
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "Complex Analysis and Operator Theory",
+    "id": "staples2015kravchuk",
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "page": "445-478",
+    "publisher": "Springer",
+    "title": "Kravchuk polynomials and induced/reduced operators on clifford algebras",
+    "type": "article-journal",
+    "volume": "9"
+  },
+  {
+    "author": [
+      {
+        "family": "Staples",
+        "given": "G Stacey"
+      }
+    ],
+    "container-title": "International Journal of Theoretical Physics",
+    "id": "staples2017hamiltonian",
+    "issue": "12",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "page": "3923-3934",
+    "publisher": "Springer",
+    "title": "Hamiltonian cycle enumeration via fermion-zeon convolution",
+    "type": "article-journal",
+    "volume": "56"
   }
 ]
