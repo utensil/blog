@@ -12,10 +12,11 @@
   position: relative;
   font-size: .85em; /* reduce to avoid some breaks */
 }
+
 .hugo-cite-group
   .hugo-cite-citation {
     visibility: hidden;
-    background-color: #1d1d1d;
+    background-color: #fefefe;
     color: inherit;
     border: 1px solid currentColor;
     padding: 1rem;
@@ -35,6 +36,11 @@
     opacity: 0;
     transform: translateY(-8px);
 }
+
+body.dark .hugo-cite-group .hugo-cite-citation {
+  background-color: #1d1d1d;
+}
+
 .hugo-cite-group:hover
   .hugo-cite-citation {
     visibility: visible;

@@ -14,3 +14,25 @@
         crossorigin="anonymous"
         async>
 </script>
+<script>
+// https://github.com/giscus/giscus/issues/336#issuecomment-1007922777
+function changeGiscusTheme(theme) {
+        function sendMessage(message) {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+                setConfig: {
+                        theme: theme
+                }
+        });
+}
+const themeSwitcher = document.querySelector("#theme-toggle");
+const getStoredTheme = () => localStorage.getItem("pref-theme") === "dark" ? "dark" : "light";
+if (themeSwitcher) {
+    themeSwitcher.addEventListener("click", function () {
+        changeGiscusTheme(getStoredTheme());
+    });
+}
+</script>
