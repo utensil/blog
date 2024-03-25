@@ -1,5 +1,5 @@
 ---
-title: "Zeon Algebra"
+title: "Notes on Zeon Algebra"
 publishDate: 2024-03-23T10:00:00+08:00
 draft: true
 ---
