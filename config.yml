@@ -180,3 +180,11 @@ markup:
 #         disableInlineCSS: true
 #     twitter:
 #         disableInlineCSS: true
+
+giscus:
+    repo: "utensil/blog"
+    repoID: "R_kgDOJen3tA"
+    category: "Blog Comments"
+    categoryID: "DIC_kwDOJen3tM4CeBBz"
+    mapping: "pathname"
+    inputPosition: "bottom"
