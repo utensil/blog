@@ -13,7 +13,7 @@ quarto check
 and use it as `python3` in the following commands:
 
 ```bash
-python3 -m pip install jupyter  --break-system-packages
+python3 -m pip install jupyter --break-system-packages
 python3 -m IPython kernel install
 python3 -m pip install -r requirements.txt --break-system-packages
 ```
