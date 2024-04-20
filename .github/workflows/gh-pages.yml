@@ -38,7 +38,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Hugo
+      - name: Install Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.8'
@@ -49,6 +49,13 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 1.4.553
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: 'pip' # caching pip dependencies
+      - name: Install Python deps
+        run: pip install -r requirements.txt
       - name: Checkout
         uses: actions/checkout@v3
         with:
