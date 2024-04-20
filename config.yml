@@ -11,6 +11,10 @@ enableEmoji: true
 pygmentsUseClasses: true
 # googleAnalytics: UA-123-45
 
+# https://quarto.org/docs/output-formats/hugo.html
+ignoreFiles: [ "\\.qmd$", "\\.ipynb$", "\\.py$" ]
+
+
 minify:
     disableXML: true
     # minifyOutput: true

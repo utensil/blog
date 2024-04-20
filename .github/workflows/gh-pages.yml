@@ -61,6 +61,8 @@ jobs:
       - name: Build Pikchr diagrams
         run: |
           bash scripts/make_pikchr.sh
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules

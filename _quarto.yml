@@ -1,0 +1,14 @@
+project:
+  type: hugo
+      
+# format: 
+#   hugo-md:
+#     code-fold: true
+  
+execute: 
+  warning: false
+
+# # supppress HTML output
+# to: markdown
+
+# biliography: references.lib
