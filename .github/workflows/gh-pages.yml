@@ -51,10 +51,9 @@ jobs:
       - name: Install Homebrew
         run: |
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bashrc
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       - name: Install D2, watchexec
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew install d2 watchexec
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
