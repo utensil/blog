@@ -76,6 +76,7 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build D2 diagrams
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           bash scripts/make_d2.sh
       - name: Build Pikchr diagrams
         run: |
@@ -91,6 +92,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
