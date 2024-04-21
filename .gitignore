@@ -21,7 +21,6 @@
 go.work
 .hugo_build.lock
 
-**.d2.svg
 **/.DS_Store
 public/
 resources/_gen/
@@ -30,8 +29,11 @@ resources/_gen/
 /.quarto/
 
 content/posts/typst-test/index.md
-content/posts/typst-test/index.pdf
 content/posts/quarto-test/index.md
-content/posts/quarto-test/index_files
+content/posts/**/index_files
 
 /.vscode/
+
+**/*.d2.svg
+**/main.pdf
+**/main.artifact.svg

@@ -48,8 +48,12 @@ jobs:
         with:
           hugo-version: '0.123.8'
           extended: true
-      - name: Install D2
-        run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+      - name: Install Homebrew
+        run: |
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - name: Install D2, watchexec
+        run: |
+          brew install d2 watchexec
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -73,6 +77,9 @@ jobs:
       - name: Build Pikchr diagrams
         run: |
           bash scripts/make_pikchr.sh
+      - name: Build Typst docs
+        run: |
+          bash scripts/make_typ.sh
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
       - name: Build with Hugo

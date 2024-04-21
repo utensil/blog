@@ -18,14 +18,22 @@ The illustrative diagrams in this blog aim to be reproduceable, they are made by
 
 ## Local Development
 
-Install [Hugo](https://gohugo.io/installation/) and [Quarto](https://quarto.org/docs/get-started/), or simply run the following on MacOS:
+Install the following tools per instructions:
+
+- [Hugo](https://gohugo.io/installation/)
+- [Quarto](https://quarto.org/docs/get-started/)
+- [D2](https://d2lang.com/tour/install)
+- [Watchexec](https://watchexec.github.io/downloads/watchexec/)
+
+Or simply run the following on MacOS/Linux if you have [Homebrew](https://brew.sh/) installed:
 
 ```bash
-brew install hugo
-brew install quarto
+brew install hugo quarto d2 watchexec
 ```
 
-Find out which Python quarto is using:
+Particularly, Pikchr will be installed from source by `scripts/make_pikchr.sh` on first run.
+
+Find out which Python Quarto is using:
 
 ```bash
 quarto check
@@ -47,24 +55,24 @@ Initialize the submodules for Hugo themes and extensions:
 git submodule update --init --recursive
 ```
 
-Finally, run in one terminal:
+Finally:
+
+If you are simply working on a vanilla markdown post, just run:
+
+```bash
+hugo serve -w --forceSyncStatic --disableFastRender --ignoreCache --noHTTPCache --disableLiveReload
+```
+
+then navigate to something like `http://localhost:1313/blog/` in your browser, as prompted.
+
+If you are authoring with Quarto, run in a separate terminal:
 
 ```bash
 quarto preview --no-serve --no-browser --render all
 ```
 
-and in another terminal:
+If you are authoring with Typst, D2 or Pikchr, run in a separate terminal:
 
 ```bash
-hugo serve -w --forceSyncStatic
+watchexec -e d2,pikchr,typ --emit-events-to=stdio --debounce '500ms' -- ./scripts/make_changed.sh
 ```
-
-then navigate to something like `http://localhost:1313/blog/` in your browser, as prompted.
-
-Or, if you are simply working on a vanilla markdown post, just run:
-
-```bash
-quarto render && hugo serve -w --forceSyncStatic
-```
-
-which will only live reload the vanilla markdown files.

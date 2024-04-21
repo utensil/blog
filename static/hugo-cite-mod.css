@@ -67,3 +67,7 @@ body.dark .hugo-cite-group .hugo-cite-citation {
   width: 100%;
   margin-left: 3em;
 }
+
+.post-content img[src$="artifact.svg"] { 
+  width: 100%;
+}
