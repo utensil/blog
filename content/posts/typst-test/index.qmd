@@ -22,6 +22,8 @@ format:
 # iframe: "./index.pdf"
 ---
 
+The following Typst code are taken from [the official example](https://github.com/typst/typst?tab=readme-ov-file#example) for now.
+
 ```{=html}
 <iframe style="width: 100%; min-height: 800px" src="./index.pdf"></iframe>
 ```
@@ -31,6 +33,7 @@ format:
 // #set heading(numbering: "1.")
 
 = Fibonacci sequence
+
 The Fibonacci sequence is defined through the
 recurrence relation $F_n = F_(n-1) + F_(n-2)$.
 It can also be expressed in _closed form:_

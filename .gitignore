@@ -33,3 +33,5 @@ content/posts/typst-test/index.md
 content/posts/typst-test/index.pdf
 content/posts/quarto-test/index.md
 content/posts/quarto-test/index_files
+
+/.vscode/

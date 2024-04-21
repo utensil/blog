@@ -10,6 +10,8 @@ format: hugo-md
 jupyter: python3
 ---
 
+The following are taken from [the official `hugo-md` example](https://quarto.org/docs/output-formats/hugo.html#creating-a-page) for now.
+
 ## Polar Axis
 
 For a demonstration of a line plot on a polar axis, see @fig-polar.
