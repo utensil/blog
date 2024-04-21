@@ -53,9 +53,10 @@ jobs:
       - name: Install Homebrew
         run: |
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "$(brew --prefix)/bin" >> $GITHUB_PATH
       - name: Install Hugo, D2, watchexec
         run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew install hugo d2 watchexec
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -76,7 +77,6 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build D2 diagrams
         run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           bash scripts/make_d2.sh
       - name: Build Pikchr diagrams
         run: |
@@ -92,7 +92,6 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
