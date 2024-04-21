@@ -75,15 +75,9 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-      - name: Build D2 diagrams
+      - name: Build D2 & Pikchr diagrams, Typst docs
         run: |
-          bash scripts/make_d2.sh
-      - name: Build Pikchr diagrams
-        run: |
-          bash scripts/make_pikchr.sh
-      - name: Build Typst docs
-        run: |
-          bash scripts/make_typ.sh
+          bash scripts/make_all.sh
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
       - name: Build with Hugo
