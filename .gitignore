@@ -35,5 +35,6 @@ content/posts/**/index_files
 /.vscode/
 
 **/*.d2.svg
+**/*.pikchr.svg
 **/main.pdf
 **/main.artifact.svg
