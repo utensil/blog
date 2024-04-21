@@ -43,22 +43,24 @@ jobs:
         with:
           ref: main
           submodules: recursive
-      - name: Install Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.123.8'
-          extended: true
+      # - name: Install Hugo
+      #   uses: peaceiris/actions-hugo@v2
+      #   with:
+      #     hugo-version: '0.123.8'
+      #     extended: true
+      # - name: Install D2
+      #   run: curl -fsSL https://d2lang.com/install.sh | sh -s --
       - name: Install Homebrew
         run: |
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      - name: Install D2, watchexec
+      - name: Install Hugo, Quarto, D2, watchexec
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-          brew install d2 watchexec
-      - name: Install Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: 1.4.553
+          brew install hugo quarto d2 watchexec
+      # - name: Install Quarto
+      #   uses: quarto-dev/quarto-actions/setup@v2
+      #   with:
+      #     version: 1.4.553
       - name: Install Python
         uses: actions/setup-python@v4
         with:
