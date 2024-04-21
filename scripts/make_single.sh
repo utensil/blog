@@ -20,7 +20,7 @@ TTC_URL="https://github.com/Myriad-Dreamin/typst.ts/releases/download/$TTC_VER/t
 # Test with
 # ./scripts/make_single.sh content/posts/transformer/transformer_layer.d2
 # ./scripts/make_single.sh content/posts/transformer/transformer_layer.pikchr
-# ./scripts/make_single.sh content/posts/
+# ./scripts/make_single.sh content/posts/typst-test/main.typ
 
 if [ ! -z "$1" ]; then
     echo "Making $1"
@@ -34,6 +34,6 @@ elif [[ $1 == *.pikchr ]]; then
     $PROJECT_ROOT/scripts/install_pikchr.sh
     $PIKCHR_BIN -q -b < "$1" > "${1%}.svg"
 elif [[ $1 == *.typ ]]; then
+    $PROJECT_ROOT/scripts/install_typst_ts_cli.sh
     $TTC_BIN compile --entry "$1" --format svg --format pdf
 fi
-
