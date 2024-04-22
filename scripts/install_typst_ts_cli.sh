@@ -21,7 +21,7 @@ if [[ "$(uname -o)" == *"Linux"* ]]; then
 fi
 
 TTC_TAR="$TTC_ROOT/typst-ts-$TTC_ARCH-$TTC_OS.tar.gz"
-TTC_BIN="$TTC_ROOT/typst-ts-$TTC_ARCH-$TTC_OS/bin/typst-ts-cli"
+TTC_BIN="$TTC_ROOT/typst-ts/bin/typst-ts-cli"
 TTC_URL="https://github.com/Myriad-Dreamin/typst.ts/releases/download/$TTC_VER/typst-ts-$TTC_ARCH-$TTC_OS.tar.gz"
 
 mkdir -p $TTC_ROOT
@@ -37,6 +37,7 @@ if [ ! -e $TTC_BIN ]; then
     echo "Installing typst-ts-cli"
 
     tar -xzvf $TTC_TAR
+    mv "$TTC_ROOT/typst-ts-$TTC_ARCH-$TTC_OS" "$TTC_ROOT/typst-ts"
 fi
 
 if [ ! -e $TTC_BIN ]; then
