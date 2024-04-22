@@ -1,0 +1,9 @@
+{{ $name := .Get 0 }}
+{{ $imageSrc := printf "%s.svg" $name }}
+{{ $image := .Page.Resources.Get $imageSrc | fingerprint "md5" }}
+{{ $pdfSrc := printf "%s.pdf" $name }}
+{{ $pdf := .Page.Resources.Get $pdfSrc | fingerprint "md5" }}
+<div>
+<a href="{{ $pdf.RelPermalink }}" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📃 View as PDF</a>
+<img src="{{ $image.RelPermalink }}" style="padding-top: 0.5em"/>
+</div>

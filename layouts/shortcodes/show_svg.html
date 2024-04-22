@@ -1,3 +1,0 @@
-{{ $imageSrc := .Get 0 }}
-{{ $image := .Page.Resources.Get $imageSrc | fingerprint "md5" }}
-<img src="{{ $image.RelPermalink }}" />
