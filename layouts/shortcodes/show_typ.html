@@ -35,7 +35,13 @@ function scaleSVG() {
 
     svg.setAttribute('viewBox', `0 0 ${orginal_width} ${ viewbox_height }`);
 
-    console.log(`svg resized to ${width}x${height}`);
+    const parent_height = Math.min(orginal_height, orginal_height / (orginal_width + 0.0) * width);
+    
+    parent.style.height = `${parent_height}px`;
+
+    // svg.setAttribute('height', orginal_height / (orginal_width + 0.0) * width);
+
+    // console.log(`svg resized to ${width}x${height}`);
 
     const page_width = parseInt(g.getAttribute('data-page-width'));
     const page_height = parseInt(g.getAttribute('data-page-height'));
