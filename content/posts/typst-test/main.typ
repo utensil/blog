@@ -1,4 +1,4 @@
-#set page("a4", margin: (x: 1cm, y: 1cm))
+#set page(width: 595.28pt, height: auto, margin: (x: 1cm, y: 1cm))
 
 // light mode
 #let fg = rgb("000000")

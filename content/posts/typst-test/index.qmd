@@ -24,4 +24,4 @@ format:
 
 The following Typst code is adapted from [the official example](https://github.com/typst/typst?tab=readme-ov-file#example). You can also [view it as PDF](./main.pdf).
 
-![](./main.artifact.svg)
+![](./main.svg)
