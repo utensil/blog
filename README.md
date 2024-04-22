@@ -74,5 +74,5 @@ quarto preview --no-serve --no-browser --render all
 If you are authoring with Typst, D2 or Pikchr, run in a separate terminal:
 
 ```bash
-watchexec -e d2,pikchr,typ --emit-events-to=stdio --debounce '500ms' -- ./scripts/make_changed.sh
+watchexec -e d2,pikchr,typ --emit-events-to=stdio -- ./scripts/make_changed.sh
 ```

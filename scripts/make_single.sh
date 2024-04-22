@@ -11,6 +11,15 @@ TTC_VER="v0.4.1"
 TTC_ARCH=`uname -m`
 TTC_OS='apple-darwin'
 
+if [ "$TTC_ARCH" == "x86_64" ]; then
+    TTC_ARCH='x86_64'
+elif [ "$TTC_ARCH" == "arm64" ]; then
+    TTC_ARCH='aarch64'
+else
+    echo "Error: unsupported architecture $TTC_ARCH"
+    exit 1
+fi
+
 if [[ "$(uname -o)" == *"Linux"* ]]; then
     TTC_OS='unknown-linux-gnu'
 fi
