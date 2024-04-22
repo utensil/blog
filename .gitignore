@@ -36,5 +36,6 @@ content/posts/**/index_files
 
 **/*.d2.svg
 **/*.pikchr.svg
+**/index.pdf
 **/main.pdf
 **/main.artifact.svg
