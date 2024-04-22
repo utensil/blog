@@ -60,7 +60,7 @@ Finally:
 If you are simply working on a vanilla markdown post, just run:
 
 ```bash
-hugo serve -w --forceSyncStatic --disableFastRender --ignoreCache --noHTTPCache --disableLiveReload
+hugo serve -w --forceSyncStatic --disableFastRender --ignoreCache --noHTTPCache
 ```
 
 then navigate to something like `http://localhost:1313/blog/` in your browser, as prompted.
