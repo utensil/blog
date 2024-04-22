@@ -1,6 +1,10 @@
-#import "../config.typ" : setup
+// #import "../config.typ" : setup
 
-#let fulltext = [
+// #let fulltext = [
+
+#set page(width: 595.28pt, height: auto, margin: (x: 0.5cm, y: 0.5cm))
+#set text(size: 16pt)
+#set heading(numbering: "1.")
 
 = Fibonacci sequence
 
@@ -26,6 +30,6 @@ The first #count numbers of the sequence are:
   ..nums.map(n => str(fib(n))),
 ))
 
-]
+// ]
 
-#show : setup(fulltext)
+// #show : setup(fulltext)

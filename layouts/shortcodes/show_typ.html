@@ -3,20 +3,25 @@
 {{ $pdf := .Page.Resources.Get $pdfSrc | fingerprint "md5" }}
 {{ $svgSrc := printf "%s.artifact.svg" $name }}
 {{ $svg := .Page.Resources.Get $svgSrc | fingerprint "md5" }}
-<!-- <div class="typst-container"> -->
+<div class="typst-container">
 <!-- <a href="{{ $pdf.RelPermalink }}" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📄 View as PDF</a> -->
 <!-- <img src="{{ $svg.RelPermalink }}" style="padding-top: 0.5em"/> -->
 <!-- <svg viewBox="0 0 750.000 750.000" width="100%" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:h5="http://www.w3.org/1999/xhtml"> -->
-{{ $svg.Content | safeHTML }}
+<!-- {{ $svg.Content | safeHTML }} -->
 <!-- </svg> -->
-<!-- </div> -->
+</div>
+<div id="typst-app" style="max-width: 99%"></div>
 <!--add a script tag for adding javascript-->
 <script>
-const parent = document.querySelector('.typst-container');
-const svg = parent.querySelector('svg.typst-doc');
-const g = svg.querySelector('.typst-page');
 function scaleSVG() {
+    const post = document.querySelector('.post-content');
+    const parent = post.querySelector('.typst-container');
+    const svg = parent.querySelector('svg.typst-doc');
+    const g = svg.querySelector('.typst-page');
+
+    const { post_width, post_height } = post.getBoundingClientRect();
     const { width, height } = parent.getBoundingClientRect();
+
     svg.setAttribute('height', height);
     svg.setAttribute('width', width);
     svg.setAttribute('data-height', height);
@@ -34,5 +39,63 @@ function scaleSVG() {
     // g.setAttribute('data-page-height', page_height);
 
 }
-// window.addEventListener('resize', scaleSVG); scaleSVG();
+// window.addEventListener('resize', scaleSVG);
+// scaleSVG();
+</script>
+<script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js"
+    id="typst"
+></script>
+<script src="{{ "/blog/dynamic-layout.js" | relURL }}"></script>
+<script>
+document.getElementById('typst').addEventListener('load', function () {
+    $typst.setCompilerInitOptions({
+        getModule: () =>
+          'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
+    });
+
+    $typst.setRendererInitOptions({
+        getModule: () =>
+          'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
+    });
+
+    const compile = function (mainContent, id) {
+        $typst.svg({ mainContent }).then(svg => {
+            console.log(`rendered! SvgElement { len: ${svg.length} }`);
+            console.log(svg);
+            // append svg text
+            document.getElementById(id).innerHTML = svg;
+        });
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch(
+            './main.typ'
+        )
+        .then(response => {
+            return response.text();
+        })
+        .then(mainContent => {
+            // compile(mainContent, 'typst-app');
+            return $typst.vector({ mainContent });
+        })
+        // fetch('./main.artifact.sir.in').then(resp => resp.arrayBuffer()).then(remoteData => new Uint8Array(remoteData))
+        // fetch('./main.multi.sir.in').then(resp => resp.arrayBuffer()).then(remoteData => new Uint8Array(remoteData))
+        .then (vectorData => {
+            console.log(vectorData);
+            const div = document.getElementById('typst-app');
+            $typst.svg({ vectorData }).then(svg => {
+                div.innerHTML = svg;
+            });
+
+            window.onresize = () => {
+                $typst.svg({ vectorData }).then(svg => {
+                    div.innerHTML = svg;
+                });
+            };
+        });
+    });
+});
+
 </script>
