@@ -8,6 +8,8 @@ PIKCHR_BIN="$PIKCHR_ROOT/pikchr"
 TTC_ROOT="$PROJECT_ROOT/../typst-ts"
 TTC_BIN="$TTC_ROOT/typst-ts/bin/typst-ts-cli"
 
+POST_ROOT="$PROJECT_ROOT/content/posts"
+
 # Test with
 # ./scripts/make_single.sh content/posts/transformer/transformer_layer.d2
 # ./scripts/make_single.sh content/posts/transformer/transformer_layer.pikchr
@@ -27,6 +29,6 @@ elif [[ $1 == *.pikchr ]]; then
 elif [[ $1 == *.typ ]]; then
     # $PROJECT_ROOT/scripts/install_typst_ts_cli.sh
     # $TTC_BIN compile --entry "$1" --format svg --format pdf
-    quarto typst compile "$1" --format svg
-    quarto typst compile "$1" --format pdf
+    quarto typst compile "$1" --format svg --root $POST_ROOT
+    quarto typst compile "$1" --format pdf --root $POST_ROOT
 fi

@@ -40,3 +40,6 @@ content/posts/**/index_files
 **/main.pdf
 **/main.artifact.svg
 **/main.svg
+
+content/posts/config.pdf
+content/posts/config.svg
