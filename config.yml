@@ -7,7 +7,7 @@ enableRobotsTXT: true
 buildDrafts: true
 buildFuture: false
 buildExpired: false
-cleanDestinationDir: true
+# cleanDestinationDir: true
 enableEmoji: true
 pygmentsUseClasses: true
 # googleAnalytics: UA-123-45

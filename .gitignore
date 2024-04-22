@@ -38,7 +38,8 @@ content/posts/**/index_files
 **/*.pikchr.svg
 **/index.pdf
 **/main.pdf
-**/main.artifact.svg
+**/*.artifact.svg
+**/*.artifact.svg.html
 **/main.svg
 
 content/posts/config.pdf

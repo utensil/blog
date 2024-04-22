@@ -45,4 +45,16 @@ if [ ! -e $TTC_BIN ]; then
     exit 1
 fi
 
+TTC_REPO="$TTC_ROOT/typst.ts"
+TTC_VAR="$TTC_REPO/contrib/templates/variables/typst.toml"
+
+cd $TTC_ROOT
+
+if [ ! -e $TTC_VAR ]; then
+    echo "Installing typst.ts packages"
+    (git clone https://github.com/Myriad-Dreamin/typst.ts.git $TTC_REPO) || (cd $TTC_REPO && git pull)
+fi
+
+$TTC_BIN package link --manifest $TTC_VAR
+
 cd $PROJECT_ROOT

@@ -27,8 +27,8 @@ elif [[ $1 == *.pikchr ]]; then
     $PROJECT_ROOT/scripts/install_pikchr.sh
     $PIKCHR_BIN -q -b < "$1" > "${1%}.svg"
 elif [[ $1 == *.typ ]]; then
-    # $PROJECT_ROOT/scripts/install_typst_ts_cli.sh
-    # $TTC_BIN compile --entry "$1" --format svg --format pdf
-    quarto typst compile "$1" --format svg --root $POST_ROOT
-    quarto typst compile "$1" --format pdf --root $POST_ROOT
+    $PROJECT_ROOT/scripts/install_typst_ts_cli.sh
+    $TTC_BIN compile --workspace $POST_ROOT --entry "$1" --format pdf --format svg # --format svg --dynamic-layout
+    # quarto typst compile "$1" --format svg --root $POST_ROOT
+    # quarto typst compile "$1" --format pdf --root $POST_ROOT
 fi

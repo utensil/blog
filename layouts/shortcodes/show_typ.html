@@ -1,9 +1,38 @@
 {{ $name := .Get 0 }}
-{{ $imageSrc := printf "%s.svg" $name }}
-{{ $image := .Page.Resources.Get $imageSrc | fingerprint "md5" }}
 {{ $pdfSrc := printf "%s.pdf" $name }}
 {{ $pdf := .Page.Resources.Get $pdfSrc | fingerprint "md5" }}
-<div>
-<a href="{{ $pdf.RelPermalink }}" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📃 View as PDF</a>
-<img src="{{ $image.RelPermalink }}" style="padding-top: 0.5em"/>
-</div>
+{{ $svgSrc := printf "%s.artifact.svg" $name }}
+{{ $svg := .Page.Resources.Get $svgSrc | fingerprint "md5" }}
+<!-- <div class="typst-container"> -->
+<!-- <a href="{{ $pdf.RelPermalink }}" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📄 View as PDF</a> -->
+<!-- <img src="{{ $svg.RelPermalink }}" style="padding-top: 0.5em"/> -->
+<!-- <svg viewBox="0 0 750.000 750.000" width="100%" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:h5="http://www.w3.org/1999/xhtml"> -->
+{{ $svg.Content | safeHTML }}
+<!-- </svg> -->
+<!-- </div> -->
+<!--add a script tag for adding javascript-->
+<script>
+const parent = document.querySelector('.typst-container');
+const svg = parent.querySelector('svg.typst-doc');
+const g = svg.querySelector('.typst-page');
+function scaleSVG() {
+    const { width, height } = parent.getBoundingClientRect();
+    svg.setAttribute('height', height);
+    svg.setAttribute('width', width);
+    svg.setAttribute('data-height', height);
+    svg.setAttribute('data-width', width);
+
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    const page_width = parseInt(g.getAttribute('data-page-width'));
+    const page_height = parseInt(g.getAttribute('data-page-height'));
+
+    // svg.setAttribute('viewBox', `0 0 ${page_width} ${page_height}`);
+    
+    // g.setAttribute('transform', `scale(${width / page_width})`);
+    // g.setAttribute('data-page-width', page_width);
+    // g.setAttribute('data-page-height', page_height);
+
+}
+// window.addEventListener('resize', scaleSVG); scaleSVG();
+</script>

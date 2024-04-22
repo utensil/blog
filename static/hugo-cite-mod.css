@@ -68,6 +68,16 @@ body.dark .hugo-cite-group .hugo-cite-citation {
   margin-left: 3em;
 }
 
-.post-content img[src$=".svg"] { 
+/* .post-content img[src$=".svg"] { 
   width: 100%;
 }
+
+.post-content svg.typst-doc {
+  user-select: text;
+  width: 100%;
+} */
+
+/* .post-content .typst-page {
+  width: 750px;
+} */
+

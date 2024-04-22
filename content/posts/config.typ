@@ -7,7 +7,7 @@
     let fg = rgb("fdfdfd")
     let bg = rgb(29, 30, 32)
 
-    set page(width: 595.28pt, height: auto, margin: (x: 1cm, y: 1cm))
+    set page(width: 750pt, height: auto, margin: (x: 0.1cm, y: 0.1cm))
     set page(fill: bg)
     set text(fill: fg)
     set text(size: 16pt)
