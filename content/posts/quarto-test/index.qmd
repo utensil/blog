@@ -33,9 +33,9 @@ nocite: |
 
 The following are taken from [official examples](https://quarto.org/docs/) for now. 
 
-```{=html}
+<!-- ```{=html}
 <a href="./index.pdf" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📄 View as PDF</a>
-```
+``` -->
 
 <!--more-->
 
