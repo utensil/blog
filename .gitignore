@@ -28,10 +28,6 @@ resources/_gen/
 
 /.quarto/
 
-content/posts/typst-test/index.md
-content/posts/quarto-test/index.md
-content/posts/**/index_files
-
 /.vscode/
 
 **/*.d2.svg
@@ -42,6 +38,10 @@ content/posts/**/index_files
 **/*.artifact.svg.html
 **/main.svg
 
+content/posts/typst-test/index.md
+content/posts/quarto-test/index.md
+content/posts/**/index_files
 content/posts/config.pdf
 content/posts/config.svg
 content/posts/**/*.*.sir.in
+content/posts/**/index.html

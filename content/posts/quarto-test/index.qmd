@@ -9,8 +9,12 @@ draft: true
 #   - Matplotlib
 #   - Coordinates
 format:
-    hugo-md: default
-    pdf: default
+    hugo-md:
+      link-citations: true
+      prefer-html: true
+    pdf:
+      link-citations: true
+    html: default
 jupyter: python3
 fig-cap-location: bottom
 code-annotations: hover
@@ -37,6 +41,8 @@ The following are taken from [official examples](https://quarto.org/docs/) for n
 ```{=html}
 <a href="./index.pdf" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📄 View as PDF</a>
 ```
+
+<!--more-->
 
 ## Markdown Basics
 
@@ -96,12 +102,18 @@ penguins |>                                      # <1>
 1. Take `penguins`, and then,
 2. add new columns for the bill ratio and bill area.
 
-::: {#tip-example .callout-tip collapse="true" appearance="simple" icon=true}
+(TODO: Highlight conflicted, code annotation JS disabled)
+
+::: {.callout-tip #tip-example collapse="true" appearance="simple" icon="true"}
 Note that there are five types of callouts, including: 
 `note`, `tip`, `warning`, `caution`, and `important`.
+:::
+
+(TODO: Callouts are not working for `hugo-md`, Bootstrap disabled too)
 
 To print, press {{< kbd Shift-Ctrl-P >}}. To open an existing new project, press {{< kbd mac=Shift-Command-O win=Shift-Control-O linux=Shift-Ctrl-L >}}.
-:::
+
+(TODO: shortcuts are not working for `hugo-md`, disabled)
 
 ## Figures
 
@@ -125,7 +137,9 @@ Famous Elephants
 
 ### Citations
 
-See [@baez2002octonions]
+See [@baez2002octonions].
+
+(TODO: citation linking and hover requires `link-citations: true` and extra hacking, see "PORTING NOTE" in `layouts/partials/quarto.html`)
 
 ### Footnotes
 
@@ -155,7 +169,7 @@ type the note.]
 
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
-For tips on callouts, see @tip-example.
+For tips on callouts, see @tip-example. (TODO: Not working for `hugo-md`)
 
 ## Literate programming
 

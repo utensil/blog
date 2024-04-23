@@ -6,6 +6,13 @@
   --main-width: 750px;
 }
 
+figure.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
 .hugo-cite-group {
   display: inline-block;
   vertical-align: baseline; /*compensate for lower height */
@@ -81,3 +88,12 @@ body.dark .hugo-cite-group .hugo-cite-citation {
   width: 750px;
 } */
 
+/* Fixes for Quarto */
+
+.post-content dl {
+  display: unset;
+}
+
+.post-content a {
+  color: unset;
+}

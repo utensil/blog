@@ -5,6 +5,7 @@ draft: true
 # publishDate: 2025-01-01T00:00:00+08:00
 format:
   hugo-md: default
+  html: default
   # typst:
   #   toc: true
   #   toc-depth: 2
@@ -23,6 +24,8 @@ format:
 ---
 
 The following blog in Typst is adapted from [the official example](https://github.com/typst/typst?tab=readme-ov-file#example).
+
+<!--more-->
 
 ```{=markdown}
 {{< show_typ "main" >}}

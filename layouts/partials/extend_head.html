@@ -3,11 +3,6 @@
 {{ partial "math.html" . }}
 {{ end }}
 <link rel="stylesheet" type="text/css" href="{{ "/blog/hugo-cite-mod.css" | relURL }}" />
-<style>
-    figure.center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 30%;
-    }
-</style>
+{{ if index .Params.format "hugo-md" }}
+{{ partial "quarto.html" . }}
+{{ end }}
