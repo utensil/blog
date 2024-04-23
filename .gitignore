@@ -38,7 +38,6 @@ resources/_gen/
 **/*.artifact.svg.html
 **/main.svg
 
-content/posts/typst-test/index.md
 content/posts/quarto-test/index.md
 content/posts/**/index_files
 content/posts/config.pdf

@@ -2,10 +2,10 @@
 title: Hello, Typst
 date: "2024-04-20"
 draft: true
-# publishDate: 2025-01-01T00:00:00+08:00
-format:
-  hugo-md: default
-  html: default
+publishDate: 2021-12-31T10:00:00+08:00
+# format:
+#   hugo-md: default
+#   html: default
   # typst:
   #   toc: true
   #   toc-depth: 2
@@ -27,6 +27,4 @@ The following blog in Typst is adapted from [the official example](https://githu
 
 <!--more-->
 
-```{=markdown}
 {{< show_typ "main" >}}
-```
