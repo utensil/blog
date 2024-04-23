@@ -2,7 +2,7 @@
 title: Hello, Typst
 date: "2024-04-20"
 draft: true
-publishDate: 2031-12-31T10:00:00+08:00
+# publishDate: 2031-12-31T10:00:00+08:00
 # format:
 #   hugo-md: default
 #   html: default

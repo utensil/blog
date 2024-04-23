@@ -3,7 +3,7 @@ title: Hello, Quarto
 description: | 
   A summary of example usages of Quarto.
 date: "2024-04-19"
-publishDate: 2031-12-31T10:00:00+08:00
+# publishDate: 2021-12-31T10:00:00+08:00
 draft: true
 format:
     hugo-md: default
@@ -192,6 +192,33 @@ ax.plot(theta, r)
 ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
+```
+
+### Observable JS
+
+The following example is taken from [Steven De Keninck's Animated Orbits](https://observablehq.com/@enkimute/animated-orbits) .
+
+```{ojs}
+Algebra = require('ganja.js@1.0.151')
+```
+
+```{ojs}
+Algebra(3,0,1,()=>{
+  var t=1, E=Math.E, sin=Math.sin, cos=Math.cos, PI=Math.PI;
+  var f=(x,y)=> E**(x*PI*1e12)
+               *E**(.5e01+sin(t)*sin(x*PI*6)*.25e01)
+               *E**((x*2+y)*PI*1e13)
+               *E**(cos(t*1.31)*0.2e01+sin(t*1.31)*0.2e03);
+  f.dx=400; f.dy=5; 
+  var camera=0e1+1, start=performance.now();
+  return (this.graph(()=>{
+    t=(performance.now()-start)/2234; 
+    camera.set((1+1e03)* (Math.cos(t/4) + Math.sin(t/4)*1e13 )  );
+    f.va=undefined;  // force re-evaluate of geometry ..
+    return [0xff0088,f];
+  },{camera,gl:1,animate:1,width:"100%",height:"600px"}));
+    
+})
 ```
 
 ## References
