@@ -1,5 +1,7 @@
 ---
 title: Hello, Quarto
+description: | 
+  A summary of example usages of Quarto.
 date: "2024-04-19"
 # publishDate: 2024-03-21T10:00:00+08:00
 draft: true
@@ -8,26 +10,176 @@ draft: true
 #   - Coordinates
 format: hugo-md
 jupyter: python3
+fig-cap-location: bottom
+code-annotations: hover
+author:
+  - name: Utensil Song
+    id: us
+    orcid: 0000-0003-3994-4466
+    email: utensil@example.com
+    affiliation: Independent
+    corresponding: true
+license: "CC BY-SA"
+funding: "The author(s) received no specific funding for this work."
+title-block-banner: true
+citation: true
+bibliography: ../math-2024/bib.bib
+csl: apa-6th-edition.csl
+appendex-cite-as: true
+nocite: |
+  @figueroa2010spin, @reynoso2023probing
 ---
 
-The following are taken from [the official `hugo-md` example](https://quarto.org/docs/output-formats/hugo.html#creating-a-page) for now.
+The following are taken from [official examples](https://quarto.org/docs/) for now.
 
-## Polar Axis
+## Markdown Basics
+
+superscript^2^ / subscript~2~
+
+`verbatim code`
+
+| Line Block
+|   Spaces and newlines
+|   are preserved
+
+Here's some raw inline HTML: `<a>html</a>`{=html}
+
+term
+: a long long long long long definition
+
+::: {.hidden}
+$$
+ \def\RR{{\mathbb R}}
+$$
+:::
+
+inline math: $E = mc^{2} \in \RR$
+
+display math:
+
+$$E = mc^{2} \in \RR$$
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+```python
+1 + 1
+```
+
+```{.python filename="run.py"}
+1 + 1
+```
+
+```r
+library(tidyverse)
+library(palmerpenguins)
+penguins |>                                      # <1>
+  mutate(                                        # <2>
+    bill_ratio = bill_depth_mm / bill_length_mm, # <2>
+    bill_area  = bill_depth_mm * bill_length_mm  # <2>
+  )                                              # <2>
+```
+
+1. Take `penguins`, and then,
+2. add new columns for the bill ratio and bill area.
+
+::: {#tip-example .callout-tip collapse="true" appearance="simple" icon=true}
+Note that there are five types of callouts, including: 
+`note`, `tip`, `warning`, `caution`, and `important`.
+
+To print, press {{< kbd Shift-Ctrl-P >}}. To open an existing new project, press {{< kbd mac=Shift-Command-O win=Shift-Control-O linux=Shift-Ctrl-L >}}.
+:::
+
+## Figures
+
+<!-- ::: {#fig-elephants layout-ncol=2} -->
+
+::: {#fig-elephants layout="[[50, -20, 30], [-15, 70, -15]]" layout-valign="bottom"}
+![](https://quarto.org/docs/authoring/elephant.png "Surus"){#fig-surus}
+
+![](https://quarto.org/docs/authoring/elephant.png "Hanno"){#fig-hanno}
+
+[![](https://quarto.org/docs/authoring/elephant.png "Abdul Abbas"){#fig-surus .lightbox width=70% fig-align="right"}](https://quarto.org)
+
+<!-- [![](https://quarto.org/docs/authoring/elephant.png "Lin Wang")](https://quarto.org){#fig-hanno} -->
+
+Famous Elephants
+:::
+
+:::{.column-screen-inset}
+![](https://quarto.org/docs/authoring/elephant.png)
+:::
+
+<!-- ![](./image.tikz.tex) -->
+
+## Scholarly Writing
+
+### Citations
+
+See [@baez2002octonions]
+
+### Footnotes
+
+Here is a footnote reference,[^1] and another note with multiple blocks.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they
+belong to the previous footnote.
+
+        { some.code }
+
+    The whole paragraph can be indented, or just the first
+    line.  In this way, multi-paragraph footnotes work like
+    multi-paragraph list items.
+
+This paragraph won't be part of the note, because it
+isn't indented.
+
+Here is an inline note.^[Inlines notes are easier to write,
+since you don't have to pick an identifier and move down to
+type the note.]
+
+### Cross-References
 
 For a demonstration of a line plot on a polar axis, see @fig-polar.
+
+For tips on callouts, see @tip-example.
+
+## Literate programming
+
+### Python
 
 ```{python}
 #| label: fig-polar
 #| fig-cap: "A line plot on a polar axis"
+#| fig-subcap: 
+#|   - "First"
+#|   - "Second"
+#| layout-ncol: 2
 
 import numpy as np
 import matplotlib.pyplot as plt
 
 r = np.arange(0, 2, 0.01)
 theta = 2 * np.pi * r
+
+plt.plot([1,23,2,4])
+plt.show()
+
 fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
 ax.plot(theta, r)
 ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
+
+## References
+
+::: {#refs}
+:::
