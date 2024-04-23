@@ -120,6 +120,25 @@ See {{< cite "hull2020origametry" >}} and [the tracking issue](https://github.co
 
 The preferred reference for me is {{< cite "izhikevich2007dynamical" >}} for its applications in neuroscience and various excellent diagrams. But it's not a mathematically rigorous treatment of bifurcation theory.
 
+### Sheaves
+
+My first impression of sheaves is that they are useful to applications which ask for global solutions to problems whose hypotheses are local.
+
+A sheaf requires some gluing conditions so that local data can be collated compatibly into global ones over a covering system, creating an global algebraic structure varies continuously over local covering domains ("sections" of sheaves).
+
+Its application to ML {{< cite "gebhart2023sheaf" >}} sees a sheaf over a topological space as a data structure "which defines rules for associating data to a space so that local agreements in data assignment align with a coherent global representation", thus a generalization of both:
+
+- relational learning, which aims to combine symbolic, potentially hand-engineered prior knowledge with the tabula rasa representational flexibility of deep learning to achieve a synthetic model family which can be defined with respect to symbolic knowledge priors about the data domain
+- geometric deep learning, which provides a group-theoretic approach to reasoning about and encoding domain-symmetry invariance or equivariance within machine learning models.
+
+<!-- has the potential to learn sheaf representations of data, which is essentially assigning observed data to a space in a way that's 
+
+globally consistent with the constraints imposed by the topology of the application domain .
+
+a richer but still tractable representation that is an algebraic structure richer than a vector space commonly used in ML, to sampled data, which is in the form of components of a category (e.g. a category of a data structure like a Graph).  -->
+
+Its application to differential geometry has the potential to formulate the theory in a more general setting, without assuming the existence of a locally Euclidean space as manifold did. It's believe that this approach can overcome some difficulties in Quantum field theory even Quantum gravity, because locally there might be no concept of a metric space at all {{< cite "mallios2015differential" >}}. See also Thomas Gebhart's talk [Sheaves for AI: Graph Representation Learning through Sheaf Theory](https://cats.for.ai/assets/slides/sheaves_for_AI.pdf).
+
 ## TODOs
 
 Incorporating the following interests into this post:

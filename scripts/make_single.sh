@@ -33,4 +33,6 @@ elif [[ $1 == *.typ ]]; then
     $TTC_BIN compile --workspace $POST_ROOT --entry "$1" --format vector
     # quarto typst compile "$1" --format svg --root $POST_ROOT
     # quarto typst compile "$1" --format pdf --root $POST_ROOT
+elif [[ $1 == *.bib ]]; then
+    pandoc "$1" -t csljson -o "${1%.*}.json"
 fi

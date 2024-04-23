@@ -77,8 +77,8 @@ If you are authoring with Quarto, run in a separate terminal:
 quarto preview --no-serve --no-browser --render all
 ```
 
-If you are authoring with Typst, D2 or Pikchr, run in a separate terminal:
+If you are authoring with Typst/D2/Pikchr/Bibliography, run in a separate terminal:
 
 ```bash
-watchexec -e d2,pikchr,typ --emit-events-to=stdio -- ./scripts/make_changed.sh
+watchexec -e d2,pikchr,typ,bib --emit-events-to=stdio -- ./scripts/make_changed.sh
 ```

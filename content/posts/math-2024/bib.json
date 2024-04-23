@@ -745,5 +745,50 @@
     },
     "title": "An introduction to categories and sheaves",
     "type": ""
+  },
+  {
+    "author": [
+      {
+        "family": "Mallios",
+        "given": "Anastasios"
+      },
+      {
+        "family": "Zafiris",
+        "given": "Elias"
+      }
+    ],
+    "id": "mallios2015differential",
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "publisher": "World Scientific",
+    "title": "Differential sheaves and connections: A natural approach to physical geometry",
+    "title-short": "Differential sheaves and connections",
+    "type": "book",
+    "volume": "18"
+  },
+  {
+    "author": [
+      {
+        "family": "Gebhart",
+        "given": "Thomas"
+      }
+    ],
+    "genre": "PhD thesis",
+    "id": "gebhart2023sheaf",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "publisher": "University of Minnesota",
+    "title": "Sheaf representation learning",
+    "type": "thesis"
   }
 ]
