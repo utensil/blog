@@ -53,7 +53,7 @@ window.Quarto = {
 
     window.document.addEventListener("DOMContentLoaded", function (event) {
 
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        {{/*  var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
@@ -70,7 +70,8 @@ window.Quarto = {
               link.href = link.dataset.originalHref;
             }
           }
-        }
+        }  */}}
+
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -231,176 +232,10 @@ window.Quarto = {
         }, function(instance) {
         });
       }
-          let selectedAnnoteEl;
-          const selectorForAnnotation = ( cell, annotation) => {
-            let cellAttr = 'data-code-cell="' + cell + '"';
-            let lineAttr = 'data-code-annotation="' +  annotation + '"';
-            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-            return selector;
-          }
-          const selectCodeLines = (annoteEl) => {
-            const doc = window.document;
-            const targetCell = annoteEl.getAttribute("data-target-cell");
-            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-            const lineIds = lines.map((line) => {
-              return targetCell + "-" + line;
-            })
-            let top = null;
-            let height = null;
-            let parent = null;
-            if (lineIds.length > 0) {
-                //compute the position of the single el (top and bottom and make a div)
-                const el = window.document.getElementById(lineIds[0]);
-                top = el.offsetTop;
-                height = el.offsetHeight;
-                parent = el.parentElement.parentElement;
-              if (lineIds.length > 1) {
-                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-                height = bottom - top;
-              }
-              if (top !== null && height !== null && parent !== null) {
-                // cook up a div (if necessary) and position it 
-                let div = window.document.getElementById("code-annotation-line-highlight");
-                if (div === null) {
-                  div = window.document.createElement("div");
-                  div.setAttribute("id", "code-annotation-line-highlight");
-                  div.style.position = 'absolute';
-                  parent.appendChild(div);
-                }
-                div.style.top = top - 2 + "px";
-                div.style.height = height + 4 + "px";
-                div.style.left = 0;
-                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-                if (gutterDiv === null) {
-                  gutterDiv = window.document.createElement("div");
-                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                  gutterDiv.style.position = 'absolute';
-                  const codeCell = window.document.getElementById(targetCell);
-                  const gutter = codeCell.querySelector('.code-annotation-gutter');
-                  gutter.appendChild(gutterDiv);
-                }
-                gutterDiv.style.top = top - 2 + "px";
-                gutterDiv.style.height = height + 4 + "px";
-              }
-              selectedAnnoteEl = annoteEl;
-            }
-          };
-          const unselectCodeLines = () => {
-            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-            elementsIds.forEach((elId) => {
-              const div = window.document.getElementById(elId);
-              if (div) {
-                div.remove();
-              }
-            });
-            selectedAnnoteEl = undefined;
-          };
-            // Handle positioning of the toggle
-        window.addEventListener(
-          "resize",
-          throttle(() => {
-            elRect = undefined;
-            if (selectedAnnoteEl) {
-              selectCodeLines(selectedAnnoteEl);
-            }
-          }, 10)
-        );
-        function throttle(fn, ms) {
-        let throttle = false;
-        let timer;
-          return (...args) => {
-            if(!throttle) { // first call gets through
-                fn.apply(this, args);
-                throttle = true;
-            } else { // all the others get throttled
-                if(timer) clearTimeout(timer); // cancel #2
-                timer = setTimeout(() => {
-                  fn.apply(this, args);
-                  timer = throttle = false;
-                }, ms);
-            }
-          };
-        }
-          const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-          for (let i=0; i<annoteTargets.length; i++) {
-            const annoteTarget = annoteTargets[i];
-            const targetCell = annoteTarget.getAttribute("data-target-cell");
-            const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-            const contentFn = () => {
-              const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-              if (content) {
-                const tipContent = content.cloneNode(true);
-                tipContent.classList.add("code-annotation-tip-content");
-                return tipContent.outerHTML;
-              }
-            }
-            const config = {
-              allowHTML: true,
-              content: contentFn,
-              onShow: (instance) => {
-                selectCodeLines(instance.reference);
-                instance.reference.classList.add('code-annotation-active');
-                window.tippy.hideAll();
-              },
-              onHide: (instance) => {
-                unselectCodeLines();
-                instance.reference.classList.remove('code-annotation-active');
-              },
-              maxWidth: 300,
-              delay: [50, 0],
-              duration: [200, 0],
-              offset: [5, 10],
-              arrow: true,
-              appendTo: function(el) {
-                return el.parentElement.parentElement.parentElement;
-              },
-              interactive: true,
-              interactiveBorder: 10,
-              theme: 'quarto',
-              placement: 'right',
-              popperOptions: {
-                modifiers: [
-                {
-                  name: 'flip',
-                  options: {
-                    flipVariations: false, // true by default
-                    allowedAutoPlacements: ['right'],
-                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-                  },
-                },
-                {
-                  name: 'preventOverflow',
-                  options: {
-                    mainAxis: false,
-                    altAxis: false
-                  }
-                }
-                ]        
-              }      
-            };
-            window.tippy(annoteTarget, config); 
-          }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
 
-      // PORTING NOTE: rewritten begin
+      // PORT NOTE: Code annotation removed
+
+      // PORTING NOTE: citation linking rewrite begin
       var references = window.document.querySelectorAll('#references + p');
       var bibliorefs = window.document.querySelectorAll('a[href*="#ref-"]'); // PORTING NOTE: this is needs `link-citations: true`
       for (var i=0; i<bibliorefs.length; i++) {
@@ -411,6 +246,9 @@ window.Quarto = {
         const refId = ref.getAttribute('href').replace(/.*#ref-/, '');
         const refSplit = refId.match(/([^0-9]*)(\d{4})(.*)/)
         const refKeywords = [refSplit[1], refSplit[2], refSplit[3]];
+
+        const citeRefId = 'cite-ref-' + refId + '-' + i;
+        ref.id = citeRefId;
         
         // const refKeywords = refId.split(/(_|-)/g);
 
@@ -424,6 +262,17 @@ window.Quarto = {
 
             refEl.setAttribute('id', 'ref-' + refId);
 
+            // create an element like <a href="#cite-ref-baez2002octonions-0" class="citation-backref" role="doc-backlink">↩︎</a>
+            var backlink = window.document.createElement('a');
+            backlink.setAttribute('href', '#' + citeRefId);
+            backlink.classList.add('citation-backref');
+            backlink.setAttribute('role', 'doc-backlink');
+            backlink.style.marginLeft = '0.5em';
+            backlink.innerHTML = '↩︎';
+
+            // append the backlink inside refEl
+            refEl.appendChild(backlink);
+
             tippyHover(ref, function() {
                 var popup = window.document.createElement('div');
 
@@ -434,6 +283,12 @@ window.Quarto = {
                 if (biblioDiv) {
                     citeDiv.innerHTML = biblioDiv.innerHTML;
                 }
+
+                // remove a.citation-backref from citeDiv
+                citeDiv.querySelectorAll('a.citation-backref').forEach(function(el) {
+                    el.remove();
+                });
+
                 popup.appendChild(citeDiv);
  
                 return popup.innerHTML;
@@ -442,8 +297,7 @@ window.Quarto = {
         }  
       }
     });
-    // PORTING NOTE: rewritten end
-    </script>
-    </div> <!-- /content -->
-    {{/*  PORTING NOTE: lightbox removed  */}}
-    
+    // PORTING NOTE: citation linking rewrite end
+
+    // PORTING NOTE: lightbox removed
+</script>

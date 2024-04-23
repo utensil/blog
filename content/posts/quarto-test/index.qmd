@@ -6,12 +6,10 @@ date: "2024-04-19"
 publishDate: 2021-12-31T10:00:00+08:00
 draft: true
 format:
-    hugo-md:
-      link-citations: true
-      prefer-html: true
-    pdf:
-      link-citations: true
+    hugo-md: default
+    pdf: default
     html: default
+link-citations: true
 jupyter: python3
 fig-cap-location: bottom
 code-annotations: hover
