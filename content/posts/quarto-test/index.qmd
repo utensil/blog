@@ -8,7 +8,9 @@ draft: true
 # categories: 
 #   - Matplotlib
 #   - Coordinates
-format: hugo-md
+format:
+    hugo-md: default
+    pdf: default
 jupyter: python3
 fig-cap-location: bottom
 code-annotations: hover
@@ -30,7 +32,11 @@ nocite: |
   @figueroa2010spin, @reynoso2023probing
 ---
 
-The following are taken from [official examples](https://quarto.org/docs/) for now.
+The following are taken from [official examples](https://quarto.org/docs/) for now. 
+
+```{=html}
+<a href="./index.pdf" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📄 View as PDF</a>
+```
 
 ## Markdown Basics
 
@@ -52,6 +58,10 @@ $$
  \def\RR{{\mathbb R}}
 $$
 :::
+
+```{=latex}
+\def\RR{{\mathbb R}}
+```
 
 inline math: $E = mc^{2} \in \RR$
 
@@ -107,10 +117,6 @@ To print, press {{< kbd Shift-Ctrl-P >}}. To open an existing new project, press
 <!-- [![](https://quarto.org/docs/authoring/elephant.png "Lin Wang")](https://quarto.org){#fig-hanno} -->
 
 Famous Elephants
-:::
-
-:::{.column-screen-inset}
-![](https://quarto.org/docs/authoring/elephant.png)
 :::
 
 <!-- ![](./image.tikz.tex) -->
