@@ -8,6 +8,24 @@
 {{ $svg.Content | safeHTML }}
 </div>
 <script>
+    function themeSVG() {
+        const svg = document.querySelector('.post-content #typst-app svg.typst-doc');
+
+        const style = document.createElement('style');
+
+        style.textContent = `
+            body.dark svg path.outline_glyph {
+                fill: white;
+            }
+
+            body.dark svg path.typst-shape {
+                stroke: white;
+            }
+        `;
+
+        svg.appendChild(style);
+    }
+
     function scaleSVG() {
         const post = document.querySelector('.post-content');
         const parent = post.querySelector('#typst-app');
@@ -43,4 +61,5 @@
     }
     window.addEventListener('resize', scaleSVG);
     document.addEventListener("DOMContentLoaded", scaleSVG);
+    document.addEventListener("DOMContentLoaded", themeSVG);
 </script>
