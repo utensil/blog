@@ -23,19 +23,19 @@
         const translateX = Math.max(0, (width - orginal_width) / 2);
         const scale = Math.max(1.0, width / orginal_width);
 
-        // svg.setAttribute('height', orginal_height * scale);
-
         g.setAttribute('transform', `translate(${-translateX}, 0) scale(${scale})`);
+
+        const scaled_orginal_height = orginal_height * scale;
 
         svg.setAttribute('width', width);
 
-        const scaled_orginal_height = orginal_height * scale;
+        svg.setAttribute('height', scaled_orginal_height);
 
         const ratio = orginal_width / (width + 0.0);
 
         const viewbox_height = ratio >= 1.0 ? scaled_orginal_height * ratio : scaled_orginal_height;
 
-        const parent_height = ratio >= 1.0 ? scaled_orginal_height / ratio : scaled_orginal_height * ratio;
+        const parent_height = ratio >= 1.0 ? scaled_orginal_height / ratio : scaled_orginal_height;
 
         svg.setAttribute('viewBox', `0 0 ${orginal_width} ${ viewbox_height }`);
 
