@@ -1,5 +1,5 @@
 ---
-title: Hello, Quarto
+title: Hello, Quarto!
 description: | 
   A summary of example usages of Quarto.
 date: "2024-04-19"
@@ -7,8 +7,8 @@ date: "2024-04-19"
 draft: true
 format:
     hugo-md: default
-    pdf: default
-    html: default
+    # pdf: default
+    # html: default
 link-citations: true
 jupyter: python3
 fig-cap-location: bottom
