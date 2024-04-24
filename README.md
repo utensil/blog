@@ -2,12 +2,13 @@
 
 My math-intensive learning notes are hosted in this blog. Built with:
 
-- [Hugo](https://gohugo.io/): a popular static site generator for blogs, with [PaperMod](https://github.com/adityatelange/hugo-PaperMod) as base template, [MathJax](https://www.mathjax.org/) support, and [hugo-cite](https://github.com/loup-brun/hugo-cite) for citation support.
-- [Quarto](https://quarto.org/): via [hugo-md](https://quarto.org/docs/output-formats/hugo.html) support, with [Pandoc](https://pandoc.org/) as the universal converter, for:
+- [Hugo](https://gohugo.io/): a popular static site generator for blogs, with [PaperMod](https://github.com/adityatelange/hugo-PaperMod) as base template, [MathJax](https://www.mathjax.org/) [support](https://gohugo.io/content-management/mathematics/), and [hugo-cite](https://github.com/loup-brun/hugo-cite) for citation support.
+- [Quarto](https://quarto.org/)  ([example post](https://utensil.github.io/blog/posts/quarto-test/)): via [hugo-md](https://quarto.org/docs/output-formats/hugo.html) support, with [Pandoc](https://pandoc.org/) as the universal converter, for:
   - [academic writing](https://quarto.org/docs/authoring/front-matter.html)
   - [Jupyter](https://jupyter.org/) and [Observable JS](https://quarto.org/docs/interactive/ojs/) notebook integration
-  - [Typst PDF rendering](https://quarto.org/docs/output-formats/typst.html) then embed with `iframe`.
-- TODO: [typst.ts](https://github.com/Myriad-Dreamin/typst.ts): for Typst SVG rendering, thus a more friendly Web experience.
+- [Typst](https://typst.app/) ([example post](https://utensil.github.io/blog/posts/typst-test/))
+  - [PDF rendering](https://quarto.org/docs/output-formats/typst.html)
+  - [SVG rendering](https://github.com/Myriad-Dreamin/typst.ts) for a more friendly Web experience.
 
 The illustrative diagrams in this blog aim to be reproduceable, they are made by one of:
 
@@ -25,7 +26,7 @@ Install the following tools per instructions:
 - [D2](https://d2lang.com/tour/install)
 - [Watchexec](https://watchexec.github.io/downloads/watchexec/)
 
-Or simply run the following on MacOS/Linux if you have [Homebrew](https://brew.sh/) installed:
+Or simply run the following on MacOS if you have [Homebrew](https://brew.sh/) installed:
 
 ```bash
 brew install hugo quarto d2 watchexec
