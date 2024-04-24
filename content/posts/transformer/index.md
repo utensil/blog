@@ -29,7 +29,7 @@ The original "Named Tensor Notation" paper has a dedicated appendix for the tran
 - "tokens" (the dimension is named `seq` in the view of the whole sequence)
   - sometimes rename to `seq'` to distinguish the input/output
 
-and this causes quite some confusion. In this post, we will consitently use `feat` and `seq`, and let the context to indicate the precise meaning, hinted by subscripts if necessary.
+and this causes quite some confusion. In this post, we will consistently use `feat` and `seq`, and let the context to indicate the precise meaning, hinted by subscripts if necessary.
 
 $$
 \newcommand{\namedtensorstrut}{\vphantom{fg}} % milder than \mathstrut
@@ -64,12 +64,12 @@ $$
 | :---: | :---: | :--- |
 | $X^{(0)}$ | $\mathbb{R}^{\seq \times \feat}$ | The tokenized input sequence of tokens, length $N$, each token has $D$ features |
 | $X^{(m)}$ | $\mathbb{R}^{\seq \times \feat}$ | The output of the $m^{th}$ transformer layer |
-| $x^{(m)}_n $ | $\mathbb{R}^{1 \times \feat}$ | The (row) vector of features for the $n^{th}$ token of $X^{(m)}$ |
+| $x^{(m)}_n$ | $\mathbb{R}^{1 \times \feat}$ | The (row) vector of features for the $n^{th}$ token of $X^{(m)}$ |
 | $A^{(m)}$ | $\mathbb{R}^{\seq \times \seq}$ | The $N \times N$ attention matrix |
 
 To convey the types/shapes and the definition of operations simontaneously, sometimes we use a syntax like this:
 
-$ f = op(a, b) \quad \in A \to B \to C $
+$$ f = op(a, b) \quad \in A \to B \to C $$
 
 where
 
@@ -79,7 +79,7 @@ where
 
 When the types of operands are clear, we could also write the above as:
 
-$ f = op(a, b) \quad \in C$
+$$ f = op(a, b) \quad \in C$$
 
 $$
 % NxD matrices in diargams are assumed to be 4x3, i.e. 4 rows and 3 columns
@@ -109,7 +109,7 @@ $$
 \rvec{x_n^{(0)}} \cr
 \vdots \cr
 \end{bmatrix}}
-X^{(0)} = \underbrace{\Xinput}_{D \text{ columns (features) }}\left.\vphantom{\cvec{}}\right\\}N \text{ rows (tokens)}
+X^{(0)} = \underbrace{\Xinput}_{D \text{ columns (features) }}\left.\vphantom{\cvec{}}\right\}N \text{ rows (tokens)}
 $$
 
 where $X^{(0)}$ denotes the input of the transformer, and $x_n^{(0)}$ is the (row) vector of features for the $n^{th}$ token.

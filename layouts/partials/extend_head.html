@@ -1,8 +1,8 @@
 <!-- https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-faq/#custom-head--footer -->
+<link rel="stylesheet" type="text/css" href="{{ "/blog/hugo-cite-mod.css" | relURL }}" />
 {{ if or .Params.math .Site.Params.math }}
 {{ partial "math.html" . }}
 {{ end }}
-<link rel="stylesheet" type="text/css" href="{{ "/blog/hugo-cite-mod.css" | relURL }}" />
 {{ if index .Params.format "hugo-md" }}
 {{ partial "quarto.html" . }}
 {{ end }}

@@ -101,3 +101,12 @@ body.dark .hugo-cite-group .hugo-cite-citation {
 .first-entry {
   min-height: unset;
 }
+
+/* .post-content p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+} */
+
+/* .post-content dl, .post-content ol, .post-content p, .post-content figure, .post-content ul {
+  margin-bottom: var(--content-gap);
+} */
