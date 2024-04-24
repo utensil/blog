@@ -97,3 +97,7 @@ body.dark .hugo-cite-group .hugo-cite-citation {
 .post-content a {
   color: unset;
 }
+
+.first-entry {
+  min-height: unset;
+}

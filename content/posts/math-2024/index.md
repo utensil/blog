@@ -2,6 +2,8 @@
 title: "My math interests in 2024"
 publishDate: 2024-03-16T22:00:00+08:00
 draft: true
+tags:
+    - math
 ---
 
 I wish this post to be a continuously updated list of my math interests in 2024 with proper citations to literatures, as I keep wandering in the math wonderland and I don't want to be lost in it without breadcrumbs.

@@ -1,5 +1,5 @@
 ---
-title: Hello, Quarto!
+title: Hello, Quarto
 description: | 
   A summary of example usages of Quarto.
 date: "2024-04-19"
@@ -29,6 +29,8 @@ csl: apa-6th-edition.csl
 appendex-cite-as: true
 nocite: |
   @figueroa2010spin, @reynoso2023probing
+tags:
+    - authoring
 ---
 
 The following are taken from [official examples](https://quarto.org/docs/) for now. 

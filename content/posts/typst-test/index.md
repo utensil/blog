@@ -21,6 +21,10 @@ draft: true
 # prefer-html: true
 # https://stackoverflow.com/questions/68036749/embedding-iframe-in-hugo-site
 # iframe: "./index.pdf"
+tags:
+    - authoring
+terms:
+    - example
 ---
 
 The following blog in Typst is adapted from [the official example](https://github.com/typst/typst?tab=readme-ov-file#example).

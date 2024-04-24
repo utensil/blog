@@ -2,6 +2,8 @@
 title: "Studying group algebras with GAP"
 publishDate: 2024-03-21T10:00:00+08:00
 draft: true
+tags:
+    - math
 ---
 
 This post studies group algebras with [GAP](https://github.com/gap-system/gap), focusing on a few interested groups. See [*My math interests in 2024: Group Algebra*](../math-2024/#group-algebra) for context.

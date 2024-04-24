@@ -2,6 +2,8 @@
 title: "Notes on Zeon Algebra"
 publishDate: 2024-03-23T10:00:00+08:00
 draft: true
+tags:
+    - math
 ---
 
 I have just borrowed [*Clifford Algebras and Zeons: Geometry to Combinatorics and Beyond*](https://www.amazon.com/Clifford-Algebras-Zeons-Geometry-Combinatorics/dp/9811202575) {{< cite "staples2020clifford" >}} from the library. This post should briefly walk through the contents of the book, highlight some key concepts, and provide further readings for each chapter of the book. For the complete and updated research work by George Stacey Staples, see [his home page](https://www.siue.edu/~sstaple/index_files/research.html).

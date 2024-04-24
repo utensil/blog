@@ -25,9 +25,10 @@ languages:
         languageName: "En"
         weight: 1
         taxonomies:
-          category: categories
+          # category: categories
           tag: tags
-          series: series
+          term: terms
+          # series: series
         menu:
             main:
                 - name: Archive
@@ -38,6 +39,9 @@ languages:
                   weight: 10
                 - name: Tags
                   url: tags/
+                  weight: 10
+                - name: Terms
+                  url: terms/
                   weight: 10
     # zh:
     #     languageName: "中"
@@ -103,7 +107,7 @@ params:
     #           url: tags
 
     homeInfoParams:
-        Title: "👋 Welcome to Utensil's Blog"
+        Title: "Welcome👋"
         Content: >
             My math-intensive learning notes are hosted in this blog.
     socialIcons:
@@ -111,7 +115,7 @@ params:
           url: "https://github.com/utensil"
         - name: twitter
           url: "https://www.twitter.com/_utensil_"
-        - name: Rss
+        - name: RSS
           url: "index.xml"
 
     editPost:

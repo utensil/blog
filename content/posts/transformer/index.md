@@ -2,6 +2,9 @@
 title: "Transformers: from self-attention to performance optimizations"
 publishDate: 2023-05-04T22:00:00+08:00
 draft: true
+tags:
+    - math
+    - ML
 ---
 
 The purpose of this post is to understand what is under the hood and the performance factors involved when fine-tuning and running local Transformer models, keeping multi-modality in mind, with an emphasis on the decoder-only transformers (e.g. GPT series).

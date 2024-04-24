@@ -1,0 +1,8 @@
+{{ $name := .Get 0 }}
+{{ $termUrl := printf "/terms/%s" $name }}
+{{ $termPage := .Site.GetPage $termUrl }}
+{{ if $termPage }}
+<a href="{{ $termPage.RelPermalink }}">{{$name}}</a>
+{{ else }}
+<a href="javascript:void(0)">{{$name}} (missing)</a>
+{{ end }}
