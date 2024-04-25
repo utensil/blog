@@ -55,6 +55,12 @@ The related Zulip thread is [here](https://leanprover.zulipchat.com/#narrow/stre
 
 This interest originates from reading Robert A. Wilson's work {{<cite "wilson2024discrete">}}. The ultimate goal is to understand the group algebra of the binary tetrahedral group ($Q_8 \rtimes Z_3$), then the three-dimensional complex reflection group ($G_{27} \rtimes Q_8 \rtimes Z_3$), a.k.a. the triple cover of the Hessian group, which can be interpreted as a finite analogue of the complete gauge group $U(1) \times SU(2) \times SU(3)$.
 
+### Philosophy
+
+Type theories, logic have their origins in philosophy. Lacan had drawn inspiration from the work of the mathematician and philosopher of science Georges Canguilhem, and the philosopher of mathematics Alain Badiou. If he had lived to see the rise of proof assistants, he would be interested in the formalization of his theories.
+
+There is a project on Github called [Lacan-Mathemes](https://github.com/gjoncas/Lacan-Mathemes) which visualized some core concepts of Lacan in TikZ. It would be interesting to start there and look for proper objects to formalize in Lean. Another interesting thing to do is to visualize them in Typst.
+
 ## Generalized Clifford Algebra and related mathematical branches
 
 A [Clifford algebra](https://en.wikipedia.org/wiki/Clifford_algebra) is a $Z_2$-[graded algebra](https://en.wikipedia.org/wiki/Graded_algebra), and a [Filtered algebra](https://en.wikipedia.org/wiki/Filtered_algebra), the associated graded algebra is the [exterior algebra](https://en.wikipedia.org/wiki/Exterior_algebra).
