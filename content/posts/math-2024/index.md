@@ -179,6 +179,8 @@ a richer but still tractable representation that is an algebraic structure riche
 
 Its application to physics has the potential to formulate differential geometry in a more general setting, without assuming the existence of a locally Euclidean space as manifold did. It's believe that this approach can overcome some difficulties in Quantum field theory even Quantum gravity, because locally there might be no concept of a metric space at all {{< cite "mallios2015differential" >}}.
 
+Note that there are CAS systems that can do sheaf cohomology etc., e.g. [Macaulay2](https://macaulay2.com/), [OSCAR](https://www.oscar-system.org/).
+
 ## TODOs
 
 Incorporating the following interests into this post:
