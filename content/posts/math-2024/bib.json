@@ -790,5 +790,24 @@
     "publisher": "University of Minnesota",
     "title": "Sheaf representation learning",
     "type": "thesis"
+  },
+  {
+    "author": [
+      {
+        "family": "Chrisman",
+        "given": "Micah"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2301.10318",
+    "id": "chrisman2023geometric",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "A geometric foundation of virtual knot theory",
+    "type": "article-journal"
   }
 ]

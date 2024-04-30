@@ -61,6 +61,20 @@ Type theories, logic have their origins in philosophy. Lacan had drawn inspirati
 
 There is a project on Github called [Lacan-Mathemes](https://github.com/gjoncas/Lacan-Mathemes) which visualized some core concepts of Lacan in TikZ. It would be interesting to start there and look for proper objects to formalize in Lean. Another interesting thing to do is to visualize them in Typst.
 
+Here I would like to quote a generated response from Claude 1.2 Instant, which is quite optimistic:
+
+> Here are a few thoughts on formalizing aspects of Lacanian psychoanalytic theory using theorem provers:
+> 
+> - Lacan's structural theory of the psyche could potentially be formalized using logic. The tripartite structure of the Real, Symbolic, and Imaginary could be modeled as formal domains or ontologies with defined relationships between them.
+> - Key concepts like the mirror stage, the Name-of-the-Father, the objet petit a, etc. could be defined as logical predicates or functions operating within this structural framework. For example, one could define predicates like "inMirrorStage(subject)" or "desiresObjetPetitA(subject, object)".
+> - Relations like the split between desire and drive, the tension between the Symbolic order and the Real, the misrecognition of the Imaginary could be expressed through logical rules and inferences between concepts.
+> - The dynamics of psychoanalytic concepts like repression, sublimation, transference could be modeled as state transitions or logical transformations within the structured system.
+> - Specific psychoanalytic theories like the stages of psychosexual development or the topology of the fantasy could be axiomatized and theorems deduced from the axioms.
+> 
+> However, capturing the open-ended, non-deterministic nature of unconscious processes and the ambiguity/contingency of signification would be challenging and may require non-classical logics or probabilistic approaches.
+> 
+> So in summary, while difficult, certain aspects of Lacanian theory seem amenable to formalization using tools from logic, ontology, and knowledge representation. Careful design would be needed to address theory's complexity.
+
 ## Generalized Clifford Algebra and related mathematical branches
 
 A [Clifford algebra](https://en.wikipedia.org/wiki/Clifford_algebra) is a $Z_2$-[graded algebra](https://en.wikipedia.org/wiki/Graded_algebra), and a [Filtered algebra](https://en.wikipedia.org/wiki/Filtered_algebra), the associated graded algebra is the [exterior algebra](https://en.wikipedia.org/wiki/Exterior_algebra).
@@ -117,6 +131,8 @@ I wish to render some pictures in {{< cite "francis1987topological" >}} with [Ti
 ### Knots
 
 See {{< cite "manturov2018knot" >}} and [the tracking issue](https://github.com/utensil/utensil.github.io/issues/229).
+
+For interpreting knots in a sheaf-theoretic perspective, see {{< cite "chrisman2023geometric" >}}.
 
 ### Origami
 
