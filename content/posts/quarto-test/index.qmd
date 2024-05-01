@@ -196,6 +196,63 @@ ax.grid(True)
 plt.show()
 ```
 
+The following example is based on [3DCGA: Intersections](https://kingdon.readthedocs.io/en/latest/examples/ex_3dcga_intersections.html).
+
+```{python}
+from kingdon import Algebra
+
+alg = Algebra(4, 1)
+locals().update(alg.blades)
+
+ni = e4 + e5
+no = 0.5 * (e5 - e4)
+nino = ni ^ no
+up = lambda x: no + x + 0.5 * x * x * ni
+
+p  = up(0)                                          # point
+S  = (p - 0.5 * ni).dual()                          # main dual sphere around point (interactive)
+S2 = (up(-1.4*e1) - 0.125 * ni).dual()              # left dual sphere
+C  = (up(1.4*e1) - 0.125 * ni).dual() & e3.dual()   # right circle
+L  = up(0.9*e2) ^ up(0.9*e2 - 1*e1) ^ ni            # top line
+P  = (1*e2 - 0.9*ni).dual()                         # bottom dual plane
+P2 = (1*e1 + 1.7*ni).dual()                         # right dual plane
+
+C1 = S & P
+C2 = S & L
+C3 = S & S2
+C4 = S & C
+C5 = C & P2
+lp = up(nino.lc(P2 & (L ^ no)))
+
+print("p=", p)
+print("lp=", lp)
+print("C1=", C1)
+print("C2=", C2)
+print("C3=", C3)
+print("C4=", C4)
+print("C5=", C5)
+print("L=", L)
+print("P=", P)
+print("S=", S)
+print("S2=", S2)
+
+alg.graph(
+    0x00FF0000, p, "s1",             # point
+    0xFF00FF,lp,"l&p",               # line intersect plane
+    0x0000FF,C1,"s&p",               # sphere meet plane
+    0x888800,C2,"s&l",               # sphere meet line
+    0x0088FF,C3,"s&s",               # sphere meet sphere
+    0x008800,C4,"s&c",               # sphere meet circle
+    0x880000,C5,"c&p",               # circle meet sphere
+    0,L,0,C,                         # line and circle
+    0xE0008800, P, P2,               # plane
+    0xE0FFFFFF, S, "s1", S2,         # spheres
+    conformal=1,
+    grid=1,
+    gl=1,
+)
+```
+
 ### Observable JS
 
 The following example is taken from [Steven De Keninck's Animated Orbits](https://observablehq.com/@enkimute/animated-orbits) .

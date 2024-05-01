@@ -2,3 +2,4 @@ jupyter
 pyyaml
 numpy
 matplotlib
+kingdon
