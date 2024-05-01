@@ -2,4 +2,5 @@ jupyter
 pyyaml
 numpy
 matplotlib
+galgebra
 kingdon

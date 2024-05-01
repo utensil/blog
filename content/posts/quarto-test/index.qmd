@@ -196,7 +196,7 @@ ax.grid(True)
 plt.show()
 ```
 
-The following example is based on [3DCGA: Intersections](https://kingdon.readthedocs.io/en/latest/examples/ex_3dcga_intersections.html).
+The following example is based on [3DCGA: Intersections](https://kingdon.readthedocs.io/en/latest/examples/ex_3dcga_intersections.html):
 
 ```{python}
 from kingdon import Algebra
@@ -235,7 +235,9 @@ print("L=", L)
 print("P=", P)
 print("S=", S)
 print("S2=", S2)
+```
 
+```{python}
 alg.graph(
     0x00FF0000, p, "s1",             # point
     0xFF00FF,lp,"l&p",               # line intersect plane
@@ -251,6 +253,56 @@ alg.graph(
     grid=1,
     gl=1,
 )
+```
+
+The following example is based on [Introduction to using GAlgebra](https://galgebra.readthedocs.io/en/latest/tutorials/algebra.html):
+
+```{python}
+import sympy
+from galgebra.ga import Ga
+from galgebra.printer import latex
+from IPython.display import Math
+
+# tell sympy to use our printing by default
+sympy.init_printing(latex_printer=latex, use_latex='mathjax')
+
+xyz = (x, y, z) = sympy.symbols('x y z', real=True)
+o3d = Ga('e_x e_y e_z', g=[1, 1, 1], coords=xyz)
+grad = o3d.grad
+
+a = o3d.mv('a','vector')
+b = o3d.mv('b','vector')
+
+Math(fr'''
+\begin{{align}}
+    a           &= {latex(a)} \\
+    b           &= {latex(b)} \\
+    a+b         &= {latex(a+b)} \\
+    a-b         &= {latex(a-b)} \\
+    ab          &= {latex(a*b)} \\
+    a\cdot b    &= {latex(a|b)} \\
+    a \rfloor b &= {latex(a<b)} \\
+    a \lfloor b &= {latex(a>b)} \\
+    a\wedge b   &= {latex(a^b)}
+\end{{align}}
+''')
+```
+
+```{python}
+B = o3d.mv('B','bivector')
+Math(fr'''
+\begin{{align}}
+B           &= {latex(B)} \\
+BB          &= {latex(B*B)} \\
+a+B         &= {latex(a+B)} \\
+a-B         &= {latex(a-B)} \\
+aB          &= {latex(a*B)} \\
+a\cdot B    &= {latex(a|B)} \\
+a \rfloor B &= {latex(a<B)} \\
+a \lfloor B &= {latex(a>B)} \\
+a\wedge B   &= {latex(a^B)} \\
+\end{{align}}
+''')
 ```
 
 ### Observable JS
@@ -278,6 +330,46 @@ Algebra(3,0,1,()=>{
   },{camera,gl:1,animate:1,width:"100%",height:"600px"}));
     
 })
+```
+
+The following example is taken from [Steven De Keninck's Klein Bottle](https://enki.ws/ganja.js/examples/coffeeshop.html#CvgNlPqDa):
+
+```{ojs}
+GAmphetamineModule = import('https://enki.ws/GAM/src/GAmphetamine.js')
+```
+
+```{ojs}
+GAmphetamine = GAmphetamineModule.default
+```
+
+```{ojs}
+kb = GAmphetamine(4,0,1,()=>{
+  
+  const {E, sin, cos, PI} = Math;
+  
+  const [n1,n2] = [16, 128];
+  const [r1,r2] = [0.15, 0.6];
+  
+  var circle = r1=>[...Array(n1+1).keys()]
+               .map(x=>E**(x/n1 * PI * 1e12) * E**(r1*1e01) >>> !1e0)
+               .map((x,i,a)=>[x,a[i+1]||a[0]]);
+  
+  var klein = [...Array(n2+1).keys()]
+              .map(x=>E**(x/n2 * PI * 1e13) * E**(r2*1e01) * E**(x/n2 * PI * 1.5e14) >>> circle(r1+0.1*sin(8*PI*x/n2)));
+      
+  var edges = klein.map((t,ti)=>t.map((p,pi)=>[p[0],(klein[ti+1]||klein[0])[pi][0]])).slice(0,-1).flat()
+  
+  klein = E**(-0.78e23) * E**((.5e14 + .0e24)) >>> [...klein.flat(), ...edges];
+  
+  var SVG=this.graph([0x009977, ...klein], {arrowSize:0, h:0, p:-0.25});
+  
+  return SVG;
+  
+})
+```
+
+```{ojs}
+svg`${kb}`
 ```
 
 ## References
