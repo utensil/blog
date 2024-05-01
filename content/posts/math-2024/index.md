@@ -132,6 +132,15 @@ Duffin-Kemmer-Petiau Algebra is $$\frac{T(V)}{I(v\otimes w\otimes v - g(v,w)v)}$
 
 See {{< cite "fernandes2022clifford">}} which embeds DKP Algebra in Clifford Algebra with projectors.
 
+### Misc
+
+TODO:
+
+- [Recovering Composition Algebras from 3D Geometric Algebras](https://arxiv.org/abs/2403.12569)
+- Eliminating topological errors in neural network rotation estimation using self-selecting ensembles - Sitao Xiang - SIGGRAPH 2021
+- OSMU24: Quantum Foundations, Particle Physics, and Unification of Forces
+- https://web.archive.org/web/20201205215239/http://web4.uwindsor.ca/users/b/baylis/main.nsf
+
 ## Applied mathematics
 
 ### Topology
