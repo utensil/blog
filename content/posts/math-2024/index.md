@@ -33,6 +33,8 @@ I also wish to include some latest results presented in {{< cite "ruhe2023cliffo
 
 See also discussions in the [lean-ga blueprint](https://utensil.github.io/lean-ga/blueprint/sect0007.html).
 
+I've started a Forester experiment about the definitions of Spin groups [here](https://utensil.github.io/forest/spin-0001.xml). I also need to check citations of [On some Lie groups in degenerate Clifford geometric algebras](https://arxiv.org/abs/2301.06842).
+
 ### The Matrix Cookbook (November 15, 2012)
 
 This book {{< cite "petersen2008matrix" >}} covers many useful results about matrices, and Eric Wieser's project [lean-matrix-cookbook](https://github.com/eric-wieser/lean-matrix-cookbook) aims to give one-liner proofs (with reference to the counter part in Mathlib) to all of them.
