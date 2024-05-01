@@ -142,6 +142,11 @@ See {{< cite "manturov2018knot" >}} and [the tracking issue](https://github.com/
 
 For interpreting knots in a sheaf-theoretic perspective, see {{< cite "chrisman2023geometric" >}}.
 
+See also:
+
+- [A Table of Virtual Knots](https://www.math.toronto.edu/drorbn/Students/GreenJ/index.html)
+- [The homological arrow polynomial for virtual links](https://arxiv.org/abs/2207.02427) ([code](https://github.com/kmill/arrow_poly))
+
 ### Origami
 
 See {{< cite "hull2020origametry" >}} and [the tracking issue](https://github.com/utensil/utensil.github.io/issues/133).
