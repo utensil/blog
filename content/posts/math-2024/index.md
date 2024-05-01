@@ -55,6 +55,12 @@ The related Zulip thread is [here](https://leanprover.zulipchat.com/#narrow/stre
 
 This interest originates from reading Robert A. Wilson's work {{<cite "wilson2024discrete">}}. The ultimate goal is to understand the group algebra of the binary tetrahedral group ($Q_8 \rtimes Z_3$), then the three-dimensional complex reflection group ($G_{27} \rtimes Q_8 \rtimes Z_3$), a.k.a. the triple cover of the Hessian group, which can be interpreted as a finite analogue of the complete gauge group $U(1) \times SU(2) \times SU(3)$.
 
+### Type Theory
+
+Recently I have read [some meta-level dependent type theory](https://ice1000.org/) [Typst source](https://github.com/ice1000/website/tree/main/dtt-dev). It might be time to re-read `leantt` paper, and start reading `lean4lean` paper/source.
+
+Although remotely related, I'll place [Introduction to Formal Reasoning (COMP2065)](http://www.cs.nott.ac.uk/~psztxa/comp2065.23-24.ifr-notes/_build/html/index.html#) in this section so I won't lose track of it.
+
 ### Philosophy
 
 Type theories, logic have their origins in philosophy. Lacan had drawn inspiration from the work of the mathematician and philosopher of science Georges Canguilhem, and the philosopher of mathematics Alain Badiou. If he had lived to see the rise of proof assistants, he would be interested in the formalization of his theories.
