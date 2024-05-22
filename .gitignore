@@ -44,3 +44,4 @@ content/posts/config.pdf
 content/posts/config.svg
 content/posts/**/*.*.sir.in
 content/posts/**/index.html
+content/posts/quarto-test/lean4.md
