@@ -372,12 +372,6 @@ kb = GAmphetamine(4,0,1,()=>{
 svg`${kb}`
 ```
 
-<!-- ### Lean 4
-
-This is an [embedded](https://quarto.org/docs/authoring/notebook-embed.html) Lean 4 Jupyter notebook that doesn't work yet:
-
-{{< embed lean4.ipynb >}} -->
-
 ## References
 
 ::: {#refs}

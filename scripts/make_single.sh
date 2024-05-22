@@ -16,7 +16,7 @@ POST_ROOT="$PROJECT_ROOT/content/posts"
 # ./scripts/make_single.sh content/posts/typst-test/main.typ
 
 if [ ! -z "$1" ]; then
-    echo "Making $1"
+    echo "⭐ Making $1"
 fi
 
 cd $PROJECT_ROOT

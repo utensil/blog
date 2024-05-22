@@ -62,7 +62,7 @@ Run the following to make D2, Pikchr diagrams and Typst documents for the first 
 ./scripts/make_all.sh
 ```
 
-Finally:
+Finally, run `./watch.sh` to do the following 3 tasks in on go.
 
 If you are simply working on a vanilla markdown post, just run:
 
@@ -81,5 +81,6 @@ quarto preview --no-serve --no-browser --render all
 If you are authoring with Typst/D2/Pikchr/Bibliography, run in a separate terminal:
 
 ```bash
-watchexec -e d2,pikchr,typ,bib --emit-events-to=stdio -- ./scripts/make_changed.sh
+# watchexec --ignore-nothing -vvv --project-origin . -w content/posts/math-2024 -e d2,pikchr,typ,bib --only-emit-events --emit-events-to json-stdio --print-events --notify --poll 500ms
+watchexec --on-busy-update queue --poll 500ms -e d2,pikchr,typ,bib --emit-events-to=stdio -- ./scripts/make_changed.sh
 ```
