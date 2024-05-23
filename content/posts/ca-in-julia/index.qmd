@@ -2,6 +2,7 @@
 title: "Clifford algebras in Julia"
 date: "2024-05-23"
 engine: julia
+ipynb-shell-interactivity: all
 execute:
   keep-ipynb: true
   # Use this when svg is too huge
@@ -20,7 +21,8 @@ format:
 ---
 
 ```{julia}
-using Grassmann;
+using LightGraphs, GraphPlot
+using Grassmann
 ```
 
 ```{julia}
@@ -29,7 +31,7 @@ using Grassmann;
 ```
 
 ```{julia}
-using Makie
+using CairoMakie
 @basis S"∞+++"
 streamplot(
   vectorfield(
@@ -37,3 +39,67 @@ streamplot(
     V(2,3,4),V(1,2,3)
   ),-1.5..1.5,-1.5..1.5,-1.5..1.5,gridsize=(20,20))
 ```
+
+```{julia}
+# using Compose
+# x = Λ(ℝ^7).v123
+# Grassmann.graph(x+!x)
+# draw(SVG("simplex.svg",16cm,16cm),x+!x)
+```
+
+```{julia}
+basis"2" # Euclidean
+```
+```{julia}
+streamplot(vectorfield(exp(π*v12/2)),-1.5..1.5,-1.5..1.5)
+```
+```{julia}
+streamplot(vectorfield(exp((π/2)*v12/2)),-1.5..1.5,-1.5..1.5)
+```
+```{julia}
+streamplot(vectorfield(exp((π/4)*v12/2)),-1.5..1.5,-1.5..1.5)
+```
+```{julia}
+streamplot(vectorfield(v1*exp((π/4)*v12/2)),-1.5..1.5,-1.5..1.5)
+```
+```{julia}
+@basis S"+-" # Hyperbolic
+```
+```{julia}
+streamplot(vectorfield(exp((π/8)*v12/2)),-1.5..1.5,-1.5..1.5)
+```
+```{julia}
+#| fig-width: 5
+#| fig-height: 5
+streamplot(vectorfield(v1*exp((π/4)*v12/2)),-1.5..1.5,-1.5..1.5)
+```
+
+```{julia}
+@basis S"∞+++"
+f(t) = (↓(exp(π*t*((3/7)*v12+v∞3))>>>↑(v1+v2+v3)))
+lines(V(2,3,4).(points(f)))
+```
+
+```{julia}
+@basis S"∞∅+++"
+f(t) = (↓(exp(π*t*((3/7)*v12+v∞3))>>>↑(v1+v2+v3)))
+lines(V(3,4,5).(points(f)))
+```
+
+```{julia}
+@basis S"∞+++"
+streamplot(vectorfield(exp((π/4)*(v12+v∞3)),V(2,3,4)),-1.5..1.5,-1.5..1.5,-1.5..1.5,gridsize=(10,10))
+```
+
+```{julia}
+@basis S"∞+++"
+f(t) = ↓(exp(t*v∞*(sin(3t)*3v1+cos(2t)*7v2-sin(5t)*4v3)/2)>>>↑(v1+v2-v3))
+lines(V(2,3,4).(points(f)))
+```
+
+```{julia}
+@basis S"∞+++"
+f(t) = ↓(exp(t*(v12+0.07v∞*(sin(3t)*3v1+cos(2t)*7v2-sin(5t)*4v3)/2))>>>↑(v1+v2-v3))
+lines(V(2,3,4).(points(f)))
+```
+
