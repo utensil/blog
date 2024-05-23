@@ -1,0 +1,10 @@
+---
+title: "Clifford algebras in Julia"
+engine: julia
+execute:
+  daemon: 600
+---
+
+```{julia}
+1 + 2
+```
