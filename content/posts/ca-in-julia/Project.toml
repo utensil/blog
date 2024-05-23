@@ -1,0 +1,5 @@
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Grassmann = "4df31cd9-4c27-5bea-88d0-e6a7146666d8"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+QuartoNotebookRunner = "4c0109c6-14e9-4c88-93f0-2b974d3468f4"

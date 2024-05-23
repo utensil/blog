@@ -74,6 +74,9 @@ jobs:
       - uses: julia-actions/setup-julia@v2
         with:
           version: '1.10.3'
+      - name: Install Julia deps
+        run: |
+          julia --project=content/posts/ca-in-julia -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
