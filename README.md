@@ -21,8 +21,8 @@ The illustrative diagrams in this blog aim to be reproduceable, they are made by
 
 Install the following tools per instructions:
 
-- [Hugo](https://gohugo.io/installation/)
-- [Quarto](https://quarto.org/docs/get-started/)
+- [Hugo](https://gohugo.io/installation/): 0.125.2+
+- [Quarto](https://quarto.org/docs/get-started/): 1.5.39+
 - [D2](https://d2lang.com/tour/install)
 - [Watchexec](https://watchexec.github.io/downloads/watchexec/)
 
@@ -62,7 +62,7 @@ Run the following to make D2, Pikchr diagrams and Typst documents for the first 
 ./scripts/make_all.sh
 ```
 
-Finally, run `./watch.sh` to do the following 3 tasks in on go.
+Finally, run `./scripts/dev.sh` to do the following 3 tasks in on go.
 
 If you are simply working on a vanilla markdown post, just run:
 
