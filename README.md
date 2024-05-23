@@ -50,6 +50,12 @@ python3 -m pip install -r requirements.txt --break-system-packages
 
 `--break-system-packages` is needed if you are using a system Python installation, installed by brew for example, which is the one used by quarto for me under MacOS, despite that I'm already using `pyenv` to manage Python versions.
 
+Install Julia for [Quarto notebook support](https://quarto.org/docs/computations/julia.html#using-the-julia-engine):
+
+```bash
+brew install julia
+```
+
 Initialize the submodules for Hugo themes and extensions:
 
 ```bash
