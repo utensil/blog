@@ -61,7 +61,7 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.4.553
+          version: 1.5.39
           tinytex: true
       - name: Install Python
         uses: actions/setup-python@v5
