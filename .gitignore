@@ -46,3 +46,4 @@ content/posts/**/*.*.sir.in
 content/posts/**/index.html
 content/posts/quarto-test/lean4.md
 content/posts/ca-in-julia/index.md
+content/posts/ca-in-julia/lorenz.mp4

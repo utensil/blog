@@ -1,6 +1,7 @@
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 Compose = "a81c6b42-2e10-5240-aca2-a61377ecd94b"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
 GraphPlot = "a2cc645c-3eea-5389-862e-a155d0052231"
 Grassmann = "4df31cd9-4c27-5bea-88d0-e6a7146666d8"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"

@@ -110,3 +110,7 @@ body.dark .hugo-cite-group .hugo-cite-citation {
 /* .post-content dl, .post-content ol, .post-content p, .post-content figure, .post-content ul {
   margin-bottom: var(--content-gap);
 } */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
