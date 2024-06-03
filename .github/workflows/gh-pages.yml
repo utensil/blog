@@ -58,6 +58,13 @@ jobs:
       - name: Install D2, watchexec
         run: |
           brew install d2 watchexec
+      # https://nextjournal.com/sdanisch/GLMakie-nogpu
+      # xvfb-run -s '-screen 0 1024x768x24' julia -e "using GLMakie;"
+      - name: Install headless OpenGL
+        run: |
+          apt update
+          apt upgrade
+          apt install -y cmake xorg-dev mesa-utils xvfb libgl1 freeglut3-dev
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -86,7 +93,9 @@ jobs:
         run: |
           bash scripts/make_all.sh
       - name: Render Quarto Project
-        uses: quarto-dev/quarto-actions/render@v2
+        # uses: quarto-dev/quarto-actions/render@v2
+        run: |
+          xvfb-run -s '-screen 0 1024x768x24' quarto render .
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
