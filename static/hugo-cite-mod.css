@@ -24,7 +24,8 @@ figure.center {
   .hugo-cite-citation {
     visibility: hidden;
     background-color: #fefefe;
-    color: inherit;
+    /* color: inherit; */
+    color: rgb(30, 30, 30);
     border: 1px solid currentColor;
     padding: 1rem;
     position: absolute;
@@ -45,7 +46,8 @@ figure.center {
 }
 
 body.dark .hugo-cite-group .hugo-cite-citation {
-  background-color: #1d1d1d;
+  /* background-color: #1d1d1d; */
+  filter: invert(1);
 }
 
 .hugo-cite-group:hover
@@ -110,6 +112,11 @@ body.dark .hugo-cite-group .hugo-cite-citation {
 /* .post-content dl, .post-content ol, .post-content p, .post-content figure, .post-content ul {
   margin-bottom: var(--content-gap);
 } */
+
+body.dark .post-content svg {
+  filter: invert(1);
+}
+
 img, video {
   max-width: 100%;
   height: auto;
