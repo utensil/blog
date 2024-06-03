@@ -62,9 +62,9 @@ jobs:
       # xvfb-run -s '-screen 0 1024x768x24' julia -e "using GLMakie;"
       - name: Install headless OpenGL
         run: |
-          apt update
-          apt upgrade
-          apt install -y cmake xorg-dev mesa-utils xvfb libgl1 freeglut3-dev
+          sudo apt update
+          sudo apt upgrade
+          sudo apt install -y cmake xorg-dev mesa-utils xvfb libgl1 freeglut3-dev
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
