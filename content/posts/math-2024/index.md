@@ -69,6 +69,8 @@ Aya has a philosophy that the kernel could include pattern matching, but at the 
 
 The author also has a great article on TT & Cat {{< cite "zhang2021type" >}}. His recommendation of {{< cite "gundry2013tutorial" >}} is also worth reading.
 
+In the process of learning Topos, I wish to have a better understanding of Logic. Particularly, [Curry–Howard–Lambek correspondance](https://www.bananaspace.org/wiki/%E7%B1%BB%E5%9E%8B%E8%AE%BA%E2%80%93%E8%8C%83%E7%95%B4%E8%AE%BA%E2%80%93%E9%80%BB%E8%BE%91%E5%AD%A6%E7%B1%BB%E6%AF%94), [Propositional truncation](https://1lab.dev/1Lab.HIT.Truncation.html#propositional-truncation), and [Paraconsistent logic](https://en.wikipedia.org/wiki/Paraconsistent_logic) are on the plate.
+
 Although remotely related, I'll place [Introduction to Formal Reasoning (COMP2065)](http://www.cs.nott.ac.uk/~psztxa/comp2065.23-24.ifr-notes/_build/html/index.html#) in this section so I won't lose track of it.
 
 ### Philosophy
