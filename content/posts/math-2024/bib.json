@@ -1256,5 +1256,50 @@
     "title": "String field theory: A review",
     "title-short": "String field theory",
     "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Bao",
+        "given": "Fan"
+      },
+      {
+        "family": "Nie",
+        "given": "Shen"
+      },
+      {
+        "family": "Xue",
+        "given": "Kaiwen"
+      },
+      {
+        "family": "Cao",
+        "given": "Yue"
+      },
+      {
+        "family": "Li",
+        "given": "Chongxuan"
+      },
+      {
+        "family": "Su",
+        "given": "Hang"
+      },
+      {
+        "family": "Zhu",
+        "given": "Jun"
+      }
+    ],
+    "container-title": "Proceedings of the IEEE/CVF conference on computer vision and pattern recognition",
+    "id": "bao2023all",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "page": "22669-22679",
+    "title": "All are worth words: A vit backbone for diffusion models",
+    "title-short": "All are worth words",
+    "type": "paper-conference"
   }
 ]

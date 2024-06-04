@@ -223,6 +223,8 @@ I don't want efforts in [Transformers: from self-attention to performance optimi
 
 I might need to follow on the latest development on the linear attention mechanism {{< cite "peng2024eagle" >}}.
 
+I have almost no understanding of diffusion models, so I should read {{< cite "bao2023all" >}} and related papers.
+
 ### Consciousness
 
 Lately I became aware of the work on mathematical models of consciousness, namely Integrated information theory {{< cite "albantakis2023integrated" >}} and The information theory of individuality {{< cite "krakauer2020information" >}}.
