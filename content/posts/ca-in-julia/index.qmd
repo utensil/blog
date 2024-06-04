@@ -23,11 +23,10 @@ format:
 
 In this blog post, we will explore the [Grassmann.jl](https://github.com/chakravala/Grassmann.jl) library written in Julia for working with Clifford algebras.
 
-First, we import the library and the `CairoMakie` plotting library.
+First, we import the library and the `GLMakie` plotting library.
 
 ```{julia}
 using Grassmann
-# using CairoMakie
 using GLMakie
 set_theme!(theme_light())
 ```
@@ -65,7 +64,7 @@ vf = @lift(vectorfield(
 
 fig, ax, pl = streamplot(vf,-1.5..1.5,-1.5..1.5,-1.5..1.5,gridsize=(12,12))
 
-framerate = 30
+framerate = 24
 timestamps = range(0, 2, step=1/framerate)
 
 record(fig, "streamplot.mp4", timestamps; framerate = framerate) do t

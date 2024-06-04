@@ -83,7 +83,7 @@ jobs:
           version: '1.10.3'
       - name: Install Julia deps
         run: |
-          xvfb-run -s '-screen 0 1024x768x24' julia --project=content/posts/ca-in-julia -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
+          xvfb-run -s '-screen 0 3840x2160x24' julia --project=content/posts/ca-in-julia -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -95,7 +95,7 @@ jobs:
       - name: Render Quarto Project
         # uses: quarto-dev/quarto-actions/render@v2
         run: |
-          xvfb-run -s '-screen 0 1024x768x24' quarto render .
+          xvfb-run -s '-screen 0 3840x2160x24' quarto render .
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
