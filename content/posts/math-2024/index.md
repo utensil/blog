@@ -225,6 +225,8 @@ I might need to follow on the latest development on the linear attention mechani
 
 I have almost no understanding of diffusion models, so I should read {{< cite "bao2023all" >}} and related papers.
 
+I should also read {{< cite "mikula2023magnushammer" >}} and related papers.
+
 ### Consciousness
 
 Lately I became aware of the work on mathematical models of consciousness, namely Integrated information theory {{< cite "albantakis2023integrated" >}} and The information theory of individuality {{< cite "krakauer2020information" >}}.

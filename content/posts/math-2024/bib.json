@@ -1298,8 +1298,60 @@
       ]
     },
     "page": "22669-22679",
-    "title": "All are worth words: A vit backbone for diffusion models",
+    "title": "All are worth words: A ViT backbone for diffusion models",
     "title-short": "All are worth words",
     "type": "paper-conference"
+  },
+  {
+    "author": [
+      {
+        "family": "Mikuła",
+        "given": "Maciej"
+      },
+      {
+        "family": "Antoniak",
+        "given": "Szymon"
+      },
+      {
+        "family": "Tworkowski",
+        "given": "Szymon"
+      },
+      {
+        "family": "Jiang",
+        "given": "Albert Qiaochu"
+      },
+      {
+        "family": "Zhou",
+        "given": "Jin Peng"
+      },
+      {
+        "family": "Szegedy",
+        "given": "Christian"
+      },
+      {
+        "family": "Kuciński",
+        "given": "Łukasz"
+      },
+      {
+        "family": "Miłoś",
+        "given": "Piotr"
+      },
+      {
+        "family": "Wu",
+        "given": "Yuhuai"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2303.04488",
+    "id": "mikula2023magnushammer",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "Magnushammer: A transformer-based approach to premise selection",
+    "title-short": "Magnushammer",
+    "type": "article-journal"
   }
 ]
