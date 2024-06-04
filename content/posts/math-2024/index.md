@@ -225,6 +225,12 @@ I might need to follow on the latest development on the linear attention mechani
 
 Lately I became aware of the work on mathematical models of consciousness, namely Integrated information theory {{< cite "albantakis2023integrated" >}} and The information theory of individuality {{< cite "krakauer2020information" >}}.
 
+## Physics
+
+[Physics-Based Simulation](https://phys-sim-book.github.io/) is out.
+
+So is {{< cite "sen2024string" >}} on string theory.
+
 ## TODOs
 
 Incorporating the following interests into this post:

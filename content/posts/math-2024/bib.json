@@ -1232,5 +1232,29 @@
     "title-short": "Physics-informed neural networks",
     "type": "article-journal",
     "volume": "378"
+  },
+  {
+    "author": [
+      {
+        "family": "Sen",
+        "given": "Ashoke"
+      },
+      {
+        "family": "Zwiebach",
+        "given": "Barton"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2405.19421",
+    "id": "sen2024string",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "String field theory: A review",
+    "title-short": "String field theory",
+    "type": "article-journal"
   }
 ]
