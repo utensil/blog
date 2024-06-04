@@ -10,6 +10,6 @@ watchexec --project-origin . --on-busy-update queue --poll 500ms -e d2,pikchr,ty
 
 quarto preview --execute-debug --no-serve --no-browser --render all &
 
-watchexec --project-origin . --restart --poll 500ms -e qmd -- hugo serve -w --forceSyncStatic --disableFastRender --ignoreCache --noHTTPCache & # --gc --cleanDestinationDir
+watchexec --project-origin . --restart --poll 500ms -e qmd -- hugo serve --port 1313 -w --forceSyncStatic --disableFastRender --ignoreCache --noHTTPCache & # --gc --cleanDestinationDir
 
 wait
