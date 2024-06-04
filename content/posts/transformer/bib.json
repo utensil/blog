@@ -1,5 +1,161 @@
 [
   {
+    "URL": "https://arxiv.org/abs/1607.06450",
+    "author": [
+      {
+        "family": "Ba",
+        "given": "Jimmy Lei"
+      },
+      {
+        "family": "Kiros",
+        "given": "Jamie Ryan"
+      },
+      {
+        "family": "Hinton",
+        "given": "Geoffrey E"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1607.06450",
+    "id": "ba2016layer",
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "title": "Layer normalization",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1409.0473",
+    "author": [
+      {
+        "family": "Bahdanau",
+        "given": "Dzmitry"
+      },
+      {
+        "family": "Cho",
+        "given": "Kyunghyun"
+      },
+      {
+        "family": "Bengio",
+        "given": "Yoshua"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1409.0473",
+    "id": "bahdanau2014neural",
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "title": "Neural machine translation by jointly learning to align and translate",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1601.06733",
+    "author": [
+      {
+        "family": "Cheng",
+        "given": "Jianpeng"
+      },
+      {
+        "family": "Dong",
+        "given": "Li"
+      },
+      {
+        "family": "Lapata",
+        "given": "Mirella"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1601.06733",
+    "id": "cheng2016long",
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "title": "Long short-term memory-networks for machine reading",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/2102.13196",
+    "author": [
+      {
+        "family": "Chiang",
+        "given": "David"
+      },
+      {
+        "family": "Rush",
+        "given": "Alexander M"
+      },
+      {
+        "family": "Barak",
+        "given": "Boaz"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2102.13196",
+    "id": "chiang2021named",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Named tensor notation",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1801.10198",
+    "author": [
+      {
+        "family": "Liu",
+        "given": "Peter J"
+      },
+      {
+        "family": "Saleh",
+        "given": "Mohammad"
+      },
+      {
+        "family": "Pot",
+        "given": "Etienne"
+      },
+      {
+        "family": "Goodrich",
+        "given": "Ben"
+      },
+      {
+        "family": "Sepassi",
+        "given": "Ryan"
+      },
+      {
+        "family": "Kaiser",
+        "given": "Lukasz"
+      },
+      {
+        "family": "Shazeer",
+        "given": "Noam"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:1801.10198",
+    "id": "liu2018generating",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "title": "Generating wikipedia by summarizing long sequences",
+    "type": "article-journal"
+  },
+  {
     "URL": "http://arxiv.org/abs/2207.09238",
     "author": [
       {
@@ -22,6 +178,90 @@
     },
     "title": "Formal algorithms for transformers",
     "type": "article-journal"
+  },
+  {
+    "URL": "https://arxiv.org/abs/2108.12409",
+    "author": [
+      {
+        "family": "Press",
+        "given": "Ofir"
+      },
+      {
+        "family": "Smith",
+        "given": "Noah A"
+      },
+      {
+        "family": "Lewis",
+        "given": "Mike"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2108.12409",
+    "id": "press2021train",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Train short, test long: Attention with linear biases enables input length extrapolation",
+    "title-short": "Train short, test long",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://openreview.net/forum?id=oapKSVM2bcj",
+    "author": [
+      {
+        "family": "Rogozhnikov",
+        "given": "Alex"
+      }
+    ],
+    "container-title": "International conference on learning representations",
+    "id": "rogozhnikov2021einops",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Einops: Clear and reliable tensor manipulations with einstein-like notation",
+    "title-short": "Einops",
+    "type": "paper-conference"
+  },
+  {
+    "URL": "https://arxiv.org/abs/1602.07261",
+    "author": [
+      {
+        "family": "Szegedy",
+        "given": "Christian"
+      },
+      {
+        "family": "Ioffe",
+        "given": "Sergey"
+      },
+      {
+        "family": "Vanhoucke",
+        "given": "Vincent"
+      },
+      {
+        "family": "Alemi",
+        "given": "Alexander"
+      }
+    ],
+    "collection-number": "1",
+    "container-title": "Proceedings of the AAAI conference on artificial intelligence",
+    "id": "szegedy2017inception",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "title": "Inception-v4, inception-resnet and the impact of residual connections on learning",
+    "type": "paper-conference",
+    "volume": "31"
   },
   {
     "URL": "http://arxiv.org/abs/2304.10557",
@@ -109,246 +349,6 @@
       ]
     },
     "title": "The transformer family version 2.0",
-    "type": "webpage"
-  },
-  {
-    "URL": "https://arxiv.org/abs/1409.0473",
-    "author": [
-      {
-        "family": "Bahdanau",
-        "given": "Dzmitry"
-      },
-      {
-        "family": "Cho",
-        "given": "Kyunghyun"
-      },
-      {
-        "family": "Bengio",
-        "given": "Yoshua"
-      }
-    ],
-    "container-title": "arXiv preprint arXiv:1409.0473",
-    "id": "bahdanau2014neural",
-    "issued": {
-      "date-parts": [
-        [
-          2014
-        ]
-      ]
-    },
-    "title": "Neural machine translation by jointly learning to align and translate",
-    "type": "article-journal"
-  },
-  {
-    "URL": "https://arxiv.org/abs/2108.12409",
-    "author": [
-      {
-        "family": "Press",
-        "given": "Ofir"
-      },
-      {
-        "family": "Smith",
-        "given": "Noah A"
-      },
-      {
-        "family": "Lewis",
-        "given": "Mike"
-      }
-    ],
-    "container-title": "arXiv preprint arXiv:2108.12409",
-    "id": "press2021train",
-    "issued": {
-      "date-parts": [
-        [
-          2021
-        ]
-      ]
-    },
-    "title": "Train short, test long: Attention with linear biases enables input length extrapolation",
-    "title-short": "Train short, test long",
-    "type": "article-journal"
-  },
-  {
-    "URL": "https://arxiv.org/abs/2102.13196",
-    "author": [
-      {
-        "family": "Chiang",
-        "given": "David"
-      },
-      {
-        "family": "Rush",
-        "given": "Alexander M"
-      },
-      {
-        "family": "Barak",
-        "given": "Boaz"
-      }
-    ],
-    "container-title": "arXiv preprint arXiv:2102.13196",
-    "id": "chiang2021named",
-    "issued": {
-      "date-parts": [
-        [
-          2021
-        ]
-      ]
-    },
-    "title": "Named tensor notation",
-    "type": "article-journal"
-  },
-  {
-    "URL": "https://openreview.net/forum?id=oapKSVM2bcj",
-    "author": [
-      {
-        "family": "Rogozhnikov",
-        "given": "Alex"
-      }
-    ],
-    "container-title": "International conference on learning representations",
-    "id": "rogozhnikov2021einops",
-    "issued": {
-      "date-parts": [
-        [
-          2021
-        ]
-      ]
-    },
-    "title": "Einops: Clear and reliable tensor manipulations with einstein-like notation",
-    "title-short": "Einops",
-    "type": "paper-conference"
-  },
-  {
-    "URL": "https://arxiv.org/abs/1601.06733",
-    "author": [
-      {
-        "family": "Cheng",
-        "given": "Jianpeng"
-      },
-      {
-        "family": "Dong",
-        "given": "Li"
-      },
-      {
-        "family": "Lapata",
-        "given": "Mirella"
-      }
-    ],
-    "container-title": "arXiv preprint arXiv:1601.06733",
-    "id": "cheng2016long",
-    "issued": {
-      "date-parts": [
-        [
-          2016
-        ]
-      ]
-    },
-    "title": "Long short-term memory-networks for machine reading",
-    "type": "article-journal"
-  },
-  {
-    "URL": "https://arxiv.org/abs/1801.10198",
-    "author": [
-      {
-        "family": "Liu",
-        "given": "Peter J"
-      },
-      {
-        "family": "Saleh",
-        "given": "Mohammad"
-      },
-      {
-        "family": "Pot",
-        "given": "Etienne"
-      },
-      {
-        "family": "Goodrich",
-        "given": "Ben"
-      },
-      {
-        "family": "Sepassi",
-        "given": "Ryan"
-      },
-      {
-        "family": "Kaiser",
-        "given": "Lukasz"
-      },
-      {
-        "family": "Shazeer",
-        "given": "Noam"
-      }
-    ],
-    "container-title": "arXiv preprint arXiv:1801.10198",
-    "id": "liu2018generating",
-    "issued": {
-      "date-parts": [
-        [
-          2018
-        ]
-      ]
-    },
-    "title": "Generating wikipedia by summarizing long sequences",
-    "type": "article-journal"
-  },
-  {
-    "URL": "https://arxiv.org/abs/1602.07261",
-    "author": [
-      {
-        "family": "Szegedy",
-        "given": "Christian"
-      },
-      {
-        "family": "Ioffe",
-        "given": "Sergey"
-      },
-      {
-        "family": "Vanhoucke",
-        "given": "Vincent"
-      },
-      {
-        "family": "Alemi",
-        "given": "Alexander"
-      }
-    ],
-    "collection-number": "1",
-    "container-title": "Proceedings of the AAAI conference on artificial intelligence",
-    "id": "szegedy2017inception",
-    "issued": {
-      "date-parts": [
-        [
-          2017
-        ]
-      ]
-    },
-    "title": "Inception-v4, inception-resnet and the impact of residual connections on learning",
-    "type": "paper-conference",
-    "volume": "31"
-  },
-  {
-    "URL": "https://arxiv.org/abs/1607.06450",
-    "author": [
-      {
-        "family": "Ba",
-        "given": "Jimmy Lei"
-      },
-      {
-        "family": "Kiros",
-        "given": "Jamie Ryan"
-      },
-      {
-        "family": "Hinton",
-        "given": "Geoffrey E"
-      }
-    ],
-    "container-title": "arXiv preprint arXiv:1607.06450",
-    "id": "ba2016layer",
-    "issued": {
-      "date-parts": [
-        [
-          2016
-        ]
-      ]
-    },
-    "title": "Layer normalization",
-    "type": "article-journal"
+    "type": ""
   }
 ]
