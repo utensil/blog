@@ -809,5 +809,428 @@
     },
     "title": "A geometric foundation of virtual knot theory",
     "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Achourioti",
+        "given": "Theodora"
+      },
+      {
+        "family": "Van Lambalgen",
+        "given": "Michiel"
+      }
+    ],
+    "container-title": "The Review of Symbolic Logic",
+    "id": "achourioti2011formalization",
+    "issue": "2",
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "page": "254-289",
+    "publisher": "Cambridge University Press",
+    "title": "A formalization of kant’s transcendental logic",
+    "type": "article-journal",
+    "volume": "4"
+  },
+  {
+    "author": [
+      {
+        "family": "Ferrando",
+        "given": "Javier"
+      },
+      {
+        "family": "Sarti",
+        "given": "Gabriele"
+      },
+      {
+        "family": "Bisazza",
+        "given": "Arianna"
+      },
+      {
+        "family": "Costa-jussà",
+        "given": "Marta R"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2405.00208",
+    "id": "ferrando2024primer",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "A primer on the inner workings of transformer-based language models",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Spinner",
+        "given": "Jonas"
+      },
+      {
+        "family": "Bresó",
+        "given": "Victor"
+      },
+      {
+        "dropping-particle": "de",
+        "family": "Haan",
+        "given": "Pim"
+      },
+      {
+        "family": "Plehn",
+        "given": "Tilman"
+      },
+      {
+        "family": "Thaler",
+        "given": "Jesse"
+      },
+      {
+        "family": "Brehmer",
+        "given": "Johann"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2405.14806",
+    "id": "spinner2024lorentz",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "Lorentz-equivariant geometric algebra transformers for high-energy physics",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Yeasin",
+        "given": "Masuka"
+      }
+    ],
+    "id": "yeasin2011initial",
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "title": "Initial algebra, final coalgebra and datatype",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Zhang",
+        "given": "Tesla"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2107.13242",
+    "id": "zhang2021type",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "title": "Type theories in category theory",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Gundry",
+        "given": "Adam"
+      },
+      {
+        "family": "McBride",
+        "given": "Conor"
+      }
+    ],
+    "container-title": "Unpublished draft",
+    "id": "gundry2013tutorial",
+    "issued": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "page": "194",
+    "title": "A tutorial implementation of dynamic pattern unification",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Peng",
+        "given": "Bo"
+      },
+      {
+        "family": "Goldstein",
+        "given": "Daniel"
+      },
+      {
+        "family": "Anthony",
+        "given": "Quentin"
+      },
+      {
+        "family": "Albalak",
+        "given": "Alon"
+      },
+      {
+        "family": "Alcaide",
+        "given": "Eric"
+      },
+      {
+        "family": "Biderman",
+        "given": "Stella"
+      },
+      {
+        "family": "Cheah",
+        "given": "Eugene"
+      },
+      {
+        "family": "Ferdinan",
+        "given": "Teddy"
+      },
+      {
+        "family": "Hou",
+        "given": "Haowen"
+      },
+      {
+        "family": "Kazienko",
+        "given": "Przemysław"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2404.05892",
+    "id": "peng2024eagle",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "Eagle and finch: RWKV with matrix-valued states and dynamic recurrence",
+    "title-short": "Eagle and finch",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Krakauer",
+        "given": "David"
+      },
+      {
+        "family": "Bertschinger",
+        "given": "Nils"
+      },
+      {
+        "family": "Olbrich",
+        "given": "Eckehard"
+      },
+      {
+        "family": "Flack",
+        "given": "Jessica C"
+      },
+      {
+        "family": "Ay",
+        "given": "Nihat"
+      }
+    ],
+    "container-title": "Theory in Biosciences",
+    "id": "krakauer2020information",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "page": "209-223",
+    "publisher": "Springer",
+    "title": "The information theory of individuality",
+    "type": "article-journal",
+    "volume": "139"
+  },
+  {
+    "author": [
+      {
+        "family": "Albantakis",
+        "given": "Larissa"
+      },
+      {
+        "family": "Barbosa",
+        "given": "Leonardo"
+      },
+      {
+        "family": "Findlay",
+        "given": "Graham"
+      },
+      {
+        "family": "Grasso",
+        "given": "Matteo"
+      },
+      {
+        "family": "Haun",
+        "given": "Andrew M"
+      },
+      {
+        "family": "Marshall",
+        "given": "William"
+      },
+      {
+        "family": "Mayner",
+        "given": "William GP"
+      },
+      {
+        "family": "Zaeemzadeh",
+        "given": "Alireza"
+      },
+      {
+        "family": "Boly",
+        "given": "Melanie"
+      },
+      {
+        "family": "Juel",
+        "given": "Bjørn E"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "container-title": "PLoS Computational Biology",
+    "id": "albantakis2023integrated",
+    "issue": "10",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "page": "e1011465",
+    "publisher": "Public Library of Science San Francisco, CA USA",
+    "title": "Integrated information theory (IIT) 4.0: Formulating the properties of phenomenal existence in physical terms",
+    "title-short": "Integrated information theory (IIT) 4.0",
+    "type": "article-journal",
+    "volume": "19"
+  },
+  {
+    "author": [
+      {
+        "family": "Taylor",
+        "given": "Jordan K"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2402.01790",
+    "id": "taylor2024introduction",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "An introduction to graphical tensor notation for mechanistic interpretability",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://www.cphysics.org/article/86175.pdf",
+    "author": [
+      {
+        "family": "S",
+        "given": "Randy"
+      }
+    ],
+    "id": "randy2023matrix",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "title": "Matrix representations of clifford algebras",
+    "type": ""
+  },
+  {
+    "author": [
+      {
+        "family": "Berzins",
+        "given": "Arturs"
+      },
+      {
+        "family": "Radler",
+        "given": "Andreas"
+      },
+      {
+        "family": "Sanokowski",
+        "given": "Sebastian"
+      },
+      {
+        "family": "Hochreiter",
+        "given": "Sepp"
+      },
+      {
+        "family": "Brandstetter",
+        "given": "Johannes"
+      }
+    ],
+    "container-title": "arXiv preprint arXiv:2402.14009",
+    "id": "berzins2024geometry",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "title": "Geometry-informed neural networks",
+    "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Raissi",
+        "given": "Maziar"
+      },
+      {
+        "family": "Perdikaris",
+        "given": "Paris"
+      },
+      {
+        "family": "Karniadakis",
+        "given": "George E"
+      }
+    ],
+    "container-title": "Journal of Computational physics",
+    "id": "raissi2019physics",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "page": "686-707",
+    "publisher": "Elsevier",
+    "title": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "title-short": "Physics-informed neural networks",
+    "type": "article-journal",
+    "volume": "378"
   }
 ]

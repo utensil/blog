@@ -29,21 +29,23 @@ For the former, I should take a closer look at {{< cite "figueroa2010spin" >}} a
 
 For the latter, see the [Z-filteration in lean-ga](https://github.com/pygae/lean-ga/blob/master/src/geometric_algebra/from_mathlib/versors.lean) and [the prototype](https://github.com/eric-wieser/lftcm2023-clifford_algebra/).
 
-I also wish to include some latest results presented in {{< cite "ruhe2023clifford" >}}, with supplements from {{< cite "brehmer2023geometric" >}}, in which some of the results are proven in {{< cite "roelfs2023graded" >}}.
+I also wish to include some latest results presented in {{< cite "ruhe2023clifford" >}}, with supplements from {{< cite "brehmer2023geometric" >}} (lately there is a new paper applying this in HEP {{< cite "spinner2024lorentz" >}}, in the same spirit, I should also read {{< cite "berzins2024geometry" >}} and possibly {{< cite "raissi2019physics" >}})), in which some of the results are proven in {{< cite "roelfs2023graded" >}}.
 
 See also discussions in the [lean-ga blueprint](https://utensil.github.io/lean-ga/blueprint/sect0007.html).
 
 I've started a Forester experiment about the definitions of Spin groups [here](https://utensil.github.io/forest/spin-0001.xml). I also need to check citations of [On some Lie groups in degenerate Clifford geometric algebras](https://arxiv.org/abs/2301.06842).
 
-### The Matrix Cookbook (November 15, 2012)
+### Matrix
 
-This book {{< cite "petersen2008matrix" >}} covers many useful results about matrices, and Eric Wieser's project [lean-matrix-cookbook](https://github.com/eric-wieser/lean-matrix-cookbook) aims to give one-liner proofs (with reference to the counter part in Mathlib) to all of them.
+The Matrix Cookbook (November 15, 2012) {{< cite "petersen2008matrix" >}} covers many useful results about matrices, and Eric Wieser's project [lean-matrix-cookbook](https://github.com/eric-wieser/lean-matrix-cookbook) aims to give one-liner proofs (with reference to the counter part in Mathlib) to all of them.
 
 The project is far from complete and it would be great to claim a small portion of interested results and contribute to it. I also wish to figure out the GA counterpart of the same portion.
 
 Previous interests about matrices rise from Steven De Keninck's work on GALM {{< cite "de2019geometric" >}}, since the paper I have been interested in GA approaches that has practical advantages over traditional matrix-based methods. Notably the paper also discussed the link between degenerate Clifford algebras and dual numbers / automatic differentiation. A more recent inspiration might be his new work [LookMaNoMatrices](https://github.com/enkimute/LookMaNoMatrices).
 
 TODO: decide which results are interesting and feasible to be formalized for me.
+
+I wish to pursue further on the topic of Matrix/Tensor, see {{< cite "taylor2024introduction" >}} and {{< cite "randy2023matrix" >}}. The former also led me to [Einsums in C++](https://github.com/Einsums/Einsums). For the latter, I'm thinking of [HepLean.SpaceTime.CliffordAlgebra](https://github.com/HEPLean/HepLean/blob/master/HepLean/SpaceTime/CliffordAlgebra.lean).
 
 ### Group Algebra
 
@@ -59,7 +61,13 @@ This interest originates from reading Robert A. Wilson's work {{<cite "wilson202
 
 ### Type Theory
 
-Recently I have read [some meta-level dependent type theory](https://ice1000.org/) [Typst source](https://github.com/ice1000/website/tree/main/dtt-dev). It might be time to re-read `leantt` paper, and start reading `lean4lean` paper/source.
+Recently I have read [some meta-level dependent type theory](https://ice1000.org/) ([Typst source](https://github.com/ice1000/website/tree/main/dtt-dev)). It might be time to re-read `leantt` paper, and start reading `lean4lean` paper/source.
+
+The author `ice1000` has strong interest in QIIT (Quotient Inductive-Inductive Types) and QIIR (Quotient Inductive-Inductive Recursion), he has [implemented `overlap` in Aya](https://github.com/aya-prover/aya-dev/pull/1042) with [termination check and confluence check](https://github.com/aya-prover/aya-dev/blob/main/cli-impl/src/test/resources/negative/PatCohError.txt).
+
+Aya has a philosophy that the kernel could include pattern matching, but at the cost of no generation and translation of eliminators at present. In principle this is feasible, without `overlap`, it could be implemented by "theory of signatures", with `overlap`, it needs "Coherent and concurrent elimination for initial algebras" which I find fascinating, and have read {{< cite "yeasin2011initial" >}}.
+
+The author also has a great article on TT & Cat {{< cite "zhang2021type" >}}. His recommendation of {{< cite "gundry2013tutorial" >}} is also worth reading.
 
 Although remotely related, I'll place [Introduction to Formal Reasoning (COMP2065)](http://www.cs.nott.ac.uk/~psztxa/comp2065.23-24.ifr-notes/_build/html/index.html#) in this section so I won't lose track of it.
 
@@ -82,6 +90,8 @@ Here I would like to quote a generated response from Claude 1.2 Instant, which i
 > However, capturing the open-ended, non-deterministic nature of unconscious processes and the ambiguity/contingency of signification would be challenging and may require non-classical logics or probabilistic approaches.
 > 
 > So in summary, while difficult, certain aspects of Lacanian theory seem amenable to formalization using tools from logic, ontology, and knowledge representation. Careful design would be needed to address theory's complexity.
+
+Lately there is a paper formalizing Kant {{< cite "achourioti2011formalization" >}} which might be interesting.
 
 ## Generalized Clifford Algebra and related mathematical branches
 
@@ -204,6 +214,16 @@ a richer but still tractable representation that is an algebraic structure riche
 Its application to physics has the potential to formulate differential geometry in a more general setting, without assuming the existence of a locally Euclidean space as manifold did. It's believe that this approach can overcome some difficulties in Quantum field theory even Quantum gravity, because locally there might be no concept of a metric space at all {{< cite "mallios2015differential" >}}.
 
 Note that there are CAS systems that can do sheaf cohomology etc., e.g. [Macaulay2](https://macaulay2.com/), [OSCAR](https://www.oscar-system.org/).
+
+### ML
+
+I don't want efforts in [Transformers: from self-attention to performance optimizations](../transformer) to be discontinued, lately there is {{< cite "ferrando2024primer" >}} on this topic.
+
+I might need to follow on the latest development on the linear attention mechanism {{< cite "peng2024eagle" >}}.
+
+### Consciousness
+
+Lately I became aware of the work on mathematical models of consciousness, namely Integrated information theory {{< cite "albantakis2023integrated" >}} and The information theory of individuality {{< cite "krakauer2020information" >}}.
 
 ## TODOs
 
