@@ -27,8 +27,14 @@ terms:
     - example
 ---
 
-The following blog in Typst is adapted from [the official example](https://github.com/typst/typst?tab=readme-ov-file#example).
+Here we test example Typst from various sources.
 
 <!--more-->
 
-{{< show_typ "main" >}}
+The following is adapted from [the official example](https://github.com/typst/typst?tab=readme-ov-file#example).
+
+{{< show_typ "fibonacci" >}}
+
+The following is adapted from [Typst Examples Book](https://sitandr.github.io/typst-examples-book/book/).
+
+{{< show_typ "example" >}}

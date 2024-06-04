@@ -4,7 +4,6 @@
 {{ $svgSrc := printf "%s.artifact.svg" $name }}
 {{ $svg := .Page.Resources.Get $svgSrc | fingerprint "md5" }}
 <a href="{{ $pdf.RelPermalink }}" target="_blank" style="float: right; font-size: 12px; text-decoration: none;">📄 View as PDF</a>
-<div id="typst-app">
-{{ $svg.Content | safeHTML }}
+<div class="typst-app">
     <img src="{{ $svg.RelPermalink }}" onload="SVGInject(this)"/>
 </div>
