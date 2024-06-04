@@ -5,6 +5,7 @@ engine: julia
 ipynb-shell-interactivity: all
 execute:
   keep-ipynb: true
+  # daemon: false
   # Use this when svg is too huge
   fig-format: png
   # Adjust figure size to 10x10 inches
@@ -20,18 +21,62 @@ format:
 # julia --project=content/posts/ca-in-julia
 ---
 
+In this blog post, we will explore the [Grassmann.jl](https://github.com/chakravala/Grassmann.jl) library written in Julia for working with Clifford algebras.
+
+First, we import the library and the `CairoMakie` plotting library.
+
 ```{julia}
 using Grassmann
-using CairoMakie
+# using CairoMakie
+using GLMakie
+set_theme!(theme_light())
 ```
+
+The following code constructs a positive definite 3-dimensional `TensorBundle` with an additional plane at infinity:
 
 ```{julia}
 @basis S"∞+++"
+```
+
+then plot the following vector field:
+
+$$
+\exp\left(\frac{\frac{\pi}{2}(v_{12}+v_{\infty3})}{2}\right)
+$$
+
+First we project it into the submanifold $\langle\infty++\_\rangle$:
+
+```{julia}
 streamplot(
   vectorfield(
-    exp((π/4)*(v12+v∞3)),
-    V(2,3,4),V(1,2,3)
+    exp((π/2)*(v12+v∞3)/2),
+    V(1,2,3),V(1,2,3)
   ),-1.5..1.5,-1.5..1.5,-1.5..1.5,gridsize=(12,12))
+```
+
+Then we project it into the submanifold $\langle\_+++\rangle$:
+
+```{julia}
+speed = Observable{Float64}(0.0)
+vf = @lift(vectorfield(
+  exp((π/2)*(v12+$speed*v∞3)/2),
+  V(2,3,4),V(2,3,4)
+))
+
+fig, ax, pl = streamplot(vf,-1.5..1.5,-1.5..1.5,-1.5..1.5,gridsize=(12,12))
+
+framerate = 30
+timestamps = range(0, 2, step=1/framerate)
+
+record(fig, "streamplot.mp4", timestamps; framerate = framerate) do t
+    speed[] = Float64(t/10.0)
+    # ax.azimuth[] = 1.7pi + 0.3 * sin(2pi * t / 120)
+    # pl.colorrange = (0, t)
+end
+```
+
+```{=html}
+<video autoplay="" loop="" playsinline="" controls="" src="./streamplot.mp4"></video>
 ```
 
 ```{julia}
@@ -50,8 +95,6 @@ lines(V(2,3,4).(points(f)))
 ```
 
 ```{julia}
-using GLMakie
-
 Base.@kwdef mutable struct Lorenz
     dt::Float64 = 0.01
     σ::Float64 = 10
