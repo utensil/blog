@@ -10,4 +10,5 @@ check_single() {
 
 check_single "$PROJECT_ROOT/content/posts/transformer/transformer_layer.d2.svg"
 check_single "$PROJECT_ROOT/content/posts/transformer/transformer_layer.pikchr.svg"
-check_single "$PROJECT_ROOT/content/posts/typst-test/main.artifact.svg"
+check_single "$PROJECT_ROOT/content/posts/typst-test/fibonacci.artifact.svg"
+check_single "$PROJECT_ROOT/content/posts/typst-test/example.artifact.svg"
