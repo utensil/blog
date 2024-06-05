@@ -54,7 +54,7 @@ $
 
 #figure(
   caption: [caption],
-  image("./fibonacci.artifact.svg", width: 80%)
+  image("./github-original.svg", width: 80%)
 )
 
 #set heading(numbering: "1.1.")
@@ -109,9 +109,9 @@ _emphasized_ text is now blue.
 
 #lorem(20)
 
-Boxes are inline: #box(image("./fibonacci.artifact.svg", height: 3em)).
+Boxes are inline: #box(image("./github-original.svg", height: 3em)).
 
-Blocks are not: #block(image("./fibonacci.artifact.svg", width: 90%)).
+Blocks are not: #block(image("./github-original.svg", height: 3em)).
 
 #box(stroke: red, inset: 1em)[Box text]
 #block(stroke: red, inset: 1em)[Block text]
