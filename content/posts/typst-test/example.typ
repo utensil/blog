@@ -115,7 +115,10 @@ Blocks are not: #block(image("./github-original.svg", height: 3em)).
 
 #box(stroke: red, inset: 1em)[Box text]
 #block(stroke: red, inset: 1em)[Block text]
-#rect(height: auto)[Rect text] // without auto, would be affected by the rect height
+
+#set rect(height: auto)  // without auto, would be affected by the rect height
+
+#rect[Rect text]
 
 #figure(
   text(size: 5em)[I],
@@ -143,9 +146,85 @@ If you use several fractions inside one parent, they will take all remaining spa
 
 Left #h(1fr) Left-ish #h(2fr) Right
 
+
+#block(
+    fill: luma(230),
+    inset: 8pt,
+    radius: 4pt,
+    width: 100%,
+    height: 200pt,
+    [
+        #place(
+            top + right, // place at the page right and top
+            square(
+                width: 20pt,
+                stroke: 2pt + blue
+            ),
+        )
+
+        #let note(where, body) = place(
+            center + where,
+            float: true,
+            clearance: 6pt,
+            rect(body),
+        )
+
+        #lorem(10)
+        #note(bottom)[Bottom 1]
+        #note(bottom)[Bottom 2]
+        #lorem(10)
+        #note(top)[Top]
+        #lorem(10)
+
+        #for i in range(16) {
+            let amount = i * 6pt
+            place(center, dx: 2*amount - 32pt, dy: -0.2*amount)[A]
+        }
+
+        #rect(inset: 0pt, move(
+            dx: 6pt, dy: 6pt,
+            rect(
+                inset: 8pt,
+                fill: white,
+                stroke: black,
+                [Abra cadabra]
+            )
+        ))
+    ]
+)
+
+This is mirrored.
+
+#scale(y: -100%)[This is mirrored.]
+
+#scale(200%, origin: bottom + left)[This is enlarged.]
+#scale(200%, origin: top + left, text(blue)[This is enlarged \ and eats what follows.])
+
+#lorem(20)
+
+#hide(lorem(20)) Something is hidden before this but occupies space.
+
+#let yield_cells = {
+    for i in range(5) {
+        for j in range(2) {
+            (text(str(i + j)),)
+        }
+    }
+}
+
+#table(
+    columns: 2,
+    fill: (x, y) => if x+y == 2 { yellow } else if x + y == 3 { red },
+    ..yield_cells
+)
+
 The rest are shown in two columns except for this paragraph. #lorem(20)
 
 #show: rest => columns(2, rest)
+
+#lorem(20)
+
+#colbreak()
 
 #lorem(20)
 
