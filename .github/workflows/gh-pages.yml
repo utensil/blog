@@ -89,6 +89,10 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Install typst-ts-cli
+        run: |
+          cargo install --locked --git https://github.com/Myriad-Dreamin/typst.ts typst-ts-cli
+          which typst-ts-cli
       - name: Build D2 & Pikchr diagrams, Typst docs
         run: |
           bash scripts/make_all.sh
