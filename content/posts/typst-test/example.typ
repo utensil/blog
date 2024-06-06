@@ -403,10 +403,187 @@ alpha, Alpha, beta, Beta, beta.alt, gamma, pi, Pi,\
 pi.alt, phi, phi.alt, Phi, omicron, kappa, kappa.alt, Psi,\
 theta, theta.alt, xi, zeta, rho, rho.alt, kai, Kai,\
 
-bb(A), AA, bb(1)
+bb(A), AA, bb(1) \
+
+nothing, nothing.rev, diameter \
+$
+
+#show math.equation: set text(features: ("cv01",))
+
+$
+nothing, nothing.rev, diameter
+$
+
+#show math.nothing: math.diameter
+
+$
+nothing, nothing.rev, diameter
+$
 
 $
 
+(a^2 + b^2)/2 \
+
+{[((a + b)/2) + 1]_0} \
+
+lr([a/2, b), size: #150%) \
+
+abs(a + b), norm(a + b), floor(a + b), ceil(a + b), round(a + b) \
+
+
+
+$
+
+// #block[
+
+// #show math.equation: set align(right)
+
+// $
+// (a + b)/2
+// $
+
+// ]
+
+// the above is not working
+
+#align(center, block($ x = 5 $))
+
+$ (3x + y) / 7 &= 9 && "given" \
+  3x + y &= 63 && "multiply by 7" \
+  3x &= 63 - y && "subtract y" \
+  x &= 21 - y/3 && "divide by 3" $
+
+#show math.integral: math.limits
+#show math.sum: math.limits
+
+$
+sum_a^b \
+
+integral_a^b \
+
+scripts(sum)_a^b \
+
+a =_"By lemme 1" b, a scripts(=)_+ b \
+
+arccos, arcsin, arctan, arg, cos, cosh, cot, coth, csc,\
+csch, ctg, deg, det, dim, exp, gcd, hom, id, im, inf, ker,\
+lg, lim, liminf, limsup, ln, log, max, min, mod, Pr, sec,\
+sech, sin, sinc, sinh, sup, tan, tanh, tg "and" tr \
+$
+
+#let arcsinh = math.op("arcsinh")
+
+$
+arcsinh x
+$
+
+#let liminf = math.op(math.underline(math.lim), limits: true)
+#let limsup = math.op(math.overline(math.lim), limits: true)
+#let integrate = math.op($integral dif x$)
+
+$
+liminf_(x->oo)\
+limsup_(x->oo)\
+integrate x^2
+$
+
+Inline, but like true display: $display(sum_0^oo e^x^a)$
+
+$
+vec(a, b, c) + vec(1, 2, 3) = vec(a + 1, b + 2, c + 3) \
+
+vec(1, 2, 3, delim: "{") \
+vec(1, 2, 3, delim: "||") \
+vec(1, 2, 3, delim: #none) \
+
+vec(a, b, c)
+vec(a, b, c, gap:#0em)
+vec(a, b, c, gap:#1em) \
+
+mat(
+    1, 2, ..., 10;
+    2, 2, ..., 10;
+    dots.v, dots.v, dots.down, dots.v;
+    10, 10, ..., 10; // `;` in the end is optional
+) \
+
+mat(
+    delim: "|",
+    1, 2, ..., 10;
+    2, 2, ..., 10;
+    dots.v, dots.v, dots.down, dots.v;
+    10, 10, ..., 10;
+    gap: #0.3em
+) \
+
+$'
+
+#for klass in ("normal",
+                "punctuation",
+                "opening",
+                "closing",
+                "fence",
+                "large",
+                "relation",
+                "unary",
+                "binary",
+                "vary"
+                ) {
+    align(center, block[
+        #show math.circle: math.class.with(klass)
+
+        $
+        text(#klass : )
+        class("normal", a) class(#klass, b) class("normal", c) quad square circle square
+        $
+    ])
+
+}
+
+#align(center, block(width: 7em)[
+
+// Cruel and world are separated.
+// Imagine this is a phrase that can't be split, what to do then?
+Hello cruel world
+
+// Let's connect them with a special space!
+
+// No usual spacing is allowed, so either use semicolumn...
+Hello cruel#sym.space.nobreak;world
+
+// ...parentheses...
+Hello cruel#(sym.space.nobreak)world
+
+// ...or unicode code
+Hello cruel\u{00a0}world
+
+// Well, to achieve the same effect I recommend using box:
+Hello #box[cruel world]
+
+])
+
+#align(center, block(width: 5em)[
+
+This is an $i$-th element.
+
+This is an $i$\u{2011}th element.
+
+// the best way would be
+#show "-th": "\u{2011}th"
+
+This is an $i$-th element.
+
+])
+
+== Bibliography and Citation Style
+
+This was already noted by
+pirates long ago. @taylor2024introduction
+
+Multiple sources say ...
+@zhang2021type @yeasin2011initial.
+
+#bibliography("../math-2024/bib.bib", style: "chicago-author-date")
 
 ]
 
