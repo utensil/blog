@@ -82,11 +82,13 @@ Here is some green text.
 
 _emphasized_ text is now blue.
 
+#block[
+
 #show heading.where(level: 3): set align(center)
 
 === centered heading
 
-#show heading.where(level: 3): it => {
+#show heading.where(level: 4): it => {
     set align(right)
     set text(red)
     // set heading(numbering: "1.I:") // not working
@@ -94,7 +96,7 @@ _emphasized_ text is now blue.
     //it
 }
 
-=== red heading
+==== red heading
 
 #let apply-template(body, name: "My document") = {
   show heading.where(level: 4): emph
@@ -108,6 +110,8 @@ _emphasized_ text is now blue.
 #show: apply-template.with(name: "Report")
 
 #lorem(20)
+
+]
 
 Boxes are inline: #box(image("./github-original.svg", height: 3em)).
 
@@ -204,21 +208,9 @@ This is mirrored.
 
 #hide(lorem(20)) Something is hidden before this but occupies space.
 
-#let yield_cells = {
-    for i in range(5) {
-        for j in range(2) {
-            (text(str(i + j)),)
-        }
-    }
-}
+The rest are shown in two columns except for this paragraph. #lorem(10)
 
-#table(
-    columns: 2,
-    fill: (x, y) => if x+y == 2 { yellow } else if x + y == 3 { red },
-    ..yield_cells
-)
-
-The rest are shown in two columns except for this paragraph. #lorem(20)
+#block[
 
 #show: rest => columns(2, rest)
 
@@ -228,7 +220,193 @@ The rest are shown in two columns except for this paragraph. #lorem(20)
 
 #lorem(20)
 
+#colbreak()
+
 // #show: rest => columns(1, rest) // not working
+
+]
+
+== Scripting
+
+#table(
+    columns: 2,
+    fill: (x, y) => if x+y == 2 { yellow } else if x + y == 3 { red } else { blue.lighten(50%) },
+    ..for i in range(5) {
+        for j in range(2) {
+            (text(str(i + j)),)
+        }
+    }
+)
+
+#let f = (name) => "Hello, " + name
+
+#f("Typst function!")
+
+#let g(name) = "Hello, " + name
+
+#g("Typst function shorthand!")
+
+By default braces return anything that "returns" into them.
+
+#let h() = {
+    "Str1"
+
+    [Str2]
+
+    lorem(5)
+}
+
+#h()
+
+#let i() = {
+    "Str1"
+
+    return "Str"
+}
+
+#i()
+
+#let j(name: "Typst function with default value") = "Hello, " + name + "."
+
+#j()
+
+
+#j(name: "Typst function with named argument")
+
+
+#(type([content]) == content)
+
+#repr([It is _content_!])
+
+#repr(none)
+
+=== String
+
+#let s = "another small string"
+#s.replace("a", sym.alpha) \
+#s.split(" ") // split by space
+
+#(2 - 5) \
+#0xff \
+#0o10 \
+#0b1001
+
+#calc.pow(2, 10)
+
+=== List
+
+#let values = (1, 7, 4, -3, 2)
+
+#repr(values)
+
+#values.at(-1)
+
+#values.find(calc.even)
+
+#values.filter(calc.odd)
+
+#()
+
+=== Dict
+
+#let dict = (
+  name: "Typst",
+  born: 2019,
+)
+
+#repr(dict)
+
+#dict.at("born")
+
+#dict.insert("city", "Berlin ")
+
+#("name" in dict)
+
+#(:)
+
+=== Conditions & loops
+
+#let a = 5
+
+#if (a > 1 and a <= 4) or a == 5 [
+    `a` matches the condition
+]
+
+#let s = 0
+
+#for i in range(3, 6) {
+    s += i
+    [Number #i is added to sum. Now sum is #s.]
+}
+
+#let people = (Alice: 3, Bob: 5)
+
+#for (name, value) in people [
+    #name has #value apples.
+]
+
+#let text-params = (fill: blue, size: 0.8em)
+
+Some #text(..text-params)[text].
+
+#let f(..args) = [
+  #args.pos()\
+  #args.named()
+]
+
+#f(1, "a", width: 50%, block: false)
+
+=== State
+
+#let s = state("x", 0)
+#let compute(expr) = [
+  #s.update(x =>
+    eval(expr.replace("x", str(x)))
+  )
+  New value is #context s.get().
+]
+
+#compute("10") \
+#compute("x + 3") \
+#compute("x * 2") \
+#compute("x - 5")
+
+Value at `<here>` is
+#context s.at(<here>)
+
+#compute("10") \
+#compute("x + 3") \
+*Here.* <here> \
+#compute("x * 2") \
+#compute("x - 5")
+
+=== Math
+
+$
+forall v, w in V, alpha in KK: alpha dot (v + w) = alpha v + alpha w \
+
+// cont — contour
+integral, integral.cont, integral.double, integral.square, sum.integral \
+
+// lt — less than, gt — greater than
+lt, lt.circle, lt.curly, lt.eq, lt.eq.curly, lt.not, lt.eq.not, lt.eq.not.curly, gt, lt.gt.eq, lt.gt.not \
+
+gt.nequiv, gt.napprox, gt.ntilde, gt.tilde.not \
+
+arrow.b, triangle.r, angle.l \
+
+plus.circle.big plus.circle, times.circle.big plus.circle \
+
+square, square.filled, diamond.filled, arrow.filled \
+
+alpha, Alpha, beta, Beta, beta.alt, gamma, pi, Pi,\
+pi.alt, phi, phi.alt, Phi, omicron, kappa, kappa.alt, Psi,\
+theta, theta.alt, xi, zeta, rho, rho.alt, kai, Kai,\
+
+bb(A), AA, bb(1)
+
+$
+
 
 ]
 
