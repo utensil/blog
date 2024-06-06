@@ -380,7 +380,7 @@ Value at `<here>` is
 #compute("x * 2") \
 #compute("x - 5")
 
-=== Math
+=== Math  <math>
 
 $
 forall v, w in V, alpha in KK: alpha dot (v + w) = alpha v + alpha w \
@@ -518,6 +518,8 @@ mat(
 
 $'
 
+#set math.equation(numbering: "(1)")
+
 #for klass in ("normal",
                 "punctuation",
                 "opening",
@@ -578,10 +580,12 @@ This is an $i$-th element.
 == Bibliography and Citation Style
 
 This was already noted by
-pirates long ago. @taylor2024introduction
+pirates long ago @taylor2024introduction .
 
 Multiple sources say ...
 @zhang2021type @yeasin2011initial.
+
+Goes back to @math .
 
 #bibliography("../math-2024/bib.bib", style: "chicago-author-date")
 
