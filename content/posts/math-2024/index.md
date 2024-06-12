@@ -217,6 +217,14 @@ Its application to physics has the potential to formulate differential geometry 
 
 Note that there are CAS systems that can do sheaf cohomology etc., e.g. [Macaulay2](https://macaulay2.com/), [OSCAR](https://www.oscar-system.org/).
 
+### Synthetic Differential Geometry
+
+For SDG, {{< cite "kock2006synthetic" >}} is a classic. {{< cite "schellingerhoutcircles" >}} is a concise bachelor thesis on the topic, and has interesting discussions on circles.
+
+[Ryszard Paweł Kostecki](https://www.fuw.edu.pl/~kostecki/) has very approachable notes on Topos {{< cite "kostecki2011introduction" >}} and SDG {{< cite "kostecki2009differential" >}}.
+
+We should also read {{< cite "rosiak2022sheaf" >}}. It also has many diagrams in the way I imagined, for examples of sheaf.
+
 ### ML
 
 I don't want efforts in [Transformers: from self-attention to performance optimizations](../transformer) to be discontinued, lately there is {{< cite "ferrando2024primer" >}} on this topic.

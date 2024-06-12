@@ -1353,5 +1353,101 @@
     "title": "Magnushammer: A transformer-based approach to premise selection",
     "title-short": "Magnushammer",
     "type": "article-journal"
+  },
+  {
+    "URL": "https://users-math.au.dk/kock/sdg99.pdf",
+    "author": [
+      {
+        "family": "Kock",
+        "given": "Anders"
+      }
+    ],
+    "id": "kock2006synthetic",
+    "issued": {
+      "date-parts": [
+        [
+          2006
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "title": "Synthetic differential geometry",
+    "type": "book",
+    "volume": "333"
+  },
+  {
+    "URL": "https://pure.tue.nl/ws/portalfiles/portal/308028780/Thesis_BTW_Rob_Schellingerhout_Report_002_.pdf",
+    "author": [
+      {
+        "family": "Schellingerhout",
+        "given": "Rob"
+      },
+      {
+        "family": "Portegies",
+        "given": "JW"
+      }
+    ],
+    "id": "schellingerhoutcircles",
+    "title": "Circles in synthetic differential geometry",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://www.fuw.edu.pl/~kostecki/ittt.pdf",
+    "author": [
+      {
+        "family": "Kostecki",
+        "given": "Ryszard Paweł"
+      }
+    ],
+    "container-title": "Technial Report",
+    "id": "kostecki2011introduction",
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "title": "An introduction to topos theory",
+    "type": "article-journal"
+  },
+  {
+    "URL": "https://www.fuw.edu.pl/~kostecki/sdg.pdf",
+    "author": [
+      {
+        "family": "Kostecki",
+        "given": "Ryszard Paweł"
+      }
+    ],
+    "id": "kostecki2009differential",
+    "issued": {
+      "date-parts": [
+        [
+          2009
+        ]
+      ]
+    },
+    "publisher": "Citeseer",
+    "title": "Differential geometry in toposes",
+    "type": ""
+  },
+  {
+    "author": [
+      {
+        "family": "Rosiak",
+        "given": "Daniel"
+      }
+    ],
+    "id": "rosiak2022sheaf",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "publisher": "MIT Press",
+    "title": "Sheaf theory through examples",
+    "type": "book"
   }
 ]
