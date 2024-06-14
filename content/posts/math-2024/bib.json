@@ -1387,7 +1387,14 @@
         "given": "JW"
       }
     ],
-    "id": "schellingerhoutcircles",
+    "id": "schellingerhout2023circles",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
     "title": "Circles in synthetic differential geometry",
     "type": "article-journal"
   },

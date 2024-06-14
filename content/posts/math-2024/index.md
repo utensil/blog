@@ -219,7 +219,7 @@ Note that there are CAS systems that can do sheaf cohomology etc., e.g. [Macaula
 
 ### Synthetic Differential Geometry
 
-For SDG, {{< cite "kock2006synthetic" >}} is a classic. {{< cite "schellingerhoutcircles" >}} is a concise bachelor thesis on the topic, and has interesting discussions on circles.
+For SDG, {{< cite "kock2006synthetic" >}} is a classic. {{< cite "schellingerhout2023circles" >}} is a concise bachelor thesis on the topic, and has interesting discussions on circles.
 
 [Ryszard Paweł Kostecki](https://www.fuw.edu.pl/~kostecki/) has very approachable notes on Topos {{< cite "kostecki2011introduction" >}} and SDG {{< cite "kostecki2009differential" >}}.
 
