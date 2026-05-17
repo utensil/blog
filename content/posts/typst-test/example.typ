@@ -389,7 +389,7 @@ forall v, w in V, alpha in KK: alpha dot (v + w) = alpha v + alpha w \
 integral, integral.cont, integral.double, integral.square, sum.integral \
 
 // lt — less than, gt — greater than
-lt, lt.circle, lt.curly, lt.eq, lt.eq.curly, lt.not, lt.eq.not, lt.eq.not.curly, gt, lt.gt.eq, lt.gt.not \
+lt, lt.circle, lt.eq, lt.not, lt.eq.not, gt, lt.gt.eq, lt.gt.not \
 
 gt.nequiv, gt.napprox, gt.ntilde, gt.tilde.not \
 
@@ -493,7 +493,7 @@ $
 vec(a, b, c) + vec(1, 2, 3) = vec(a + 1, b + 2, c + 3) \
 
 vec(1, 2, 3, delim: "{") \
-vec(1, 2, 3, delim: "||") \
+vec(1, 2, 3, delim: "|") \
 vec(1, 2, 3, delim: #none) \
 
 vec(a, b, c)
