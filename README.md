@@ -1,6 +1,8 @@
 # Blog
 
-My math-intensive learning notes are hosted in this blog. Built with:
+Utensil's Hugo blog for math, tech and thoughts.
+
+Built with:
 
 - [Hugo](https://gohugo.io/): a popular static site generator for blogs, with [PaperMod](https://github.com/adityatelange/hugo-PaperMod) as base template, [MathJax](https://www.mathjax.org/) [support](https://gohugo.io/content-management/mathematics/), and [hugo-cite](https://github.com/loup-brun/hugo-cite) for citation support.
 - [Quarto](https://quarto.org/)  ([example post](https://utensil.github.io/blog/posts/quarto-test/)): via [hugo-md](https://quarto.org/docs/output-formats/hugo.html) support, with [Pandoc](https://pandoc.org/) as the universal converter, for:
