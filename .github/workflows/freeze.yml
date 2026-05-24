@@ -47,7 +47,8 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: "1.5.39"
-          tinytex: true
+          # no tinytex: blog renders to hugo-md (no PDF/LaTeX), and the tinytex
+          # fetch 403s on the runner anyway.
 
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v2
