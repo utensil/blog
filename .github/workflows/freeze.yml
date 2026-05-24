@@ -79,7 +79,9 @@ jobs:
           which typst-ts-cli
 
       - name: Prepare freeze env (Julia deps, etc.)
-        run: scripts/setup-freeze-env.sh
+        # GLMakie/GLFW need an OpenGL context even during precompile → run under
+        # xvfb on headless CI (locally on macOS the real display is used).
+        run: xvfb-run -s '-screen 0 3840x2160x24' -a scripts/setup-freeze-env.sh
 
       - name: Refresh freeze (Julia execution under xvfb)
         run: xvfb-run -s '-screen 0 3840x2160x24' -a scripts/freeze.sh
