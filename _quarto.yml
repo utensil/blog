@@ -6,8 +6,11 @@ format:
   hugo-md:
     code-fold: true
   
-execute: 
+execute:
   warning: false
+  # Reuse committed _freeze/ instead of re-executing (e.g. Julia) on every render.
+  # Freeze is refreshed via scripts/freeze.sh; tangled renders Julia-free off it.
+  freeze: auto
 
 # # supppress HTML output
 # to: markdown

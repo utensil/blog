@@ -1,0 +1,101 @@
+# Refresh the committed Quarto freeze (_freeze/ + generated media).
+# This is the convenience runner; the same steps run locally via
+# scripts/setup-freeze-env.sh + scripts/freeze.sh. Tangled never runs this.
+name: Refresh Quarto Freeze
+
+on:
+  workflow_dispatch:
+  # During first-freeze + validation, trigger on any push to the `freeze`
+  # branch (workflow_dispatch only works from the default branch). Tighten to
+  # content/**/*.qmd + Project/Manifest paths once this is merged to master.
+  push:
+    branches:
+      - freeze
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    # Skip the workflow's own freeze commit, so the push it makes doesn't loop.
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Julia 1.10.3
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10.3'
+
+      - name: Cache ~/.julia
+        uses: actions/cache@v4
+        with:
+          path: ~/.julia
+          key: julia-${{ runner.os }}-${{ hashFiles('content/posts/ca-in-julia/Manifest.toml') }}
+          restore-keys: |
+            julia-${{ runner.os }}-
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.5.39"
+          tinytex: true
+
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.125.2'
+          extended: true
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: 'pip'
+
+      - name: Install Python deps
+        run: "[[ -f requirements.txt ]] && pip install -r requirements.txt || true"
+
+      - name: Install headless OpenGL (GLMakie)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake xorg-dev mesa-utils xvfb libgl1 freeglut3-dev
+
+      - name: Install D2
+        run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+
+      - name: Install typst-ts-cli
+        run: |
+          cargo install --locked --git https://github.com/Myriad-Dreamin/typst.ts typst-ts-cli
+          which typst-ts-cli
+
+      - name: Prepare freeze env (Julia deps, etc.)
+        run: scripts/setup-freeze-env.sh
+
+      - name: Refresh freeze (Julia execution under xvfb)
+        run: xvfb-run -s '-screen 0 3840x2160x24' -a scripts/freeze.sh
+
+      - name: Commit & push refreshed freeze
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _freeze/
+          # Generated media is gitignored; force-add so tangled can reuse it.
+          git add -f \
+            content/posts/ca-in-julia/index.md \
+            content/posts/ca-in-julia/lorenz.mp4 \
+            content/posts/ca-in-julia/streamplot.mp4 || true
+          if git diff --cached --quiet; then
+            echo "No freeze changes to commit."
+          else
+            git commit -m "chore(blog): refresh Quarto freeze"
+            git push
+          fi
