@@ -31,10 +31,22 @@ else
     echo "    WARNING: _freeze/ was not created by quarto render"
 fi
 
-echo "==> Generated media status (gitignored; commit with: git add -f <path>)"
-git status --short --ignored -- \
-    content/posts/ca-in-julia/index.md \
-    content/posts/ca-in-julia/lorenz.mp4 \
-    content/posts/ca-in-julia/streamplot.mp4 || true
+# All generated artifacts are gitignored; tangled reuses them (no Julia / typst
+# / d2 / pikchr toolchain there), so they MUST be force-added when freezing.
+ARTIFACTS=(
+    content/posts/ca-in-julia/index.md
+    content/posts/ca-in-julia/lorenz.mp4
+    content/posts/ca-in-julia/streamplot.mp4
+    content/posts/transformer/transformer_layer.d2.svg
+    content/posts/transformer/transformer_layer.pikchr.svg
+    content/posts/typst-test/fibonacci.artifact.svg
+    content/posts/typst-test/example.artifact.svg
+    content/posts/typst-test/fibonacci.pdf
+    content/posts/typst-test/example.pdf
+)
 
-echo "Done. Review changes, then: git add _freeze/ && git add -f content/posts/ca-in-julia/{index.md,lorenz.mp4,streamplot.mp4}"
+echo "==> Generated artifact status (gitignored; commit with: git add -f <path>)"
+git status --short --ignored -- "${ARTIFACTS[@]}" || true
+
+echo "Done. Review changes, then:"
+echo "    git add _freeze/ && git add -f ${ARTIFACTS[*]}"

@@ -91,11 +91,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add _freeze/
-          # Generated media is gitignored; force-add so tangled can reuse it.
+          # All generated artifacts are gitignored; force-add them so tangled can
+          # render with NO Julia / typst / d2 / pikchr toolchain (it reuses these).
           git add -f \
             content/posts/ca-in-julia/index.md \
             content/posts/ca-in-julia/lorenz.mp4 \
-            content/posts/ca-in-julia/streamplot.mp4 || true
+            content/posts/ca-in-julia/streamplot.mp4 \
+            content/posts/transformer/transformer_layer.d2.svg \
+            content/posts/transformer/transformer_layer.pikchr.svg \
+            content/posts/typst-test/fibonacci.artifact.svg \
+            content/posts/typst-test/example.artifact.svg \
+            content/posts/typst-test/fibonacci.pdf \
+            content/posts/typst-test/example.pdf || true
           if git diff --cached --quiet; then
             echo "No freeze changes to commit."
           else
