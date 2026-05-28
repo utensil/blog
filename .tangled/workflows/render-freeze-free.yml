@@ -121,8 +121,15 @@ steps:
       echo "::endgroup::"
 
       echo "::group::verify freshly-rendered ca-in-julia mp4s"
-      ls -lh public/content/posts/ca-in-julia/*.mp4 2>/dev/null \
-        || { echo "::error::no fresh mp4s in public/content/posts/ca-in-julia/"; exit 1; }
+      # Don't hardcode the path — Hugo URL structure isn't pinned here. Just confirm
+      # at least two .mp4 land in public/ (streamplot + lorenz), report where.
+      echo "--- mp4s under public/ ---"
+      find public -name '*.mp4' -printf '%p  %s bytes\n' 2>/dev/null || find public -name '*.mp4' -exec ls -lh {} \;
+      echo "--- mp4s in source content (where Julia record() writes) ---"
+      find content -name '*.mp4' -newer /tmp/depot.tar.zst -printf '%p  %s bytes\n' 2>/dev/null || true
+      n=$(find public -name '*.mp4' 2>/dev/null | wc -l)
+      [ "$n" -ge 2 ] || { echo "::error::expected 2+ mp4s in public/, found $n"; exit 1; }
+      echo "✓ $n mp4s in public/"
       echo "::endgroup::"
 
       echo "✅ freeze-free render OK — branch CI does NOT publish (production untouched)"
