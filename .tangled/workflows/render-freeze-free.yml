@@ -82,13 +82,15 @@ steps:
       ls _freeze/content/posts/ 2>&1 | head || true
       echo "::endgroup::"
 
-      echo "::group::clone infra-land flake locally (sidesteps nix git+https redirect)"
-      # tangled.org/<user>/<repo> 302-redirects to knot1.tangled.sh/<did>/<repo>, and
-      # nix's git-flake fetcher loses `?dir=nix` through that redirect (`error: path
-      # '«git+https://…?ref=refs/heads/…»` — the failure from the first attempt). git
-      # itself follows the redirect fine; clone locally then point nix develop at the path.
+      echo "::group::clone infra-land flake locally (from GitHub)"
+      # Use github.com — that's where my freeze-free flake actually lives. tangled's
+      # mirror of infra-land is currently behind (last push there was the operator's
+      # 'herdr config' commit, predates nix/flake.nix). Also sidesteps two earlier
+      # problems: nix's git-flake fetcher losing ?dir=nix through tangled's
+      # tangled.org→knot1.tangled.sh 302 (`error: path '«git+https://…?ref=refs/heads/…»`),
+      # and tangled returning a different repo than expected via that redirect.
       rm -rf /tmp/infra-land
-      git clone --depth 1 https://tangled.org/utensil.tngl.sh/infra-land /tmp/infra-land
+      git clone --depth 1 https://github.com/utensil/infra-land /tmp/infra-land
       ls /tmp/infra-land/nix/flake.nix
       echo "::endgroup::"
 
