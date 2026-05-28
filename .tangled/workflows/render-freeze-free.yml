@@ -108,7 +108,11 @@ steps:
           Xvfb :73 -screen 0 1280x1024x24 +extension GLX +render -noreset >/tmp/xvfb.log 2>&1 &
           sleep 4
           export JULIA_DEPOT_PATH="/tmp/wdepot:'"$DEPOT_PATH"'"
-          export JULIA_PKG_OFFLINE=true
+          # No JULIA_PKG_OFFLINE: Quarto's ensureQuartoNotebookRunnerEnvironment
+          # runs Pkg.up internally, which calls check_registered against
+          # reachable_registries(). Without offline + with no Dummy in the depot,
+          # Pkg installs the real General registry to /tmp/wdepot (writable, network
+          # is available on Spindle) and the check passes.
           julia --version; quarto --version; hugo version
           quarto render .
           hugo --minify
