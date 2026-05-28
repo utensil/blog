@@ -82,13 +82,23 @@ steps:
       ls _freeze/content/posts/ 2>&1 | head || true
       echo "::endgroup::"
 
+      echo "::group::clone infra-land flake locally (sidesteps nix git+https redirect)"
+      # tangled.org/<user>/<repo> 302-redirects to knot1.tangled.sh/<did>/<repo>, and
+      # nix's git-flake fetcher loses `?dir=nix` through that redirect (`error: path
+      # '«git+https://…?ref=refs/heads/…»` — the failure from the first attempt). git
+      # itself follows the redirect fine; clone locally then point nix develop at the path.
+      rm -rf /tmp/infra-land
+      git clone --depth 1 https://tangled.org/utensil.tngl.sh/infra-land /tmp/infra-land
+      ls /tmp/infra-land/nix/flake.nix
+      echo "::endgroup::"
+
       echo "::group::render LIVE via blog-render devShell (julia + GL recipe + Xvfb)"
       mkdir -p /tmp/wdepot
       # The devShell sets LD_LIBRARY_PATH / LIBGL_* / GALLIUM_DRIVER / __GLX_VENDOR_LIBRARY_NAME
       # via shellHook; we just add DISPLAY, start Xvfb, point JULIA_DEPOT_PATH at the cached
       # depot, then quarto render runs the Julia LIVE through GLMakie.
       nix --extra-experimental-features 'nix-command flakes' develop \
-        "git+https://tangled.org/utensil.tngl.sh/infra-land?dir=nix#blog-render" \
+        "/tmp/infra-land/nix#blog-render" \
         -c bash -c '
           set -e
           export DISPLAY=:73
