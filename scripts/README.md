@@ -7,43 +7,19 @@
 - `make_changed.sh` / `dev.sh` — incremental rebuild + live preview (watchexec).
 - `install_pikchr.sh`, `install_typst_ts_cli.sh` — fetch the diagram binaries.
 
-## How to refresh the freeze
+## How the blog is rendered
 
-The `ca-in-julia` post executes Julia (GLMakie animations), which is too heavy
-for tangled's short, no-cache CI. So we **freeze** that execution: Quarto's
-`_freeze/` cache (plus the generated `index.md` and `*.mp4`) is committed, and
-tangled does a Julia-**free** `quarto render` that reuses it (`freeze: auto` in
-`_quarto.yml`).
+Two independent lanes, no cross-deps:
 
-Refresh the freeze whenever you change a Julia-touching post (its `.qmd`,
-`Project.toml`, or `Manifest.toml`):
+- **github.io lane** — `.github/workflows/gh-pages.yml` does a LIVE render on
+  GitHub Actions (`julia-actions/setup-julia` + `xvfb-run quarto/hugo`) and
+  publishes to `https://utensil.github.io/blog/`.
+- **tngl.sh lane** — `.tangled/workflows/{build-depot,render}.yml` runs on
+  tangled's Spindle: `build-depot.yml` pre-builds the precompiled Julia depot
+  + render-env closure (nix flake at repo root) and uploads to Cloudflare R2;
+  `render.yml` pulls them via `manifest.json` and renders LIVE under Xvfb,
+  publishing to the `site` branch → `https://utensil.tngl.sh/blog/`.
 
-1. Once per machine, prepare the toolchain (idempotent):
-   ```sh
-   ./scripts/setup-freeze-env.sh
-   ```
-   Installs pinned Julia 1.10.3 (juliaup) + the post's deps, and checks/installs
-   Quarto 1.5.39, Hugo 0.125.2, and the diagram tools (d2, pikchr, typst-ts-cli).
-   It prints anything it can't auto-install.
-
-2. Before committing the change, regenerate the freeze:
-   ```sh
-   ./scripts/freeze.sh
-   ```
-   On macOS GLMakie uses the real display. On headless Linux run it under xvfb:
-   `xvfb-run -a ./scripts/freeze.sh`.
-
-3. Commit the result (generated media is gitignored, so force-add it):
-   ```sh
-   git add _freeze/
-   git add -f content/posts/ca-in-julia/index.md \
-              content/posts/ca-in-julia/lorenz.mp4 \
-              content/posts/ca-in-julia/streamplot.mp4
-   ```
-
-GitHub Actions does the same automatically: the **Refresh Quarto Freeze**
-workflow (`.github/workflows/freeze.yml`) runs on `workflow_dispatch`, on push
-to the `freeze` branch, and when a `.qmd` / `Project.toml` / `Manifest.toml`
-changes — it commits "chore(blog): refresh Quarto freeze" and pushes.
-
-**Tangled never runs Julia.** It only renders off the committed `_freeze/`.
+No freeze step is needed any more — the `ca-in-julia` Julia post executes on
+both lanes, and `_freeze/` is no longer relied upon. Quarto's `freeze: auto`
+remains on (in `_quarto.yml`) for cheap local re-renders only.

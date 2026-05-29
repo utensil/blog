@@ -8,8 +8,9 @@ format:
   
 execute:
   warning: false
-  # Reuse committed _freeze/ instead of re-executing (e.g. Julia) on every render.
-  # Freeze is refreshed via scripts/freeze.sh; tangled renders Julia-free off it.
+  # `freeze: auto` only short-circuits local re-renders when sources are
+  # unchanged. Both CI lanes (gh-pages.yml on GH Actions, render.yml on tangled
+  # Spindle) execute Julia LIVE — neither relies on a committed `_freeze/`.
   freeze: auto
 
 # # supppress HTML output
