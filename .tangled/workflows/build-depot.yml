@@ -4,10 +4,14 @@ engine: nixery
 # package + upload to R2. Triggers when the flake or the ca-in-julia post sources
 # move — depot rebuilds only when its Manifest changes (or julia/GL pins change).
 when:
-  # Initially triggering on the freeze-free test branch so we don't trigger main's
-  # frozen render.yml during shakedown. Once green, narrow to: branch: main.
+  # Triggers on any main push. Each Spindle run is a fresh container with no
+  # cross-run nix store cache, so this re-does the full ~7min depot build every
+  # time — wasteful on pushes that don't touch the flake or ca-in-julia's
+  # Project/Manifest. Acceptable for now; a `paths:` filter would be the fix if
+  # Spindle adds one. Outputs are deterministic so the rebuilt manifest is identical
+  # when inputs haven't moved.
   - event: ["push"]
-    branch: freeze-free
+    branch: main
 
 dependencies:
   nixpkgs:
