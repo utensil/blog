@@ -2,7 +2,7 @@ engine: nixery
 
 # Freeze-free render test on a branch. Publishes to `site` (operator-requested, so they can
 # eyeball it side-by-side with the current frozen output via the live URL).
-# Pulls TWO prebuilt assets from the infra-land GH release: the precompiled Julia depot
+# Pulls TWO prebuilt assets from R2 (utensil-tngl bucket): the precompiled Julia depot
 # (extracted to its exact /nix/store path where its .ji caches reference it) AND the
 # render-env closure (julia + nix mesa.drivers/llvmpipe + libGL + X libs + Xvfb +
 # env.sh; nix-store --import'd so every store path lands at the names env.sh hardcodes).
@@ -57,8 +57,8 @@ steps:
       export PATH="/tmp/hugobin:$PATH"
       echo "::endgroup::"
 
-      echo "::group::fetch cached depot from infra-land release"
-      REL=https://github.com/utensil/infra-land/releases/download/blog-depot-x86_64
+      echo "::group::fetch cached depot from R2 (utensil-tngl bucket)"
+      REL=https://pub-5462b73a50594a06b85663123d74ab23.r2.dev
       curl -fsSL "$REL/blog-depot-x86_64.storepath" -o /tmp/depot.storepath
       DEPOT_PATH="$(cat /tmp/depot.storepath)"
       echo "depot expected at: $DEPOT_PATH"
