@@ -1,13 +1,16 @@
 engine: nixery
 
 # Freeze-free render test on a branch. Publishes to `site` (operator-requested, so they can
-# eyeball it side-by-side with the current frozen output via the live URL). Pulls the
-# precompiled Julia depot from the infra-land GH release, places it at its exact /nix/store
-# path (where its .ji caches reference it), enters the `blog-render` devShell from the
-# infra-land flake (official julia + software-GL stack + Xvfb with the env preset),
-# invalidates the ca-in-julia _freeze so quarto re-executes the Julia LIVE through the
-# cached depot. Sibling of render.yml (which still triggers on main pushes + also publishes,
-# so a push to main can race-overwrite this output on `site`).
+# eyeball it side-by-side with the current frozen output via the live URL).
+# Pulls TWO prebuilt assets from the infra-land GH release: the precompiled Julia depot
+# (extracted to its exact /nix/store path where its .ji caches reference it) AND the
+# render-env closure (julia + nix mesa.drivers/llvmpipe + libGL + X libs + Xvfb +
+# env.sh; nix-store --import'd so every store path lands at the names env.sh hardcodes).
+# Sourcing env.sh sets the headless-GL recipe + adds julia/Xvfb to PATH — no `nix develop`
+# at runtime, so Spindle skips the cold-cache julia-official + nix-shell-env rebuild that
+# stretched the render to 20min+.
+# Sibling of render.yml (which still triggers on main pushes + also publishes, so a push to
+# main can race-overwrite this output on `site`).
 when:
   - event: ["push"]
     branch: freeze-free
@@ -84,41 +87,33 @@ steps:
       ls _freeze/content/posts/ 2>&1 | head || true
       echo "::endgroup::"
 
-      echo "::group::clone infra-land flake locally (from GitHub)"
-      # Use github.com — that's where my freeze-free flake actually lives. tangled's
-      # mirror of infra-land is currently behind (last push there was the operator's
-      # 'herdr config' commit, predates nix/flake.nix). Also sidesteps two earlier
-      # problems: nix's git-flake fetcher losing ?dir=nix through tangled's
-      # tangled.org→knot1.tangled.sh 302 (`error: path '«git+https://…?ref=refs/heads/…»`),
-      # and tangled returning a different repo than expected via that redirect.
-      rm -rf /tmp/infra-land
-      git clone --depth 1 https://github.com/utensil/infra-land /tmp/infra-land
-      ls /tmp/infra-land/nix/flake.nix
+      echo "::group::fetch render-env closure (julia + GL + Xvfb)"
+      curl -fsSL "$REL/blog-render-env-x86_64.storepath" -o /tmp/env.storepath
+      ENV_PATH="$(cat /tmp/env.storepath)"
+      echo "render-env expected at: $ENV_PATH"
+      curl -fsSL "$REL/blog-render-env-x86_64.nar.zst" -o /tmp/env.nar.zst
+      zstd -d -T0 /tmp/env.nar.zst -o /tmp/env.nar
+      nix-store --import < /tmp/env.nar
+      rm -f /tmp/env.nar /tmp/env.nar.zst
+      test -f "$ENV_PATH/env.sh" || { echo "::error::env.sh missing under $ENV_PATH"; exit 1; }
       echo "::endgroup::"
 
-      echo "::group::render LIVE via blog-render devShell (julia + GL recipe + Xvfb)"
+      echo "::group::render LIVE via render-env (no nix develop)"
+      # env.sh adds the julia + Xvfb bin/ to PATH and exports the GL recipe
+      # (LD_LIBRARY_PATH, LIBGL_*, GALLIUM_DRIVER, __GLX_VENDOR_LIBRARY_NAME).
+      # No JULIA_PKG_OFFLINE: ensureQuartoNotebookRunnerEnvironment runs Pkg.up
+      # internally, which calls check_registered. With Dummy removed from the depot,
+      # Pkg installs the real General registry to /tmp/wdepot at runtime.
+      source "$ENV_PATH/env.sh"
+      export DISPLAY=:73
+      rm -f /tmp/.X73-lock /tmp/.X11-unix/X73 2>/dev/null || true
+      Xvfb :73 -screen 0 1280x1024x24 +extension GLX +render -noreset >/tmp/xvfb.log 2>&1 &
+      sleep 4
       mkdir -p /tmp/wdepot
-      # The devShell sets LD_LIBRARY_PATH / LIBGL_* / GALLIUM_DRIVER / __GLX_VENDOR_LIBRARY_NAME
-      # via shellHook; we just add DISPLAY, start Xvfb, point JULIA_DEPOT_PATH at the cached
-      # depot, then quarto render runs the Julia LIVE through GLMakie.
-      nix --extra-experimental-features 'nix-command flakes' develop \
-        "/tmp/infra-land/nix#blog-render" \
-        -c bash -c '
-          set -e
-          export DISPLAY=:73
-          rm -f /tmp/.X73-lock /tmp/.X11-unix/X73 2>/dev/null || true
-          Xvfb :73 -screen 0 1280x1024x24 +extension GLX +render -noreset >/tmp/xvfb.log 2>&1 &
-          sleep 4
-          export JULIA_DEPOT_PATH="/tmp/wdepot:'"$DEPOT_PATH"'"
-          # No JULIA_PKG_OFFLINE: ensureQuartoNotebookRunnerEnvironment runs Pkg.up
-          # internally, which calls check_registered against reachable_registries.
-          # Without offline + the Dummy registry removed from the depot, Pkg installs
-          # the real General registry to /tmp/wdepot (writable, network available on
-          # Spindle) and the check passes.
-          julia --version; quarto --version; hugo version
-          quarto render .
-          hugo --minify
-        '
+      export JULIA_DEPOT_PATH="/tmp/wdepot:$DEPOT_PATH"
+      julia --version; quarto --version; hugo version
+      quarto render .
+      hugo --minify
       test -f public/index.html
       echo "::endgroup::"
 
