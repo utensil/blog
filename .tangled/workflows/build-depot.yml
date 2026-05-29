@@ -1,0 +1,131 @@
+engine: nixery
+
+# Build the freeze-free Julia depot + render-env on Spindle (no GitHub Actions),
+# package + upload to R2. Triggers when the flake or the ca-in-julia post sources
+# move — depot rebuilds only when its Manifest changes (or julia/GL pins change).
+when:
+  # Initially triggering on the freeze-free test branch so we don't trigger main's
+  # frozen render.yml during shakedown. Once green, narrow to: branch: main.
+  - event: ["push"]
+    branch: freeze-free
+
+dependencies:
+  nixpkgs:
+    - bash
+    - coreutils
+    - gnugrep
+    - findutils
+    - gawk
+    - git
+    - openssh
+    - cacert
+    - gcc
+    - curl
+    - gnutar
+    - gzip
+    - patchelf
+    - glibc
+    - nix
+    - awscli2
+    - jq
+    - zstd
+    - python3
+
+steps:
+  - name: build depot + render-env, package, upload to R2
+    command: |
+      set -euo pipefail
+      export SSL_CERT_FILE="${SSL_CERT_FILE:-${NIX_SSL_CERT_FILE:-/etc/ssl/certs/ca-bundle.crt}}"
+      export HOME="${HOME:-/tmp/cihome}"; mkdir -p "$HOME"
+
+      echo "::group::configure nix (sandbox=false for stage 2 Xvfb)"
+      # The depot derivation's stage 2 buildPhase starts Xvfb to give GLMakie a GL
+      # context during precompile — requires sandbox=false. Stage 1 is a FOD so
+      # network is allowed regardless.
+      mkdir -p "$HOME/.config/nix"
+      cat > "$HOME/.config/nix/nix.conf" <<NIXCONF
+      experimental-features = nix-command flakes
+      sandbox = false
+      NIXCONF
+      cat "$HOME/.config/nix/nix.conf"
+      echo "::endgroup::"
+
+      echo "::group::nix build .#blog-depot"
+      depot=$(nix build .#blog-depot --no-link --print-out-paths)
+      echo "depot: $depot"
+      du -sh "$depot"
+      echo "::endgroup::"
+
+      echo "::group::nix build .#blog-render-env"
+      env_out=$(nix build .#blog-render-env --no-link --print-out-paths)
+      echo "render-env: $env_out"
+      du -sh "$env_out"
+      echo "::endgroup::"
+
+      echo "::group::package depot (tar.zst at its store path)"
+      base="$(basename "$depot")"
+      tar -C /nix/store -cf - "$base" | zstd -19 -T0 -o blog-depot-x86_64.tar.zst
+      ls -lh blog-depot-x86_64.tar.zst
+      echo "$depot" > blog-depot-x86_64.storepath
+      sha256sum blog-depot-x86_64.tar.zst | tee blog-depot-x86_64.sha256
+      echo "::endgroup::"
+
+      echo "::group::package render-env (full NAR closure, zstd-19)"
+      nix-store --export $(nix-store -qR "$env_out") \
+        | zstd -19 -T0 -o blog-render-env-x86_64.nar.zst
+      ls -lh blog-render-env-x86_64.nar.zst
+      echo "$env_out" > blog-render-env-x86_64.storepath
+      sha256sum blog-render-env-x86_64.nar.zst | tee blog-render-env-x86_64.sha256
+      echo "::endgroup::"
+
+      echo "::group::generate manifest.json"
+      # R2_PUBLIC_URL: Spindle secret (set on tangled blog repo). If not yet set,
+      # fall back to the known managed URL so the build still produces a usable manifest.
+      : "${R2_PUBLIC_URL:=https://pub-5462b73a50594a06b85663123d74ab23.r2.dev}"
+      depot_store="$(cat blog-depot-x86_64.storepath)"
+      env_store="$(cat blog-render-env-x86_64.storepath)"
+      depot_sha="$(cut -d' ' -f1 blog-depot-x86_64.sha256)"
+      env_sha="$(cut -d' ' -f1 blog-render-env-x86_64.sha256)"
+      depot_size=$(stat -c%s blog-depot-x86_64.tar.zst)
+      env_size=$(stat -c%s blog-render-env-x86_64.nar.zst)
+      cat > manifest.json <<EOF
+      {
+        "version": 1,
+        "created_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+        "base_url": "$R2_PUBLIC_URL",
+        "assets": {
+          "depot": {
+            "tar": "blog-depot-x86_64.tar.zst",
+            "store_path": "$depot_store",
+            "sha256": "$depot_sha",
+            "size_bytes": $depot_size
+          },
+          "render_env": {
+            "nar": "blog-render-env-x86_64.nar.zst",
+            "store_path": "$env_store",
+            "sha256": "$env_sha",
+            "size_bytes": $env_size
+          }
+        }
+      }
+      EOF
+      python3 -m json.tool manifest.json
+      echo "::endgroup::"
+
+      echo "::group::upload to R2 (S3-compatible, aws-cli multipart-safe)"
+      : "${R2_ACCESS_KEY_ID:?R2_ACCESS_KEY_ID secret missing on this Spindle repo}"
+      : "${R2_SECRET_ACCESS_KEY:?R2_SECRET_ACCESS_KEY secret missing}"
+      : "${R2_ENDPOINT:?R2_ENDPOINT secret missing}"
+      : "${R2_BUCKET:?R2_BUCKET secret missing}"
+      export AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
+      export AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
+      export AWS_DEFAULT_REGION=auto
+      for f in \
+        blog-depot-x86_64.tar.zst blog-depot-x86_64.storepath blog-depot-x86_64.sha256 \
+        blog-render-env-x86_64.nar.zst blog-render-env-x86_64.storepath blog-render-env-x86_64.sha256 \
+        manifest.json; do
+        echo "uploading $f → s3://$R2_BUCKET/$f"
+        aws --endpoint-url "$R2_ENDPOINT" s3 cp "$f" "s3://$R2_BUCKET/$f"
+      done
+      echo "✅ all artifacts uploaded; base URL: $R2_PUBLIC_URL"
+      echo "::endgroup::"
