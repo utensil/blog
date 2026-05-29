@@ -118,7 +118,9 @@ steps:
       export JULIA_DEPOT_PATH="/tmp/wdepot:$DEPOT_PATH"
       julia --version; quarto --version; hugo version
       quarto render .
-      hugo --minify
+      # config.yml's baseURL is github.io (kept stable for the original GH Pages
+      # deploy). Override at build time so on-page links resolve to tngl.sh.
+      hugo --minify --baseURL "https://utensil.tngl.sh/blog/"
       test -f public/index.html
       echo "::endgroup::"
 
